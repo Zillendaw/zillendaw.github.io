@@ -20,9 +20,16 @@
         </header>
 
         <main>
-            <section class="links">
+				<section class="links">
                 <a href="https://github.com/Sanyek004" target="_blank" class="btn">Мой GitHub</a>
-                <a href="mailto:mossy009@mail.ru" class="btn btn-outline">Написать мне</a>
+           
+                <div class="dropdown">
+                    <button onclick="toggleMenu()" class="btn btn-outline">Написать мне</button>
+                    <div id="contactMenu" class="dropdown-content">
+                        <a href="mailto:mossy009@mail.ru">Электронная почта</a>
+						<a href="404.html">Telegram</a>
+                    </div>
+                </div>
             </section>
 
             <section class="portfolio">
@@ -51,5 +58,24 @@
             <p>&copy; 2026 Sanyek004. Создано с помощью GitHub Pages.</p>
         </footer>
     </div>
+    <script>
+        // Функция открытия/закрытия меню
+        function toggleMenu() {
+            document.getElementById("contactMenu").classList.toggle("show");
+        }
+
+        // Закрываем меню, если пользователь кликнул в любое другое место на странице
+        window.onclick = function(event) {
+            if (!event.target.matches('.btn-outline')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
