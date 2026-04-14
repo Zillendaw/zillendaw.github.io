@@ -199,3 +199,8 @@ button.btn {
 .show {
     display: block;
 }
+
+/* Отступ между иконкой и текстом */
+i {
+    margin-right: 8px;
+}
