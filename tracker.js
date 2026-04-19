@@ -14,7 +14,7 @@
  */
 
 (async function () {
-  const WORKER_URL = "https://my-web-site.sasha88543.workers.dev";
+  const WORKER_URL = "https://my-web-site.sasha88543.workers.dev/";
 
   // ── Защита от повторного трека (сессионный, сбрасывается при закрытии вкладки)
   if (sessionStorage.getItem("tracked")) return;
