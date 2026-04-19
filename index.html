@@ -25,9 +25,9 @@
                     <i class="fab fa-github"></i> GitHub
                 </a>
 
-                <a href="404.html" class="btn btn-outline">
-                    <i class="fas fa-graduation-cap"></i> Диплом СПО
-                </a>
+			<button onclick="openModal()" class="btn btn-outline">
+					<i class="fas fa-graduation-cap"></i> Образование
+				</button>
            
                 <div class="dropdown">
                     <button onclick="toggleMenu()" class="btn btn-outline">
@@ -42,7 +42,23 @@
                         </a>
                     </div>
                 </div>
-            </section>           
+            </section>   
+				<div id="eduModal" class="modal">
+				<div class="modal-content">
+					<span class="close-btn" onclick="closeModal()">&times;</span>
+					<h3>Моё образование</h3>
+					<div class="edu-cards-container">
+						<div class="edu-card">
+							<div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+							<div class="edu-info">
+								<h3>Среднее профессиональное образование</h3>
+								<h5>2020-2025</h5>
+								<p>Специальность: Информационные системы и программирование</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>        
             <section class="portfolio">
                 <h3>Мои проекты</h3>
                 <div class="projects-grid">
@@ -71,23 +87,36 @@
         </footer>
     </div>
     <script>
+				function openModal() {
+			document.getElementById("eduModal").style.display = "flex";
+		}
+
+		function closeModal() {
+			document.getElementById("eduModal").style.display = "none";
+		}
+		
         // Функция открытия/закрытия меню
         function toggleMenu() {
             document.getElementById("contactMenu").classList.toggle("show");
         }
 
-        // Закрываем меню, если пользователь кликнул в любое другое место на странице
-        window.onclick = function(event) {
-            if (!event.target.matches('.btn-outline')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+		// Закрытие окна при клике на темную область вокруг него
+		window.onclick = function(event) {
+			let modal = document.getElementById("eduModal");
+			if (event.target == modal) {
+				closeModal();
+			}
+			// Код для выпадающего меню
+			if (!event.target.matches('.btn-outline')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				for (var i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
     </script>
 </body>
 </html>
