@@ -17,8 +17,8 @@
   const WORKER_URL = "https://my-web-site.sasha88543.workers.dev";
 
   // ── Защита от повторного трека (сессионный, сбрасывается при закрытии вкладки)
-  if (sessionStorage.getItem("tracked")) return;
-  sessionStorage.setItem("tracked", "1");
+  //if (sessionStorage.getItem("tracked")) return;
+  //sessionStorage.setItem("tracked", "1");
 
   try {
     // ── 1. Получаем гео по IP ──────────────────────────────
