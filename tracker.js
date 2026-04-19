@@ -1,7 +1,7 @@
 (async function () {
   const WORKER_URL = "https://my-web-site.sasha88543.workers.dev";
 
-  // Защита от повторного трека (закомментируйте для тестов)
+  // Защита от повторного трека 
   if (sessionStorage.getItem("tracked")) return;
   sessionStorage.setItem("tracked", "1");
 
@@ -30,7 +30,7 @@
     page:   location.href,
   };
 
-  // 3. Отправляем в Worker (этот блок теперь сработает всегда)
+  // 3. Отправляем в Worker 
   try {
     await fetch(`${WORKER_URL}/track`, {
       method:  "POST",
