@@ -1,51 +1,43 @@
-/**
- * tracker.js — клиентский трекер посещений для Sanyek004.github.io
- *
- * Подключается в конце <body> в index.html:
- *   <script src="tracker.js"></script>
- *
- * Что делает:
- *   1. Получает гео-данные по IP через ip-api.com (бесплатно, без ключа)
- *   2. Отправляет данные на Cloudflare Worker, который:
- *      - пишет счётчик в KV-хранилище
- *      - шлёт уведомление в Telegram
- *
- * Замени WORKER_URL на реальный URL твоего воркера.
- */
-
 (async function () {
   const WORKER_URL = "https://my-web-site.sasha88543.workers.dev";
 
-  // ── Защита от повторного трека (сессионный, сбрасывается при закрытии вкладки)
-  //if (sessionStorage.getItem("tracked")) return;
-  //sessionStorage.setItem("tracked", "1");
+  // Защита от повторного трека (закомментируйте для тестов)
+  if (sessionStorage.getItem("tracked")) return;
+  sessionStorage.setItem("tracked", "1");
 
+  let geo = {};
+
+  // 1. Пытаемся получить гео-данные (может быть заблокировано браузером)
   try {
-    // ── 1. Получаем гео по IP ──────────────────────────────
     const geoResp = await fetch(
       "https://ip-api.com/json/?fields=status,regionName,city,isp&lang=ru",
       { cache: "no-store" }
     );
-    const geo = geoResp.ok ? await geoResp.json() : {};
+    if (geoResp.ok) {
+      geo = await geoResp.json();
+    }
+  } catch (err) {
+    console.warn("Не удалось получить гео-данные (возможно, блокировщик):", err);
+  }
 
-    // ── 2. Собираем данные о клиенте ───────────────────────
-    const payload = {
-      region: geo.regionName || "—",
-      city:   geo.city       || "—",
-      isp:    geo.isp        || "—",
-      ua:     navigator.userAgent,
-      lang:   navigator.language || navigator.userLanguage || "—",
-      page:   location.href,
-    };
+  // 2. Собираем данные
+  const payload = {
+    region: geo.regionName || "—",
+    city:   geo.city       || "—",
+    isp:    geo.isp        || "—",
+    ua:     navigator.userAgent,
+    lang:   navigator.language || navigator.userLanguage || "—",
+    page:   location.href,
+  };
 
-    // ── 3. Отправляем воркеру ──────────────────────────────
+  // 3. Отправляем в Worker (этот блок теперь сработает всегда)
+  try {
     await fetch(`${WORKER_URL}/track`, {
       method:  "POST",
       headers: { "Content-Type": "application/json" },
       body:    JSON.stringify(payload),
     });
-
-  } catch (_) {
-    // Трекер не должен ломать сайт — тихо глотаем ошибки
+  } catch (err) {
+    console.error("Ошибка отправки в Worker:", err);
   }
 })();
