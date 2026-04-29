@@ -9,6 +9,7 @@
     ua:   navigator.userAgent,
     lang: navigator.language || "—",
     page: location.href,
+    referrer: document.referrer || "Прямой заход / неизвестно",
   };
 
   // Без async/await — запрос уходит мгновенно
