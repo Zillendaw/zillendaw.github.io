@@ -183,18 +183,33 @@
 
     <!-- Модальное окно образования -->
     <div id="eduModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content edu-modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3>Моё образование</h3>
+            <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
             <div class="edu-cards-container">
-                <div class="edu-card">
-                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+
+                <div class="edu-card edu-card--spo">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-school"></i></div>
                     <div class="edu-info">
-                        <h3>Среднее профессиональное образование</h3>
-                        <h5>2020–2025</h5>
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Информационные системы и программирование</h3>
+                        <h5><i class="fas fa-certificate"></i> СПО · 2020 – 2025</h5>
                         <p>Специальность: Информационные системы и программирование</p>
                     </div>
                 </div>
+
+                <div class="edu-card edu-card--bachelor">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Программная инженерия</h3>
+                        <h5><i class="fas fa-graduation-cap"></i> Бакалавриат · 2025 – настоящее время</h5>
+                        <p>Направление: Программная инженерия</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -247,7 +262,15 @@
             document.body.removeAttribute('data-mode');
         }
 
-        function openModal()  { document.getElementById("eduModal").style.display = "flex"; }
+        function openModal() {
+            // Сбросить анимацию, чтобы она воспроизводилась заново
+            document.querySelectorAll('.edu-card__shine').forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; // reflow
+                el.style.animation = '';
+            });
+            document.getElementById("eduModal").style.display = "flex";
+        }
         function closeModal() { document.getElementById("eduModal").style.display = "none"; }
         function toggleMenu() { document.getElementById("contactMenu").classList.toggle("show"); }
 

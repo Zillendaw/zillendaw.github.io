@@ -592,7 +592,9 @@ i { margin-right: 8px; }
     z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     align-items: center;
     justify-content: center;
 }
@@ -608,6 +610,13 @@ i { margin-right: 8px; }
     animation: slideDown 0.3s ease;
 }
 
+/* Светлая версия модалки образования (по умолчанию) */
+.edu-modal-content {
+    background: linear-gradient(145deg, #f8f9fc 0%, #ffffff 60%, #f4f6fb 100%);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
 @keyframes slideDown {
     from { transform: translateY(-40px); opacity: 0; }
     to   { transform: translateY(0);     opacity: 1; }
@@ -621,24 +630,149 @@ i { margin-right: 8px; }
     color: #888;
 }
 
+.edu-modal-content .close-btn { color: rgba(0,0,0,0.35); }
+.edu-modal-content .close-btn:hover { color: #111; }
+
 .close-btn:hover { color: #000; }
+
+/* Заголовок модалки образования */
+.edu-modal-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111111;
+    letter-spacing: -0.01em;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edu-modal-title i {
+    color: #4dd9ff;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
 .edu-cards-container { margin-top: 20px; }
 
+/* ─── Карточки образования с анимацией оцветения стекла ─── */
 .edu-card {
     display: flex;
     align-items: flex-start;
     gap: 15px;
-    background: #f9f9fb;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #eee;
+    background: rgba(0,0,0,0.025);
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    border: 1px solid rgba(0,0,0,0.07);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.edu-icon { font-size: 1.5rem; color: #007bff; padding-top: 5px; }
-.edu-info h3 { margin-bottom: 4px; color: #333; font-size: 1rem; }
-.edu-info h5 { color: #888; font-weight: 600; margin-bottom: 4px; }
-.edu-info p  { font-size: 0.9rem; color: #666; }
+/* Блик-шлейф — «оцветение стекла» */
+.edu-card__shine {
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+/* Анимация появления цветного ореола при открытии модалки */
+@keyframes glassColorSpo {
+    0%   { opacity: 0; background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.0) 0%, transparent 70%); }
+    40%  { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.18) 0%, transparent 65%); }
+    100% { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.10) 0%, transparent 65%); }
+}
+
+@keyframes glassColorBachelor {
+    0%   { opacity: 0; background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.0) 0%, transparent 70%); }
+    40%  { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.18) 0%, transparent 65%); }
+    100% { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.10) 0%, transparent 65%); }
+}
+
+/* Пульсирующий бордер при ховере — второй слой оцветения */
+@keyframes glassShimmer {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.edu-modal-content .edu-cards-container .edu-card--spo .edu-card__shine {
+    animation: glassColorSpo 0.8s ease 0.15s forwards;
+}
+
+.edu-modal-content .edu-cards-container .edu-card--bachelor .edu-card__shine {
+    animation: glassColorBachelor 0.8s ease 0.35s forwards;
+}
+
+/* Ховер — усиление оцветения */
+.edu-card--spo:hover {
+    border-color: rgba(77,217,255,0.3);
+    box-shadow: 0 0 20px rgba(77,217,255,0.08), inset 0 0 20px rgba(77,217,255,0.04);
+    transform: translateY(-2px);
+}
+
+.edu-card--bachelor:hover {
+    border-color: rgba(147,112,255,0.3);
+    box-shadow: 0 0 20px rgba(147,112,255,0.08), inset 0 0 20px rgba(147,112,255,0.04);
+    transform: translateY(-2px);
+}
+
+.edu-card--spo:hover .edu-card__shine {
+    opacity: 1;
+    background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.22) 0%, transparent 65%);
+}
+
+.edu-card--bachelor:hover .edu-card__shine {
+    opacity: 1;
+    background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.22) 0%, transparent 65%);
+}
+
+/* Иконки и текст карточек */
+.edu-card--spo    .edu-icon { color: #4dd9ff; }
+.edu-card--bachelor .edu-icon { color: #9370ff; }
+
+.edu-icon { font-size: 1.5rem; padding-top: 3px; position: relative; z-index: 1; }
+
+.edu-info { position: relative; z-index: 1; }
+
+.edu-institution {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.38);
+    margin-bottom: 5px;
+}
+
+.edu-info h3 { margin-bottom: 4px; color: #111111; font-size: 1rem; font-weight: 700; }
+
+.edu-info h5 {
+    color: rgba(0,0,0,0.45);
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 0.82rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.edu-info h5 i { margin: 0; font-size: 0.75rem; opacity: 0.7; }
+
+.edu-card--spo    .edu-info h5 i { color: #4dd9ff; }
+.edu-card--bachelor .edu-info h5 i { color: #9370ff; }
+
+.edu-info p { font-size: 0.88rem; color: rgba(0,0,0,0.38); margin: 0; }
+
+/* Сброс анимации при повторном открытии */
+#eduModal:not([style*="flex"]) .edu-card__shine {
+    animation: none;
+    opacity: 0;
+}
 
 /* =====================================================
    Анимированная схема связей стека технологий
@@ -796,8 +930,7 @@ i { margin-right: 8px; }
     .project-card h4 { color: #e0e0e0; }
     .project-card p  { color: #aaa; }
 
-    .edu-card { background-color: #2a2a2a; border-color: #444; }
-    .edu-info h3 { color: #e0e0e0; }
+    /* edu-card уже тёмный по умолчанию, переопределять не нужно */
 
     .btn-outline { color: #e0e0e0; border-color: #e0e0e0; }
     .btn-outline:hover { background-color: #e0e0e0; color: #121212; }
@@ -811,4 +944,26 @@ i { margin-right: 8px; }
     footer { border-top-color: #333; color: #666; }
     .nickname { color: #777; }
     .bio { color: #888; }
+
+    /* ── Тёмная тема: модалка образования ── */
+    .edu-modal-content {
+        background: linear-gradient(145deg, #0d1117 0%, #111827 60%, #0d1117 100%);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .edu-modal-title { color: #ffffff; }
+
+    .edu-modal-content .close-btn { color: rgba(255,255,255,0.4); }
+    .edu-modal-content .close-btn:hover { color: #fff; }
+
+    .edu-card {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .edu-institution { color: rgba(255,255,255,0.35); }
+    .edu-info h3 { color: #f0f0f0; }
+    .edu-info h5 { color: rgba(255,255,255,0.45); }
+    .edu-info p { color: rgba(255,255,255,0.35); }
 }
