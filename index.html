@@ -152,10 +152,21 @@
                     </div>
 
                     <div id="video-projects" class="projects-content">
-                        <h3 class="video-section-title">
-                            <i class="fas fa-film"></i> Шоурилы и кейсы
-                        </h3>
-                        <div class="video-cases-grid">
+
+                        <!-- ── Таб-переключатель ── -->
+                        <div class="video-tabs" role="tablist">
+                            <button class="video-tab video-tab--active" data-tab="showreels" role="tab" aria-selected="true">
+                                <i class="fas fa-play-circle"></i> Шоурилы
+                                <span class="video-tab__count">2</span>
+                            </button>
+                            <button class="video-tab" data-tab="cases" role="tab" aria-selected="false">
+                                <i class="fas fa-briefcase"></i> Кейсы
+                                <span class="video-tab__count">5</span>
+                            </button>
+                        </div>
+
+                        <!-- ── Шоурилы ── -->
+                        <div id="tab-showreels" class="video-tab-panel video-cases-grid" role="tabpanel">
 
                             <div class="video-case-card">
                                 <div class="video-embed">
@@ -192,6 +203,11 @@
                                     <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <!-- ── Кейсы ── -->
+                        <div id="tab-cases" class="video-tab-panel video-cases-grid video-tab-panel--hidden" role="tabpanel">
 
                             <div class="video-case-card">
                                 <div class="video-embed">
@@ -630,6 +646,24 @@
             wrap.className = 'chart-wrap';
             wrap.appendChild(buildChart(type));
             card.appendChild(wrap);
+        });
+    })();
+    </script>
+    <script>
+    /* ── Таб-переключатель Шоурилы / Кейсы ── */
+    (function () {
+        document.querySelectorAll('.video-tab').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const target = btn.dataset.tab;
+                document.querySelectorAll('.video-tab').forEach(function (b) {
+                    b.classList.toggle('video-tab--active', b === btn);
+                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+                });
+                document.querySelectorAll('.video-tab-panel').forEach(function (panel) {
+                    const isTarget = panel.id === 'tab-' + target;
+                    panel.classList.toggle('video-tab-panel--hidden', !isTarget);
+                });
+            });
         });
     })();
     </script>

@@ -550,6 +550,99 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 }
 
 /* =====================================================
+   ВИДЕОМОНТАЖ — таб-переключатель
+   ===================================================== */
+.video-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+    padding: 6px;
+    /* Более насыщенный фиолетовый фон и рамка */
+    background: rgba(155, 80, 255, 0.08);
+    border: 1px solid rgba(155, 80, 255, 0.25);
+    border-radius: 14px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 22px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    /* Увеличена непрозрачность до 0.85 для высокой чёткости */
+    color: rgba(175, 120, 255, 0.85); 
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+    position: relative;
+    /* Принудительное сглаживание шрифта (делает текст более резким) */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.video-tab i { margin: 0; font-size: 0.9rem; }
+
+.video-tab__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    line-height: 1;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* Глубокий фиолетовый */
+    background: rgba(155, 80, 255, 0.2);
+    /* Почти сплошной цвет для чёткости цифр */
+    color: rgba(190, 140, 255, 0.95);
+    transition: background 0.22s, color 0.22s;
+}
+
+.video-tab--active {
+    /* Градиент из чистых фиолетовых оттенков */
+    background: linear-gradient(135deg, rgba(155, 80, 255, 0.25) 0%, rgba(120, 40, 230, 0.3) 100%);
+    /* Максимально светлый фиолетово-белый для идеальной читаемости */
+    color: #f4ebff; 
+    box-shadow: 0 2px 12px rgba(130, 40, 230, 0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.video-tab--active .video-tab__count {
+    background: rgba(155, 80, 255, 0.5);
+    /* Белый цвет цифр в активном состоянии для 100% чёткости */
+    color: #ffffff; 
+}
+
+.video-tab:not(.video-tab--active):hover {
+    background: rgba(155, 80, 255, 0.15);
+    /* Использование сплошного цвета при наведении вместо rgba */
+    color: #d1a8ff; 
+}
+
+/* Панели табов */
+.video-tab-panel {
+    animation: fadeInSlideUp 0.32s ease-out both;
+}
+
+.video-tab-panel--hidden {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    .video-tab { padding: 8px 14px; font-size: 0.82rem; }
+    .video-tab__count { width: 18px; height: 18px; font-size: 0.65rem; }
+}
+
+/* =====================================================
    ВИДЕОМОНТАЖ — кейсы и шоурилы
    ===================================================== */
 .video-section-title {
