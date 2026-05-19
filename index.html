@@ -43,7 +43,7 @@
         <!-- ФАЗА 2: Карточки выбора (появляются после профиля) -->
         <div class="split-row" id="split-row">
 
-            <div class="split-card split-card--dev" id="half-dev" onclick="enter('dev')">
+            <div class="split-card split-card--dev" id="half-dev" data-section="dev">
                 <div class="split-card__glow"></div>
                 <div class="split-card__inner">
                     <div class="split-card__icons">
@@ -59,11 +59,9 @@
                     </ul>
                     <span class="split-card__cta">Войти <i class="fas fa-arrow-right"></i></span>
                 </div>
-
-
             </div>
 
-            <div class="split-card split-card--video" id="half-video" onclick="enter('video')">
+            <div class="split-card split-card--video" id="half-video" data-section="video">
                 <div class="split-card__glow"></div>
                 <div class="split-card__inner">
                     <div class="split-card__icons">
@@ -79,8 +77,6 @@
                     </ul>
                     <span class="split-card__cta">Войти <i class="fas fa-arrow-right"></i></span>
                 </div>
-
-
             </div>
 
         </div>
@@ -93,7 +89,7 @@
         <div class="container">
 
             <header>
-                <button class="back-btn" onclick="goBack()">
+                <button class="back-btn" id="back-btn">
                     <i class="fas fa-arrow-left"></i> Сменить раздел
                 </button>
                 <div class="profile-img">
@@ -108,14 +104,14 @@
                     <a href="https://github.com/Zillendaw" target="_blank" class="btn" id="btn-github">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-youtube" id="btn-youtube" style="display:none;">
+                    <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-youtube hidden" id="btn-youtube">
                         <i class="fab fa-youtube"></i> YouTube
                     </a>
-                    <button onclick="openModal()" class="btn btn-outline">
+                    <button id="btn-education" class="btn btn-outline">
                         <i class="fas fa-graduation-cap"></i> Образование
                     </button>
                     <div class="dropdown">
-                        <button onclick="toggleMenu()" class="btn btn-outline">
+                        <button id="btn-contact" class="btn btn-outline">
                             <i class="fas fa-paper-plane"></i> Написать мне
                         </button>
                         <div id="contactMenu" class="dropdown-content">
@@ -132,10 +128,10 @@
 
             <main>
                 <section class="portfolio">
-                    
+
                     <div id="coding-projects" class="projects-content">
                         <h3 id="portfolio-title">Мои проекты</h3>
-                        
+
                         <div class="projects-grid">
                             <div class="project-card">
                                 <h4>Система автоматизации «Академия Киокусинкай»</h4>
@@ -161,13 +157,11 @@
                         </h3>
                         <div class="video-cases-grid">
 
-                            <!-- YouTube -->
                             <div class="video-case-card">
                                 <div class="video-embed">
                                     <iframe
                                         src="https://www.youtube.com/embed/UZRvcrw7vlo"
                                         title="Commerce Showreel"
-                                        frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen
                                         referrerpolicy="strict-origin-when-cross-origin"
@@ -186,7 +180,6 @@
                                     <iframe
                                         src="https://www.youtube.com/embed/JEY2gAs5e-E"
                                         title="YouTube Showreel"
-                                        frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen
                                         referrerpolicy="strict-origin-when-cross-origin"
@@ -204,9 +197,9 @@
                                 <div class="video-embed">
                                     <iframe
                                         src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239017&hash=cb1fb28f0e667870"
-                                        frameborder="0"
-                                        allowfullscreen="1"
+                                        title="Отзыв Николая, компания «Тепломонтаж»"
                                         allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
                                         loading="lazy">
                                     </iframe>
                                 </div>
@@ -217,18 +210,17 @@
                                         <i class="fas fa-cloud"></i> Личное портфолио
                                     </span>
                                 </div>
-                            </div>     
-                            
+                            </div>
+
                             <div class="video-case-card">
                                 <div class="video-embed">
-                                <iframe src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239018&hash=5bd7206ee8f912c3" 
-                                        width="640" 
-                                        height="360" 
-                                        frameborder="0" 
-                                        allowfullscreen="1" 
-                                        style="background-color: #000" 
-                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
-                                </iframe>
+                                    <iframe
+                                        src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239018&hash=5bd7206ee8f912c3"
+                                        title="Обзор монтажа бокса «Погреб ПП 3 Лонг»"
+                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
                                 </div>
                                 <div class="video-case-info">
                                     <h4><i class="fas fa-film"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
@@ -237,16 +229,17 @@
                                         <i class="fas fa-cloud"></i> Личное портфолио
                                     </span>
                                 </div>
-                            </div>   
+                            </div>
 
                             <div class="video-case-card">
                                 <div class="video-embed">
-                                <iframe src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239020&hash=2a2894bb011b58aa" 
-                                        width="640" height="360" 
-                                        frameborder="0" allowfullscreen="1" 
-                                        style="background-color: #000" 
-                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
-                                </iframe>
+                                    <iframe
+                                        src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239020&hash=2a2894bb011b58aa"
+                                        title="Отзыв Сергея Ким, компания «Тепломонтаж»"
+                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
                                 </div>
                                 <div class="video-case-info">
                                     <h4><i class="fas fa-film"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
@@ -255,16 +248,18 @@
                                         <i class="fas fa-cloud"></i> Личное портфолио
                                     </span>
                                 </div>
-                            </div>       
-                            
+                            </div>
+
                             <div class="video-case-card">
                                 <div class="video-embed">
-                                <iframe width="570" height="856" 
-                                        src="https://www.youtube.com/embed/sF_MnTFnGuY" 
-                                        title="Открытие точки корейской компании &quot;Atomy&quot; в торговом центре &quot;Маяк&quot; в г. Владивосток" 
-                                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                </iframe>
+                                    <iframe
+                                        src="https://www.youtube.com/embed/sF_MnTFnGuY"
+                                        title="Открытие точки корейской компании «Atomy» в ТЦ «Маяк» в г. Владивосток"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
                                 </div>
                                 <div class="video-case-info">
                                     <h4><i class="fas fa-film"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
@@ -273,16 +268,18 @@
                                         <i class="fas fa-cloud"></i> Личное портфолио
                                     </span>
                                 </div>
-                            </div>     
+                            </div>
 
                             <div class="video-case-card">
                                 <div class="video-embed">
-                                <iframe width="482" height="856" src="https://www.youtube.com/embed/5eTRQUaZ4JY" 
-                                        title="Дом &quot;Афрейм&quot;" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                                </iframe>
+                                    <iframe
+                                        src="https://www.youtube.com/embed/5eTRQUaZ4JY"
+                                        title="Дом «Афрейм»"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
                                 </div>
                                 <div class="video-case-info">
                                     <h4><i class="fas fa-film"></i> Демонстрация Дом "Афрейм"</h4>
@@ -291,7 +288,7 @@
                                         <i class="fas fa-cloud"></i> Личное портфолио
                                     </span>
                                 </div>
-                            </div>     
+                            </div>
 
                         </div>
                     </div>
@@ -308,7 +305,7 @@
     <!-- Модальное окно образования -->
     <div id="eduModal" class="modal">
         <div class="modal-content edu-modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" id="edu-close-btn">&times;</span>
             <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
             <div class="edu-cards-container">
 
@@ -338,263 +335,302 @@
         </div>
     </div>
 
+    <!-- Модальное окно видео -->
     <div id="videoModal" class="modal">
-            <div class="modal-content video-modal-content">
-                <span class="video-close-btn" onclick="closeVideoModal()">&times;</span>
-                <div class="video-container">
-                    <iframe id="videoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </div>
+        <div class="modal-content video-modal-content">
+            <span class="video-close-btn" id="video-close-btn">&times;</span>
+            <div class="video-container">
+                <iframe id="videoPlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
         </div>
+    </div>
 
     <script>
-        const subtitles = {
+    /* ═══════════════════════════════════════════════════════
+       Основная логика сайта
+       ═══════════════════════════════════════════════════════ */
+    (function () {
+        // ── Константы ────────────────────────────────────────
+        const ENTRY_EXIT_DELAY_MS  = 100;
+        const SECTION_SHOW_DELAY_MS = 520;
+
+        const SUBTITLES = {
             dev:   'Программист · Web-разработчик',
-            video: 'Видеомонтажёр · Post-Production'
+            video: 'Видеомонтажёр · Post-Production',
         };
 
-        function enter(type) {
-            const entryScreen = document.getElementById('entry-screen');
-            const mainSite    = document.getElementById('main-site');
+        // ── Элементы ─────────────────────────────────────────
+        const entryScreen   = document.getElementById('entry-screen');
+        const mainSite      = document.getElementById('main-site');
+        const siteSubtitle  = document.getElementById('site-subtitle');
+        const codingSection = document.getElementById('coding-projects');
+        const videoSection  = document.getElementById('video-projects');
+        const btnGithub     = document.getElementById('btn-github');
+        const btnYoutube    = document.getElementById('btn-youtube');
+        const eduModal      = document.getElementById('eduModal');
+        const videoModal    = document.getElementById('videoModal');
+        const videoPlayer   = document.getElementById('videoPlayer');
+        const contactMenu   = document.getElementById('contactMenu');
 
+        // ── Навигация между экранами ──────────────────────────
+        function enter(type) {
             document.getElementById('half-' + type).classList.add('split-card--chosen');
 
-            setTimeout(() => entryScreen.classList.add('entry-screen--exit'), 100);
+            setTimeout(() => entryScreen.classList.add('entry-screen--exit'), ENTRY_EXIT_DELAY_MS);
 
             setTimeout(() => {
                 entryScreen.style.display = 'none';
                 mainSite.classList.remove('main-site--hidden');
                 mainSite.classList.add('main-site--enter');
 
-                document.getElementById('site-subtitle').textContent = subtitles[type];
-                document.getElementById('coding-projects').style.display = type === 'dev'   ? 'block' : 'none';
-                document.getElementById('video-projects').style.display  = type === 'video' ? 'block' : 'none';
-                document.getElementById('btn-github').style.display  = type === 'dev'   ? '' : 'none';
-                document.getElementById('btn-youtube').style.display = type === 'video' ? '' : 'none';
+                siteSubtitle.textContent = SUBTITLES[type];
+                codingSection.style.display = type === 'dev'   ? 'block' : 'none';
+                videoSection.style.display  = type === 'video' ? 'block' : 'none';
+                btnGithub.classList.toggle('hidden',  type !== 'dev');
+                btnYoutube.classList.toggle('hidden', type !== 'video');
                 document.body.setAttribute('data-mode', type);
-            }, 520);
+            }, SECTION_SHOW_DELAY_MS);
         }
 
         function goBack() {
-            const entryScreen = document.getElementById('entry-screen');
-            const mainSite    = document.getElementById('main-site');
-
             mainSite.classList.add('main-site--hidden');
             mainSite.classList.remove('main-site--enter');
-
             entryScreen.style.display = 'flex';
             entryScreen.classList.remove('entry-screen--exit');
             document.querySelectorAll('.split-card').forEach(c => c.classList.remove('split-card--chosen'));
             document.body.removeAttribute('data-mode');
         }
 
-        function openModal() {
-            // Сбросить анимацию, чтобы она воспроизводилась заново
+        // ── Модалка образования ───────────────────────────────
+        function openEduModal() {
+            // Сброс анимации блика, чтобы она воспроизводилась заново
             document.querySelectorAll('.edu-card__shine').forEach(el => {
                 el.style.animation = 'none';
-                el.offsetHeight; // reflow
+                void el.offsetHeight; // принудительный reflow
                 el.style.animation = '';
             });
-            document.getElementById("eduModal").style.display = "flex";
+            eduModal.style.display = 'flex';
         }
-        function closeModal() { document.getElementById("eduModal").style.display = "none"; }
-        function toggleMenu() { document.getElementById("contactMenu").classList.toggle("show"); }
 
-        // Новые функции для видео
+        function closeEduModal() {
+            eduModal.style.display = 'none';
+        }
+
+        // ── Модалка видео ─────────────────────────────────────
         function openVideoModal(videoId) {
-            const modal = document.getElementById("videoModal");
-            const player = document.getElementById("videoPlayer");
-            // Подставляем ID видео и включаем автовоспроизведение
-            player.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-            modal.style.display = "flex";
+            videoPlayer.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+            videoModal.style.display = 'flex';
         }
 
         function closeVideoModal() {
-            const modal = document.getElementById("videoModal");
-            const player = document.getElementById("videoPlayer");
-            modal.style.display = "none";
-            player.src = ""; // Очищаем src, чтобы видео перестало играть в фоне
+            videoModal.style.display = 'none';
+            videoPlayer.src = ''; // останавливаем воспроизведение в фоне
         }
 
-        // Обновленный слушатель кликов (закрывает окна по клику вне их зоны)
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("eduModal")) closeModal();
-            if (event.target == document.getElementById("videoModal")) closeVideoModal();
-            if (!event.target.matches('.btn-outline') && !event.target.closest('.dropdown')) {
-                document.querySelectorAll(".dropdown-content").forEach(dd => dd.classList.remove('show'));
-            }
-        };
-    </script>
-    <script>
+        // ── Контактный дропдаун ───────────────────────────────
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-content').forEach(dd => dd.classList.remove('show'));
+        }
+
+        // ── Слушатели событий ─────────────────────────────────
+
+        // Карточки выбора раздела
+        document.querySelectorAll('.split-card[data-section]').forEach(card => {
+            card.addEventListener('click', () => enter(card.dataset.section));
+        });
+
+        document.getElementById('back-btn').addEventListener('click', goBack);
+        document.getElementById('btn-education').addEventListener('click', openEduModal);
+        document.getElementById('edu-close-btn').addEventListener('click', closeEduModal);
+        document.getElementById('video-close-btn').addEventListener('click', closeVideoModal);
+
+        document.getElementById('btn-contact').addEventListener('click', () => {
+            contactMenu.classList.toggle('show');
+        });
+
+        // Закрытие модалок и дропдауна по клику вне их зоны
+        window.addEventListener('click', function (e) {
+            if (e.target === eduModal)   closeEduModal();
+            if (e.target === videoModal) closeVideoModal();
+
+            const isDropdownToggle = e.target.matches('#btn-contact') || e.target.closest('.dropdown');
+            if (!isDropdownToggle) closeAllDropdowns();
+        });
+    })();
+
     /* ═══════════════════════════════════════════════════════
        Анимированная схема связей стека технологий
        ═══════════════════════════════════════════════════════ */
     (function () {
-      const NS = 'http://www.w3.org/2000/svg';
+        const NS = 'http://www.w3.org/2000/svg';
 
-      const CHARTS = {
-        dev: {
-          vb: '0 0 220 292',
-          hub: [3, 146],
-          color: '#4dd9ff',
-          glow: 'rgba(77,217,255,0.55)',
-          nodes: [
-            { p: [85,  82],  t: ['C++'],             rx: 23, ry: 14 },  // 0
-            { p: [170, 42],  t: ['Qt'],               rx: 22, ry: 14 },  // 1
-            { p: [165, 120], t: ['Unreal','Engine'],  rx: 34, ry: 20 },  // 2
-            { p: [80,  205], t: ['HTML & CSS'],       rx: 38, ry: 14 },  // 3
-            { p: [170, 175], t: ['MySQL'],            rx: 30, ry: 14 },  // 4
-            { p: [168, 255], t: ['JavaScript'],       rx: 40, ry: 14 },  // 5
-          ],
-          edges: [
-            [null, 0],  // Hub → C++
-            [0,    1],  // C++ → Qt
-            [0,    2],  // C++ → Unreal Engine
-            [null, 3],  // Hub → HTML & CSS
-            [3,    4],  // HTML & CSS → MySQL
-            [3,    5],  // HTML & CSS → JavaScript
-            [4,    5],  // MySQL → JavaScript
-          ]
-        },
-        video: {
-          vb: '0 0 222 224',
-          hub: [3, 112],
-          color: '#c97dff',
-          glow: 'rgba(201,125,255,0.55)',
-          nodes: [
-            { p: [118, 37],  t: ['Sony Vegas Pro'],        rx: 46, ry: 14 },
-            { p: [118, 116], t: ['Adobe','Premiere Pro'],  rx: 43, ry: 20 },
-            { p: [118, 192], t: ['CapCut'],                rx: 28, ry: 14 },
-          ],
-          edges: [[null,0],[null,1],[null,2]]
+        const CHARTS = {
+            dev: {
+                vb: '0 0 220 340',
+                hub: [3, 170],
+                color: '#4dd9ff',
+                glow: 'rgba(77,217,255,0.55)',
+                nodes: [
+                    { p: [85,  72],  t: ['C++'],             rx: 23, ry: 14 },  // 0
+                    { p: [170, 34],  t: ['Qt'],               rx: 22, ry: 14 },  // 1
+                    { p: [165, 112], t: ['Unreal','Engine'],  rx: 34, ry: 20 },  // 2
+                    { p: [80,  220], t: ['HTML & CSS'],       rx: 38, ry: 14 },  // 3
+                    { p: [170, 190], t: ['MySQL'],            rx: 30, ry: 14 },  // 4
+                    { p: [168, 268], t: ['JavaScript'],       rx: 40, ry: 14 },  // 5
+                    { p: [85,  308], t: ['Python'],           rx: 28, ry: 14 },  // 6
+                ],
+                edges: [
+                    [null, 0],  // Hub → C++
+                    [0,    1],  // C++ → Qt
+                    [0,    2],  // C++ → Unreal Engine
+                    [null, 3],  // Hub → HTML & CSS
+                    [3,    4],  // HTML & CSS → MySQL
+                    [3,    5],  // HTML & CSS → JavaScript
+                    [4,    5],  // MySQL → JavaScript
+                    [null, 6],  // Hub → Python
+                ],
+            },
+            video: {
+                vb: '0 0 222 224',
+                hub: [3, 112],
+                color: '#c97dff',
+                glow: 'rgba(201,125,255,0.55)',
+                nodes: [
+                    { p: [118, 37],  t: ['Sony Vegas Pro'],       rx: 46, ry: 14 },
+                    { p: [118, 116], t: ['Adobe','Premiere Pro'], rx: 43, ry: 20 },
+                    { p: [118, 192], t: ['CapCut'],               rx: 28, ry: 14 },
+                ],
+                edges: [[null, 0], [null, 1], [null, 2]],
+            },
+        };
+
+        function svgEl(tag) { return document.createElementNS(NS, tag); }
+
+        function setLineCoords(el, from, to) {
+            el.setAttribute('x1', from[0]); el.setAttribute('y1', from[1]);
+            el.setAttribute('x2', to[0]);   el.setAttribute('y2', to[1]);
         }
-      };
 
-      function svgEl(tag) { return document.createElementNS(NS, tag); }
+        function buildChart(type) {
+            const cfg = CHARTS[type];
+            const glowFilterId = 'chart-glow-' + type;
 
-      function buildChart(type) {
-        const cfg = CHARTS[type];
-        const svg = svgEl('svg');
-        svg.setAttribute('viewBox', cfg.vb);
-        svg.setAttribute('class', 'the-chart');
-        svg.setAttribute('aria-hidden', 'true');
+            const svg = svgEl('svg');
+            svg.setAttribute('viewBox', cfg.vb);
+            svg.setAttribute('class', 'the-chart');
+            svg.setAttribute('aria-hidden', 'true');
 
-        /* Defs: glow filter */
-        const defs = svgEl('defs');
-        const filt = svgEl('filter');
-        filt.setAttribute('id', 'chart-glow-' + type);
-        filt.setAttribute('x', '-60%'); filt.setAttribute('y', '-60%');
-        filt.setAttribute('width', '220%'); filt.setAttribute('height', '220%');
-        const blur = svgEl('feGaussianBlur');
-        blur.setAttribute('in', 'SourceGraphic');
-        blur.setAttribute('stdDeviation', '2.5');
-        filt.appendChild(blur);
-        defs.appendChild(filt);
-        svg.appendChild(defs);
+            // Defs: glow filter
+            const defs = svgEl('defs');
+            const filt = svgEl('filter');
+            filt.setAttribute('id', glowFilterId);
+            filt.setAttribute('x', '-60%'); filt.setAttribute('y', '-60%');
+            filt.setAttribute('width', '220%'); filt.setAttribute('height', '220%');
+            const blur = svgEl('feGaussianBlur');
+            blur.setAttribute('in', 'SourceGraphic');
+            blur.setAttribute('stdDeviation', '2.5');
+            filt.appendChild(blur);
+            defs.appendChild(filt);
+            svg.appendChild(defs);
 
-        /* Edges */
-        cfg.edges.forEach(([fi, ti], idx) => {
-          const from = fi === null ? cfg.hub : cfg.nodes[fi].p;
-          const to   = cfg.nodes[ti].p;
+            // Рёбра (линии)
+            cfg.edges.forEach(([fi, ti], idx) => {
+                const from = fi === null ? cfg.hub : cfg.nodes[fi].p;
+                const to   = cfg.nodes[ti].p;
 
-          const glow = svgEl('line');
-          ['x1','y1','x2','y2'].forEach((a,i) =>
-            glow.setAttribute(a, [from[0],from[1],to[0],to[1]][i]));
-          glow.setAttribute('stroke', cfg.glow);
-          glow.setAttribute('stroke-width', '5');
-          glow.setAttribute('filter', 'url(#chart-glow-' + type + ')');
-          glow.classList.add('chart-edge', 'chart-edge--glow');
-          glow.style.setProperty('--di', idx);
-          svg.appendChild(glow);
+                const glowLine = svgEl('line');
+                setLineCoords(glowLine, from, to);
+                glowLine.setAttribute('stroke', cfg.glow);
+                glowLine.setAttribute('stroke-width', '5');
+                glowLine.setAttribute('filter', `url(#${glowFilterId})`);
+                glowLine.classList.add('chart-edge', 'chart-edge--glow');
+                glowLine.style.setProperty('--di', idx);
+                svg.appendChild(glowLine);
 
-          const ln = svgEl('line');
-          ['x1','y1','x2','y2'].forEach((a,i) =>
-            ln.setAttribute(a, [from[0],from[1],to[0],to[1]][i]));
-          ln.setAttribute('stroke', cfg.color);
-          ln.setAttribute('stroke-width', '1.5');
-          ln.classList.add('chart-edge');
-          ln.style.setProperty('--di', idx);
-          svg.appendChild(ln);
-        });
-
-        /* Hub dot */
-        const hubG = svgEl('g');
-        hubG.classList.add('chart-hub');
-        const hubGlow = svgEl('circle');
-        hubGlow.setAttribute('cx', cfg.hub[0]);
-        hubGlow.setAttribute('cy', cfg.hub[1]);
-        hubGlow.setAttribute('r', '9');
-        hubGlow.setAttribute('fill', cfg.glow);
-        hubGlow.setAttribute('filter', 'url(#chart-glow-' + type + ')');
-        hubG.appendChild(hubGlow);
-        const hubDot = svgEl('circle');
-        hubDot.setAttribute('cx', cfg.hub[0]);
-        hubDot.setAttribute('cy', cfg.hub[1]);
-        hubDot.setAttribute('r', '5');
-        hubDot.setAttribute('fill', cfg.color);
-        hubG.appendChild(hubDot);
-        svg.appendChild(hubG);
-
-        /* Nodes */
-        cfg.nodes.forEach((nd, idx) => {
-          const g = svgEl('g');
-          g.classList.add('chart-node');
-          g.style.setProperty('--ni', idx);
-
-          const eg = svgEl('ellipse');
-          eg.setAttribute('cx', nd.p[0]); eg.setAttribute('cy', nd.p[1]);
-          eg.setAttribute('rx', nd.rx + 5); eg.setAttribute('ry', nd.ry + 5);
-          eg.setAttribute('fill', 'none');
-          eg.setAttribute('stroke', cfg.glow);
-          eg.setAttribute('stroke-width', '3');
-          eg.setAttribute('filter', 'url(#chart-glow-' + type + ')');
-          g.appendChild(eg);
-
-          const ellp = svgEl('ellipse');
-          ellp.setAttribute('cx', nd.p[0]); ellp.setAttribute('cy', nd.p[1]);
-          ellp.setAttribute('rx', nd.rx);   ellp.setAttribute('ry', nd.ry);
-          ellp.setAttribute('fill', 'rgba(4,12,28,0.92)');
-          ellp.setAttribute('stroke', cfg.color);
-          ellp.setAttribute('stroke-width', '1.5');
-          g.appendChild(ellp);
-
-          const txt = svgEl('text');
-          txt.setAttribute('text-anchor', 'middle');
-          txt.setAttribute('fill', cfg.color);
-          txt.setAttribute('font-family', 'Manrope, sans-serif');
-          txt.setAttribute('font-size', '8.5');
-          txt.setAttribute('font-weight', '700');
-          txt.setAttribute('letter-spacing', '0.25');
-
-          if (nd.t.length === 1) {
-            txt.setAttribute('x', nd.p[0]);
-            txt.setAttribute('y', nd.p[1]);
-            txt.setAttribute('dominant-baseline', 'middle');
-            txt.textContent = nd.t[0];
-          } else {
-            nd.t.forEach((line, li) => {
-              const ts = svgEl('tspan');
-              ts.setAttribute('x', nd.p[0]);
-              if (li === 0) ts.setAttribute('y', nd.p[1] - 4);
-              else ts.setAttribute('dy', '11');
-              ts.textContent = line;
-              txt.appendChild(ts);
+                const line = svgEl('line');
+                setLineCoords(line, from, to);
+                line.setAttribute('stroke', cfg.color);
+                line.setAttribute('stroke-width', '1.5');
+                line.classList.add('chart-edge');
+                line.style.setProperty('--di', idx);
+                svg.appendChild(line);
             });
-          }
-          g.appendChild(txt);
-          svg.appendChild(g);
+
+            // Центральная точка (hub)
+            const hubG = svgEl('g');
+            hubG.classList.add('chart-hub');
+            const hubGlow = svgEl('circle');
+            hubGlow.setAttribute('cx', cfg.hub[0]); hubGlow.setAttribute('cy', cfg.hub[1]);
+            hubGlow.setAttribute('r', '9');
+            hubGlow.setAttribute('fill', cfg.glow);
+            hubGlow.setAttribute('filter', `url(#${glowFilterId})`);
+            hubG.appendChild(hubGlow);
+            const hubDot = svgEl('circle');
+            hubDot.setAttribute('cx', cfg.hub[0]); hubDot.setAttribute('cy', cfg.hub[1]);
+            hubDot.setAttribute('r', '5');
+            hubDot.setAttribute('fill', cfg.color);
+            hubG.appendChild(hubDot);
+            svg.appendChild(hubG);
+
+            // Узлы (эллипсы + подписи)
+            cfg.nodes.forEach((nd, idx) => {
+                const g = svgEl('g');
+                g.classList.add('chart-node');
+                g.style.setProperty('--ni', idx);
+
+                const glowEllipse = svgEl('ellipse');
+                glowEllipse.setAttribute('cx', nd.p[0]); glowEllipse.setAttribute('cy', nd.p[1]);
+                glowEllipse.setAttribute('rx', nd.rx + 5); glowEllipse.setAttribute('ry', nd.ry + 5);
+                glowEllipse.setAttribute('fill', 'none');
+                glowEllipse.setAttribute('stroke', cfg.glow);
+                glowEllipse.setAttribute('stroke-width', '3');
+                glowEllipse.setAttribute('filter', `url(#${glowFilterId})`);
+                g.appendChild(glowEllipse);
+
+                const ellipse = svgEl('ellipse');
+                ellipse.setAttribute('cx', nd.p[0]); ellipse.setAttribute('cy', nd.p[1]);
+                ellipse.setAttribute('rx', nd.rx);   ellipse.setAttribute('ry', nd.ry);
+                ellipse.setAttribute('fill', 'rgba(4,12,28,0.92)');
+                ellipse.setAttribute('stroke', cfg.color);
+                ellipse.setAttribute('stroke-width', '1.5');
+                g.appendChild(ellipse);
+
+                const txt = svgEl('text');
+                txt.setAttribute('text-anchor', 'middle');
+                txt.setAttribute('fill', cfg.color);
+                txt.setAttribute('font-family', 'Manrope, sans-serif');
+                txt.setAttribute('font-size', '8.5');
+                txt.setAttribute('font-weight', '700');
+                txt.setAttribute('letter-spacing', '0.25');
+
+                if (nd.t.length === 1) {
+                    txt.setAttribute('x', nd.p[0]);
+                    txt.setAttribute('y', nd.p[1]);
+                    txt.setAttribute('dominant-baseline', 'middle');
+                    txt.textContent = nd.t[0];
+                } else {
+                    nd.t.forEach((line, li) => {
+                        const tspan = svgEl('tspan');
+                        tspan.setAttribute('x', nd.p[0]);
+                        tspan.setAttribute(li === 0 ? 'y' : 'dy', li === 0 ? nd.p[1] - 4 : 11);
+                        tspan.textContent = line;
+                        txt.appendChild(tspan);
+                    });
+                }
+                g.appendChild(txt);
+                svg.appendChild(g);
+            });
+
+            return svg;
+        }
+
+        document.querySelectorAll('.split-card').forEach(card => {
+            const type = card.classList.contains('split-card--dev') ? 'dev' : 'video';
+            const wrap = document.createElement('div');
+            wrap.className = 'chart-wrap';
+            wrap.appendChild(buildChart(type));
+            card.appendChild(wrap);
         });
-
-        return svg;
-      }
-
-      document.querySelectorAll('.split-card').forEach(card => {
-        const type = card.classList.contains('split-card--dev') ? 'dev' : 'video';
-        const wrap = document.createElement('div');
-        wrap.className = 'chart-wrap';
-        wrap.appendChild(buildChart(type));
-        card.appendChild(wrap);
-      });
     })();
     </script>
     <script src="tracker.js?v=2" defer></script>
