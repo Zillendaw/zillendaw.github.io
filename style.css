@@ -467,10 +467,17 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     color: #fff;
 }
 
-[data-mode="dev"]   .btn:not(.btn-outline) { background-color: #0e2235; }
-[data-mode="dev"]   .btn:not(.btn-outline):hover { background-color: #07131f; }
-[data-mode="video"] .btn:not(.btn-outline) { background-color: #250a45; }
-[data-mode="video"] .btn:not(.btn-outline):hover { background-color: #18063a; }
+[data-mode="dev"]   .btn:not(.btn-outline):not(.btn-youtube) { background-color: #0e2235; }
+[data-mode="dev"]   .btn:not(.btn-outline):not(.btn-youtube):hover { background-color: #07131f; }
+[data-mode="video"] .btn:not(.btn-outline):not(.btn-youtube) { background-color: #250a45; }
+[data-mode="video"] .btn:not(.btn-outline):not(.btn-youtube):hover { background-color: #18063a; }
+
+/* YouTube button */
+.btn-youtube {
+    background-color: #cc0000 !important;
+    color: #fff !important;
+}
+.btn-youtube:hover { background-color: #990000 !important; }
 
 /* =====================================================
    ПОРТФОЛИО
@@ -538,7 +545,168 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 }
 
 /* =====================================================
-   FOOTER
+   ВИДЕОМОНТАЖ — кейсы и шоурилы
+   ===================================================== */
+.video-section-title {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 1.8rem;
+    color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.video-section-title i {
+    margin: 0;
+    color: #c97dff;
+    font-size: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-section-title { color: #e0e0e0; }
+}
+
+.video-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+.video-case-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.video-case-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 36px rgba(180,80,255,0.18), 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* 16:9 embed */
+.video-embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background: #000;
+}
+
+.video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Локальный <video> — тот же размер, что и iframe */
+.video-embed video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    background: #000;
+}
+
+.video-case-info {
+    padding: 20px 22px 22px;
+}
+
+.video-case-info h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.video-case-info h4 i {
+    margin: 0;
+    color: #c97dff;
+    font-size: 0.95rem;
+}
+
+.video-case-info h4 .fa-youtube {
+    color: #ff0000;
+}
+
+.video-case-info p {
+    font-size: 0.92rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0 0 14px;
+}
+
+/* Бейдж источника видео */
+.video-source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.video-source-badge i { margin: 0; font-size: 0.75rem; }
+
+.video-source-badge--yt {
+    background: rgba(255, 0, 0, 0.1);
+    color: #cc0000;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.video-source-badge--local {
+    background: rgba(77, 217, 255, 0.1);
+    color: #0099bb;
+    border: 1px solid rgba(77, 217, 255, 0.25);
+}
+
+.video-source-badge--other {
+    background: rgba(120, 120, 255, 0.1);
+    color: #6666cc;
+    border: 1px solid rgba(120, 120, 255, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-case-card {
+        background: #1a1a2e;
+        border-color: rgba(201,125,255,0.12);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .video-case-card:hover {
+        box-shadow: 0 12px 40px rgba(180,80,255,0.25), 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .video-case-info h4 { color: #f0f0f0; }
+    .video-case-info p  { color: #999; }
+
+    .video-source-badge--yt    { color: #ff5555; background: rgba(255,0,0,0.12); }
+    .video-source-badge--local { color: #4dd9ff; background: rgba(77,217,255,0.1); }
+    .video-source-badge--other { color: #aaaaff; background: rgba(120,120,255,0.1); }
+}
+
+@media (max-width: 600px) {
+    .video-cases-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* =====================================================
    ===================================================== */
 footer {
     text-align: center;

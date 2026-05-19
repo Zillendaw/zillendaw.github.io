@@ -105,8 +105,11 @@
                 <p class="bio">Программист и видеомонтажёр. Люблю создавать — будь то код или кадр.</p>
 
                 <div class="links">
-                    <a href="https://github.com/Zillendaw" target="_blank" class="btn">
+                    <a href="https://github.com/Zillendaw" target="_blank" class="btn" id="btn-github">
                         <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-youtube" id="btn-youtube" style="display:none;">
+                        <i class="fab fa-youtube"></i> YouTube
                     </a>
                     <button onclick="openModal()" class="btn btn-outline">
                         <i class="fas fa-graduation-cap"></i> Образование
@@ -153,24 +156,90 @@
                     </div>
 
                     <div id="video-projects" class="projects-content">
-                                <div class="projects-grid">
-                                    <div class="project-card">
-                                        <h4><i class="fas fa-briefcase"></i> Commerce Showreel</h4>
-                                        <p>Демонстрация навыков в коммерческом видеомонтаже, создании рекламных и промо-роликов.</p>
-                                        <button class="btn" style="margin-top: 15px;" onclick="openVideoModal('UZRvcrw7vlo')">
-                                            <i class="fas fa-play"></i> Смотреть
-                                        </button>
-                                    </div>
-                                    
-                                    <div class="project-card">
-                                        <h4><i class="fab fa-youtube" style="color: #ff0000;"></i> YouTube Showreel</h4>
-                                        <p>Нарезка лучших моментов, динамичный монтаж, работа с эффектами для YouTube-проектов.</p>
-                                        <button class="btn" style="margin-top: 15px;" onclick="openVideoModal('JEY2gAs5e-E')">
-                                            <i class="fas fa-play"></i> Смотреть
-                                        </button>
-                                    </div>
+                        <h3 class="video-section-title">
+                            <i class="fas fa-film"></i> Шоурилы и кейсы
+                        </h3>
+                        <div class="video-cases-grid">
+
+                            <!-- YouTube -->
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/UZRvcrw7vlo"
+                                        title="Commerce Showreel"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-briefcase"></i> Commerce Showreel</h4>
+                                    <p>Демонстрация навыков в коммерческом видеомонтаже, создании рекламных и промо-роликов.</p>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
                                 </div>
                             </div>
+
+                            <!-- YouTube -->
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/JEY2gAs5e-E"
+                                        title="YouTube Showreel"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fab fa-youtube"></i> YouTube Showreel</h4>
+                                    <p>Нарезка лучших моментов, динамичный монтаж, работа с эффектами для YouTube-проектов.</p>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
+                                </div>
+                            </div>
+
+                            <!-- Локальный файл -->
+                            <!-- 
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <video controls preload="metadata" poster="preview.jpg">
+                                        <source src="videos/my-project.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-folder-open"></i> Название проекта</h4>
+                                    <p>Описание кейса — что сделано, для кого, какие техники использованы.</p>
+                                    <span class="video-source-badge video-source-badge--local"><i class="fas fa-file-video"></i> Локальный файл</span>
+                                </div>
+                            </div>
+                            -->
+
+                            <!-- Другой сайт (Vimeo и т.п.)  -->
+                            <!--
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://player.vimeo.com/video/XXXXXXXXX"
+                                        title="Название"
+                                        frameborder="0"
+                                        allow="autoplay; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-play-circle"></i> Название проекта</h4>
+                                    <p>Описание кейса.</p>
+                                    <span class="video-source-badge video-source-badge--other"><i class="fas fa-globe"></i> Vimeo</span>
+                                </div>
+                            </div>
+                            -->
+
+                        </div>
+                    </div>
 
                 </section>
             </main>
@@ -245,6 +314,8 @@
                 document.getElementById('site-subtitle').textContent = subtitles[type];
                 document.getElementById('coding-projects').style.display = type === 'dev'   ? 'block' : 'none';
                 document.getElementById('video-projects').style.display  = type === 'video' ? 'block' : 'none';
+                document.getElementById('btn-github').style.display  = type === 'dev'   ? '' : 'none';
+                document.getElementById('btn-youtube').style.display = type === 'video' ? '' : 'none';
                 document.body.setAttribute('data-mode', type);
             }, 520);
         }
