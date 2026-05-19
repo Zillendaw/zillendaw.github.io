@@ -79,12 +79,20 @@ body[data-mode="video"] {
 }
 
 /* =====================================================
-   Контакты на стартовом экране (Разделенные)
+   Кнопки на стартовом экране (Разделенные на 2 ряда)
    ===================================================== */
-.intro__contacts {
+.intro__actions {
     display: flex;
+    flex-direction: column;
     gap: 16px;
     margin-bottom: 36px;
+    width: 100%;
+    align-items: center;
+}
+
+.actions-row {
+    display: flex;
+    gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -101,38 +109,47 @@ body[data-mode="video"] {
     background: transparent;
     transition: all 0.3s ease;
     letter-spacing: 0.05em;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 .contact-pill i { font-size: 1.1rem; margin: 0; }
 
-/* Кнопка Telegram (Свечение в стиле "Разработки") */
+/* GitHub */
+.contact-pill--gh { color: #e0e0e0; border: 1.5px solid #e0e0e0; }
+.contact-pill--gh:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+/* YouTube */
+.contact-pill--yt { color: #ff4d4d; border: 1.5px solid #ff4d4d; }
+.contact-pill--yt:hover { background: rgba(255,77,77,0.1); transform: translateY(-2px); }
+
+/* Образование */
+.contact-pill--edu { color: #ffd700; border: 1.5px solid #ffd700; }
+.contact-pill--edu:hover { background: rgba(255,215,0,0.1); transform: translateY(-2px); }
+
+/* Telegram (Свечение) */
 .contact-pill--tg {
     color: #4dd9ff;
     border: 1.5px solid #4dd9ff;
     animation: pulseStartTg 2.5s infinite;
 }
-.contact-pill--tg:hover {
-    background: rgba(77, 217, 255, 0.1);
-    transform: translateY(-2px);
-}
+.contact-pill--tg:hover { background: rgba(77, 217, 255, 0.1); transform: translateY(-2px); }
+
 @keyframes pulseStartTg {
     0% { box-shadow: 0 0 0 0 rgba(77, 217, 255, 0.4); }
     70% { box-shadow: 0 0 0 12px rgba(77, 217, 255, 0); }
     100% { box-shadow: 0 0 0 0 rgba(77, 217, 255, 0); }
 }
 
-/* Кнопка Email (Свечение в стиле "Видеомонтажа") */
+/* Email (Свечение) */
 .contact-pill--email {
     color: #c97dff;
     border: 1.5px solid #c97dff;
     animation: pulseStartEmail 2.5s infinite;
-    /* Смещение в 1.25 секунды делает так, чтобы они пульсировали по очереди (эффект перемигивания) */
     animation-delay: 1.25s; 
 }
-.contact-pill--email:hover {
-    background: rgba(201, 125, 255, 0.1);
-    transform: translateY(-2px);
-}
+.contact-pill--email:hover { background: rgba(201, 125, 255, 0.1); transform: translateY(-2px); }
+
 @keyframes pulseStartEmail {
     0% { box-shadow: 0 0 0 0 rgba(201, 125, 255, 0.4); }
     70% { box-shadow: 0 0 0 12px rgba(201, 125, 255, 0); }
@@ -239,7 +256,6 @@ body[data-mode="video"] {
     max-width: 860px;
     gap: 16px;
     padding: 0 24px 60px;
-    /* Карточки появляются после профиля */
     opacity: 0;
     transform: translateY(28px);
     animation: fadeUpIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -321,7 +337,6 @@ body[data-mode="video"] {
     100% { opacity: 0; }
 }
 
-/* Внутреннее содержимое карточки */
 .split-card__inner {
     position: relative;
     z-index: 1;
@@ -332,12 +347,7 @@ body[data-mode="video"] {
     gap: 14px;
 }
 
-.split-card__icons {
-    display: flex;
-    gap: 14px;
-    font-size: 1.5rem;
-}
-
+.split-card__icons { display: flex; gap: 14px; font-size: 1.5rem; }
 .split-card--dev   .split-card__icons { color: #4dd9ff; }
 .split-card--video .split-card__icons { color: #c97dff; }
 
@@ -489,20 +499,27 @@ h1 { font-size: 2.5rem; margin-bottom: 5px; color: #111; }
 h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 
 .bio { max-width: 600px; margin: 0 auto 24px; color: #555; }
-
 .nickname { font-size: 1rem; color: #999; font-weight: 500; margin-bottom: 6px; }
 
-/* Кнопки */
-.links {
+/* =====================================================
+   Кнопки главного сайта (2 ряда)
+   ===================================================== */
+.links-wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 50px;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
-.links i { margin-right: 8px; }
+.links-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.links-row i { margin-right: 8px; }
 
 .btn {
     display: inline-block;
@@ -516,7 +533,6 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     transition: all 0.3s ease;
 }
 
-/* Единый стиль: без заливки, цветной контур и текст */
 .btn-outline {
     background-color: transparent !important;
     color: var(--theme-color);
@@ -528,22 +544,23 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     transform: translateY(-2px);
 }
 
-/* YouTube кнопка (всегда красная) */
 .btn-outline-youtube {
     color: #cc0000 !important;
     border-color: #cc0000 !important;
 }
-.btn-outline-youtube:hover {
-    background-color: rgba(204, 0, 0, 0.1) !important;
-}
+.btn-outline-youtube:hover { background-color: rgba(204, 0, 0, 0.1) !important; }
 
 /* Призыв к действию (Анимация подсветки) */
-.btn-cta {
-    position: relative;
-    animation: pulseCTA 2s infinite;
-}
+.btn-cta { position: relative; }
+.btn-cta--tg { animation: pulseCTATg 2s infinite; }
+.btn-cta--email { animation: pulseCTAEmail 2s infinite; animation-delay: 1s; }
 
-@keyframes pulseCTA {
+@keyframes pulseCTATg {
+    0% { box-shadow: 0 0 0 0 rgba(var(--theme-color-rgb), 0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(var(--theme-color-rgb), 0); }
+    100% { box-shadow: 0 0 0 0 rgba(var(--theme-color-rgb), 0); }
+}
+@keyframes pulseCTAEmail {
     0% { box-shadow: 0 0 0 0 rgba(var(--theme-color-rgb), 0.4); }
     70% { box-shadow: 0 0 0 12px rgba(var(--theme-color-rgb), 0); }
     100% { box-shadow: 0 0 0 0 rgba(var(--theme-color-rgb), 0); }
@@ -597,18 +614,8 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 [data-mode="dev"]   .project-card a { color: #0e80c0; }
 [data-mode="video"] .project-card a { color: #8a30cc; }
 
-.video-empty {
-    text-align: center;
-    padding: 70px 20px;
-    color: #aaa;
-}
-
-.video-empty i {
-    font-size: 3rem;
-    margin-bottom: 16px;
-    display: block;
-    opacity: 0.3;
-}
+.video-empty { text-align: center; padding: 70px 20px; color: #aaa; }
+.video-empty i { font-size: 3rem; margin-bottom: 16px; display: block; opacity: 0.3; }
 
 .projects-content { animation: fadeInSlideUp 0.4s ease-out both; }
 
@@ -617,12 +624,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-.coming-soon {
-    text-align: center;
-    color: #aaa;
-    font-size: 0.9rem;
-    margin-top: 30px;
-}
+.coming-soon { text-align: center; color: #aaa; font-size: 0.9rem; margin-top: 30px; }
 
 /* =====================================================
    ВИДЕОМОНТАЖ — таб-переключатель
@@ -633,7 +635,6 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     gap: 10px;
     margin-bottom: 36px;
     padding: 6px;
-    /* Более насыщенный фиолетовый фон и рамка */
     background: rgba(155, 80, 255, 0.08);
     border: 1px solid rgba(155, 80, 255, 0.25);
     border-radius: 14px;
@@ -650,7 +651,6 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     border-radius: 10px;
     border: none;
     background: transparent;
-    /* Увеличена непрозрачность до 0.85 для высокой чёткости */
     color: rgba(175, 120, 255, 0.85); 
     font-family: inherit;
     font-size: 0.9rem;
@@ -659,7 +659,6 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     cursor: pointer;
     transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
     position: relative;
-    /* Принудительное сглаживание шрифта (делает текст более резким) */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -676,41 +675,22 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    /* Глубокий фиолетовый */
     background: rgba(155, 80, 255, 0.2);
-    /* Почти сплошной цвет для чёткости цифр */
     color: rgba(190, 140, 255, 0.95);
     transition: background 0.22s, color 0.22s;
 }
 
 .video-tab--active {
-    /* Градиент из чистых фиолетовых оттенков */
     background: linear-gradient(135deg, rgba(155, 80, 255, 0.25) 0%, rgba(120, 40, 230, 0.3) 100%);
-    /* Максимально светлый фиолетово-белый для идеальной читаемости */
     color: #f4ebff; 
     box-shadow: 0 2px 12px rgba(130, 40, 230, 0.25), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 
-.video-tab--active .video-tab__count {
-    background: rgba(155, 80, 255, 0.5);
-    /* Белый цвет цифр в активном состоянии для 100% чёткости */
-    color: #ffffff; 
-}
+.video-tab--active .video-tab__count { background: rgba(155, 80, 255, 0.5); color: #ffffff; }
+.video-tab:not(.video-tab--active):hover { background: rgba(155, 80, 255, 0.15); color: #d1a8ff; }
 
-.video-tab:not(.video-tab--active):hover {
-    background: rgba(155, 80, 255, 0.15);
-    /* Использование сплошного цвета при наведении вместо rgba */
-    color: #d1a8ff; 
-}
-
-/* Панели табов */
-.video-tab-panel {
-    animation: fadeInSlideUp 0.32s ease-out both;
-}
-
-.video-tab-panel--hidden {
-    display: none !important;
-}
+.video-tab-panel { animation: fadeInSlideUp 0.32s ease-out both; }
+.video-tab-panel--hidden { display: none !important; }
 
 @media (max-width: 480px) {
     .video-tab { padding: 8px 14px; font-size: 0.82rem; }
@@ -731,15 +711,9 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     gap: 12px;
 }
 
-.video-section-title i {
-    margin: 0;
-    color: #c97dff;
-    font-size: 1.5rem;
-}
+.video-section-title i { margin: 0; color: #c97dff; font-size: 1.5rem; }
 
-@media (prefers-color-scheme: dark) {
-    .video-section-title { color: #e0e0e0; }
-}
+@media (prefers-color-scheme: dark) { .video-section-title { color: #e0e0e0; } }
 
 .video-cases-grid {
     display: grid;
@@ -762,12 +736,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 }
 
 /* 16:9 embed */
-.video-embed {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    background: #000;
-}
+.video-embed { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
 
 .video-embed iframe {
     position: absolute;
@@ -778,7 +747,6 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     display: block;
 }
 
-/* Локальный <video> — тот же размер, что и iframe */
 .video-embed video {
     position: absolute;
     inset: 0;
@@ -789,9 +757,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     background: #000;
 }
 
-.video-case-info {
-    padding: 20px 22px 22px;
-}
+.video-case-info { padding: 20px 22px 22px; }
 
 .video-case-info h4 {
     font-size: 1.05rem;
@@ -803,22 +769,10 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     gap: 8px;
 }
 
-.video-case-info h4 i {
-    margin: 0;
-    color: #c97dff;
-    font-size: 0.95rem;
-}
+.video-case-info h4 i { margin: 0; color: #c97dff; font-size: 0.95rem; }
+.video-case-info h4 .fa-youtube { color: #ff0000; }
 
-.video-case-info h4 .fa-youtube {
-    color: #ff0000;
-}
-
-.video-case-info p {
-    font-size: 0.92rem;
-    color: #666;
-    line-height: 1.6;
-    margin: 0 0 14px;
-}
+.video-case-info p { font-size: 0.92rem; color: #666; line-height: 1.6; margin: 0 0 14px; }
 
 /* Бейдж источника видео */
 .video-source-badge {
@@ -860,9 +814,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
         box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
-    .video-case-card:hover {
-        box-shadow: 0 12px 40px rgba(180,80,255,0.25), 0 4px 16px rgba(0,0,0,0.5);
-    }
+    .video-case-card:hover { box-shadow: 0 12px 40px rgba(180,80,255,0.25), 0 4px 16px rgba(0,0,0,0.5); }
 
     .video-case-info h4 { color: #f0f0f0; }
     .video-case-info p  { color: #999; }
@@ -873,10 +825,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 }
 
 @media (max-width: 600px) {
-    .video-cases-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+    .video-cases-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 
 /* =====================================================
@@ -889,40 +838,6 @@ footer {
     color: #888;
     font-size: 0.9rem;
 }
-
-/* =====================================================
-   DROPDOWN
-   ===================================================== */
-.dropdown { position: relative; display: inline-block; }
-
-button.btn { font-size: 1rem; cursor: pointer; font-family: inherit; }
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 180px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    z-index: 10;
-    top: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow: hidden;
-}
-
-.dropdown-content a {
-    color: #333;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.95rem;
-    transition: background-color 0.2s;
-}
-
-.dropdown-content a:hover { background-color: #f4f4f9; }
-.show { display: block; }
-i { margin-right: 8px; }
 
 /* =====================================================
    MODAL
@@ -951,7 +866,6 @@ i { margin-right: 8px; }
     animation: slideDown 0.3s ease;
 }
 
-/* Светлая версия модалки образования (по умолчанию) */
 .edu-modal-content {
     background: linear-gradient(145deg, #f8f9fc 0%, #ffffff 60%, #f4f6fb 100%);
     border: 1px solid rgba(0,0,0,0.08);
@@ -973,10 +887,8 @@ i { margin-right: 8px; }
 
 .edu-modal-content .close-btn { color: rgba(0,0,0,0.35); }
 .edu-modal-content .close-btn:hover { color: #111; }
-
 .close-btn:hover { color: #000; }
 
-/* Заголовок модалки образования */
 .edu-modal-title {
     font-size: 1.25rem;
     font-weight: 800;
@@ -988,11 +900,7 @@ i { margin-right: 8px; }
     gap: 10px;
 }
 
-.edu-modal-title i {
-    color: #4dd9ff;
-    margin: 0;
-    font-size: 1.1rem;
-}
+.edu-modal-title i { color: #4dd9ff; margin: 0; font-size: 1.1rem; }
 
 .edu-cards-container { margin-top: 20px; }
 
@@ -1011,7 +919,6 @@ i { margin-right: 8px; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Блик-шлейф — «оцветение стекла» */
 .edu-card__shine {
     position: absolute;
     inset: 0;
@@ -1021,7 +928,6 @@ i { margin-right: 8px; }
     pointer-events: none;
 }
 
-/* Анимация появления цветного ореола при открытии модалки */
 @keyframes glassColorSpo {
     0%   { opacity: 0; background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.0) 0%, transparent 70%); }
     40%  { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(77,217,255,0.18) 0%, transparent 65%); }
@@ -1034,13 +940,6 @@ i { margin-right: 8px; }
     100% { opacity: 1; background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.10) 0%, transparent 65%); }
 }
 
-/* Пульсирующий бордер при ховере — второй слой оцветения */
-@keyframes glassShimmer {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 .edu-modal-content .edu-cards-container .edu-card--spo .edu-card__shine {
     animation: glassColorSpo 0.8s ease 0.15s forwards;
 }
@@ -1049,7 +948,6 @@ i { margin-right: 8px; }
     animation: glassColorBachelor 0.8s ease 0.35s forwards;
 }
 
-/* Ховер — усиление оцветения */
 .edu-card--spo:hover {
     border-color: rgba(77,217,255,0.3);
     box-shadow: 0 0 20px rgba(77,217,255,0.08), inset 0 0 20px rgba(77,217,255,0.04);
@@ -1072,12 +970,10 @@ i { margin-right: 8px; }
     background: radial-gradient(ellipse at 20% 50%, rgba(147,112,255,0.22) 0%, transparent 65%);
 }
 
-/* Иконки и текст карточек */
 .edu-card--spo    .edu-icon { color: #4dd9ff; }
 .edu-card--bachelor .edu-icon { color: #9370ff; }
 
 .edu-icon { font-size: 1.5rem; padding-top: 3px; position: relative; z-index: 1; }
-
 .edu-info { position: relative; z-index: 1; }
 
 .edu-institution {
@@ -1103,23 +999,16 @@ i { margin-right: 8px; }
 }
 
 .edu-info h5 i { margin: 0; font-size: 0.75rem; opacity: 0.7; }
-
 .edu-card--spo    .edu-info h5 i { color: #4dd9ff; }
 .edu-card--bachelor .edu-info h5 i { color: #9370ff; }
 
 .edu-info p { font-size: 0.88rem; color: rgba(0,0,0,0.38); margin: 0; }
 
-/* Сброс анимации при повторном открытии */
-#eduModal:not([style*="flex"]) .edu-card__shine {
-    animation: none;
-    opacity: 0;
-}
+#eduModal:not([style*="flex"]) .edu-card__shine { animation: none; opacity: 0; }
 
 /* =====================================================
    Анимированная схема связей стека технологий
    ===================================================== */
-
-/* Container: sits over the right half of the card */
 .chart-wrap {
     position: absolute;
     right: 0;
@@ -1132,66 +1021,40 @@ i { margin-right: 8px; }
     align-items: center;
 }
 
-.the-chart {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
+.the-chart { width: 100%; height: 100%; overflow: visible; }
 
-/* ── Edges (lines) ── */
 .chart-edge {
     stroke-dasharray: 450;
     stroke-dashoffset: 450;
     opacity: 0;
-    transition:
-        stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--di) * 0.09s),
-        opacity           0.15s ease                          calc(var(--di) * 0.09s);
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--di) * 0.09s),
+                opacity           0.15s ease                          calc(var(--di) * 0.09s);
 }
 
-.split-card:hover .chart-edge {
-    stroke-dashoffset: 0;
-    opacity: 1;
-}
+.split-card:hover .chart-edge { stroke-dashoffset: 0; opacity: 1; }
 
-/* Glow copies go to zero opacity on leave faster */
 .chart-edge--glow {
     opacity: 0;
-    transition:
-        stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--di) * 0.09s),
-        opacity           0.2s ease                          calc(var(--di) * 0.09s);
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1) calc(var(--di) * 0.09s),
+                opacity           0.2s ease                          calc(var(--di) * 0.09s);
 }
 
-.split-card:hover .chart-edge--glow {
-    opacity: 0.7;
-}
+.split-card:hover .chart-edge--glow { opacity: 0.7; }
 
-/* ── Hub dot ── */
-.chart-hub {
-    opacity: 0;
-    transition: opacity 0.3s ease 0.06s;
-}
+.chart-hub { opacity: 0; transition: opacity 0.3s ease 0.06s; }
+.split-card:hover .chart-hub { opacity: 1; }
 
-.split-card:hover .chart-hub {
-    opacity: 1;
-}
-
-/* ── Nodes (ellipses + text) ── */
 .chart-node {
     opacity: 0;
     transform-box:    fill-box;
     transform-origin: center;
     transform: scale(0.35);
-    transition:
-        opacity   0.35s ease                              calc(0.2s + var(--ni) * 0.1s),
-        transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.2s + var(--ni) * 0.1s);
+    transition: opacity   0.35s ease                              calc(0.2s + var(--ni) * 0.1s),
+                transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) calc(0.2s + var(--ni) * 0.1s);
 }
 
-.split-card:hover .chart-node {
-    opacity:   1;
-    transform: scale(1);
-}
+.split-card:hover .chart-node { opacity: 1; transform: scale(1); }
 
-/* ── Mobile: hide chart, restore inner width ── */
 @media (max-width: 600px) {
     .chart-wrap         { display: none; }
     .split-card__inner  { width: 100%; min-width: 0; }
@@ -1202,31 +1065,26 @@ i { margin-right: 8px; }
    ===================================================== */
 .video-modal-content {
     max-width: 800px;
-    padding: 50px 15px 15px 15px; /* Увеличили верхний отступ под крестик */
+    padding: 50px 15px 15px 15px; 
     background-color: #111; 
     border: 1px solid #333;
     position: relative;
 }
 
-/* Специфичный крестик для видео-модалки */
 .video-close-btn {
     position: absolute;
     top: 5px; 
     right: 20px;
-    font-size: 36px; /* Сделали крупнее */
+    font-size: 36px;
     cursor: pointer;
-    color: #fff; /* Белый цвет для контраста */
+    color: #fff;
     transition: color 0.2s, transform 0.2s;
     z-index: 10;
     line-height: 1;
 }
 
-.video-close-btn:hover {
-    color: #ff4d4d; /* Красноватый оттенок при наведении */
-    transform: scale(1.1);
-}
+.video-close-btn:hover { color: #ff4d4d; transform: scale(1.1); }
 
-/* Контейнер для видео (пропорции 16:9) */
 .video-container {
     position: relative;
     padding-bottom: 56.25%; 
@@ -1238,13 +1096,10 @@ i { margin-right: 8px; }
 
 .video-container iframe {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     border: none;
 }
-
 
 /* ── Яндекс.Диск: карточка-ссылка ── */
 .video-yadisk-preview {
@@ -1256,7 +1111,6 @@ i { margin-right: 8px; }
     text-decoration: none;
 }
 
-/* Фолбэк-фон: виден всегда, перекрывается постером */
 .video-yadisk-fallback {
     position: absolute;
     inset: 0;
@@ -1288,19 +1142,16 @@ i { margin-right: 8px; }
     transition: opacity 0.3s ease;
 }
 
-/* Постер — перекрывает фолбэк */
 .video-yadisk-preview img {
     position: absolute;
     inset: 0;
     z-index: 1;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Оверлей с кнопкой Play — всегда поверх всего */
 .video-yadisk-overlay {
     position: absolute;
     inset: 0;
@@ -1313,8 +1164,7 @@ i { margin-right: 8px; }
 }
 
 .video-yadisk-play {
-    width: 64px;
-    height: 64px;
+    width: 64px; height: 64px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(6px);
@@ -1329,33 +1179,16 @@ i { margin-right: 8px; }
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-/* Ховер */
-.video-yadisk-preview:hover .video-yadisk-overlay {
-    background: rgba(0, 0, 0, 0.5);
-}
-
+.video-yadisk-preview:hover .video-yadisk-overlay { background: rgba(0, 0, 0, 0.5); }
 .video-yadisk-preview:hover .video-yadisk-play {
     transform: scale(1.12);
     background: rgba(201, 125, 255, 0.3);
     border-color: rgba(201, 125, 255, 0.8);
 }
+.video-yadisk-preview:hover img { transform: scale(1.04); opacity: 0.8; }
+.video-yadisk-preview:hover .video-yadisk-fallback i { opacity: 0.85; transform: scale(1.1); }
+.video-yadisk-preview:hover .video-yadisk-fallback span { opacity: 0.8; }
 
-.video-yadisk-preview:hover img {
-    transform: scale(1.04);
-    opacity: 0.8;
-}
-
-/* Ховер на фолбэк — оживляем иконку и текст */
-.video-yadisk-preview:hover .video-yadisk-fallback i {
-    opacity: 0.85;
-    transform: scale(1.1);
-}
-
-.video-yadisk-preview:hover .video-yadisk-fallback span {
-    opacity: 0.8;
-}
-
-/* Бейдж */
 .video-source-badge--yadisk {
     background: rgba(255, 204, 0, 0.1);
     color: #a07800;
@@ -1363,10 +1196,7 @@ i { margin-right: 8px; }
 }
 
 @media (prefers-color-scheme: dark) {
-    .video-source-badge--yadisk {
-        color: #ffd633;
-        background: rgba(255, 204, 0, 0.1);
-    }
+    .video-source-badge--yadisk { color: #ffd633; background: rgba(255, 204, 0, 0.1); }
 }
 
 /* =====================================================
@@ -1383,7 +1213,7 @@ i { margin-right: 8px; }
 
     .portfolio h3 { color: #e0e0e0; }
 
-    .project-card, .modal-content, .dropdown-content {
+    .project-card, .modal-content {
         background-color: #1e1e1e;
         box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
@@ -1391,13 +1221,8 @@ i { margin-right: 8px; }
     .project-card h4 { color: #e0e0e0; }
     .project-card p  { color: #aaa; }
 
-    /* edu-card уже тёмный по умолчанию, переопределять не нужно */
-
     .btn-outline { color: #e0e0e0; border-color: #e0e0e0; }
     .btn-outline:hover { background-color: #e0e0e0; color: #121212; }
-
-    .dropdown-content a { color: #e0e0e0; }
-    .dropdown-content a:hover { background-color: #2a2a2a; }
 
     .close-btn { color: #bbb; }
     .close-btn:hover { color: #fff; }
@@ -1418,10 +1243,7 @@ i { margin-right: 8px; }
     .edu-modal-content .close-btn { color: rgba(255,255,255,0.4); }
     .edu-modal-content .close-btn:hover { color: #fff; }
 
-    .edu-card {
-        background: rgba(255,255,255,0.03);
-        border: 1px solid rgba(255,255,255,0.07);
-    }
+    .edu-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); }
 
     .edu-institution { color: rgba(255,255,255,0.35); }
     .edu-info h3 { color: #f0f0f0; }
