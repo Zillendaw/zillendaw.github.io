@@ -608,11 +608,131 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 .project-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
 .project-card p  { color: #666; margin-bottom: 15px; font-size: 0.95rem; }
 
-.project-card a { color: #007bff; text-decoration: none; font-weight: 600; }
-.project-card a:hover { text-decoration: underline; }
+/* ── Стек технологий ── */
+.project-card__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
 
-[data-mode="dev"]   .project-card a { color: #0e80c0; }
-[data-mode="video"] .project-card a { color: #8a30cc; }
+.project-card__stack span {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(14, 128, 192, 0.08);
+    color: #0e80c0;
+    border: 1px solid rgba(14, 128, 192, 0.2);
+    transition: background 0.2s, color 0.2s;
+}
+
+[data-mode="video"] .project-card__stack span {
+    background: rgba(138, 48, 204, 0.08);
+    color: #8a30cc;
+    border-color: rgba(138, 48, 204, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+    .project-card__stack span {
+        background: rgba(77, 217, 255, 0.08);
+        color: #4dd9ff;
+        border-color: rgba(77, 217, 255, 0.2);
+    }
+    [data-mode="video"] .project-card__stack span {
+        background: rgba(201, 125, 255, 0.08);
+        color: #c97dff;
+        border-color: rgba(201, 125, 255, 0.2);
+    }
+}
+
+/* ── Кнопка «Посмотреть код» ── */
+.project-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+    padding: 7px 16px;
+    border-radius: 8px;
+    border: 1.5px solid currentColor;
+    color: #0e80c0;
+    background: transparent;
+    transition: background 0.22s ease, color 0.22s ease,
+                box-shadow 0.22s ease, transform 0.2s ease;
+}
+
+[data-mode="video"] .project-card__link { color: #8a30cc; }
+
+@media (prefers-color-scheme: dark) {
+    .project-card__link             { color: #4dd9ff; }
+    [data-mode="video"] .project-card__link { color: #c97dff; }
+}
+
+/* Два текста: обычный и hover — переключаются через clip */
+.project-card__link-text,
+.project-card__link-hover {
+    display: block;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity   0.2s ease;
+    white-space: nowrap;
+}
+
+.project-card__link-hover {
+    position: absolute;
+    left: 16px;
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.project-card__link-icon {
+    font-size: 1rem;
+    margin: 0;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+}
+
+/* Hover: скрываем «Посмотреть код», показываем «Открыть GitHub» */
+.project-card__link:hover .project-card__link-text {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+.project-card__link:hover .project-card__link-hover {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card__link:hover .project-card__link-icon {
+    transform: rotate(10deg) scale(1.15);
+}
+
+.project-card__link:hover {
+    background: rgba(14, 128, 192, 0.1);
+    box-shadow: 0 0 0 3px rgba(14, 128, 192, 0.12);
+    transform: translateY(-1px);
+}
+
+[data-mode="video"] .project-card__link:hover {
+    background: rgba(138, 48, 204, 0.1);
+    box-shadow: 0 0 0 3px rgba(138, 48, 204, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+    .project-card__link:hover {
+        background: rgba(77, 217, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(77, 217, 255, 0.1);
+    }
+    [data-mode="video"] .project-card__link:hover {
+        background: rgba(201, 125, 255, 0.08);
+        box-shadow: 0 0 0 3px rgba(201, 125, 255, 0.1);
+    }
+}
 
 .video-empty { text-align: center; padding: 70px 20px; color: #aaa; }
 .video-empty i { font-size: 3rem; margin-bottom: 16px; display: block; opacity: 0.3; }
