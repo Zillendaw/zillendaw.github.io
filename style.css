@@ -115,13 +115,19 @@ body[data-mode="video"] {
 
 .contact-pill i { font-size: 1.1rem; margin: 0; }
 
-/* GitHub */
-.contact-pill--gh { color: #e0e0e0; border: 1.5px solid #e0e0e0; }
-.contact-pill--gh:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-
-/* YouTube */
-.contact-pill--yt { color: #ff4d4d; border: 1.5px solid #ff4d4d; }
-.contact-pill--yt:hover { background: rgba(255,77,77,0.1); transform: translateY(-2px); }
+/* GitHub и YouTube — одинаковый нейтральный цвет */
+.contact-pill--gh,
+.contact-pill--yt {
+    color: rgba(190, 190, 205, 0.65);
+    border: 1.5px solid rgba(190, 190, 205, 0.3);
+}
+.contact-pill--gh:hover,
+.contact-pill--yt:hover {
+    color: rgba(210, 210, 225, 0.9);
+    border-color: rgba(210, 210, 225, 0.5);
+    background: rgba(200, 200, 215, 0.08);
+    transform: translateY(-2px);
+}
 
 /* Образование */
 .contact-pill--edu { color: #ffd700; border: 1.5px solid #ffd700; }
@@ -446,27 +452,34 @@ body[data-mode="video"] {
 }
 
 /* =====================================================
-   КНОПКА "НАЗАД"
+   КНОПКА «СМЕНИТЬ РАЗДЕЛ»
    ===================================================== */
 .back-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #999;
-    background: none;
-    border: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--theme-color);
+    background: rgba(var(--theme-color-rgb), 0.08);
+    border: 1.5px solid rgba(var(--theme-color-rgb), 0.4);
+    border-radius: 30px;
     cursor: pointer;
-    padding: 0;
+    padding: 9px 20px;
     margin-bottom: 32px;
     font-family: inherit;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+    letter-spacing: 0.03em;
 }
 
 .back-btn i { margin: 0; }
-.back-btn:hover { color: #333; }
+.back-btn:hover {
+    color: var(--theme-color);
+    background: rgba(var(--theme-color-rgb), 0.15);
+    border-color: rgba(var(--theme-color-rgb), 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(var(--theme-color-rgb), 0.25);
+}
 
 /* =====================================================
    КОНТЕЙНЕР И ШАПКА
@@ -535,20 +548,49 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 
 .btn-outline {
     background-color: transparent !important;
-    color: var(--theme-color);
-    border: 2px solid var(--theme-color);
+    color: rgba(150, 150, 165, 0.85);
+    border: 2px solid rgba(150, 150, 165, 0.4);
 }
 
 .btn-outline:hover {
-    background-color: rgba(var(--theme-color-rgb), 0.1) !important;
+    background-color: rgba(150, 150, 165, 0.1) !important;
+    color: rgba(180, 180, 195, 1);
+    border-color: rgba(180, 180, 195, 0.6);
     transform: translateY(-2px);
 }
 
+/* YouTube такой же нейтральный, как GitHub */
 .btn-outline-youtube {
-    color: #cc0000 !important;
-    border-color: #cc0000 !important;
+    color: rgba(150, 150, 165, 0.85) !important;
+    border-color: rgba(150, 150, 165, 0.4) !important;
 }
-.btn-outline-youtube:hover { background-color: rgba(204, 0, 0, 0.1) !important; }
+.btn-outline-youtube:hover {
+    background-color: rgba(150, 150, 165, 0.1) !important;
+    color: rgba(180, 180, 195, 1) !important;
+    border-color: rgba(180, 180, 195, 0.6) !important;
+}
+
+/* Telegram CTA — всегда голубой */
+.btn-cta--tg {
+    color: #4dd9ff !important;
+    border-color: #4dd9ff !important;
+}
+.btn-cta--tg:hover {
+    background-color: rgba(77, 217, 255, 0.1) !important;
+    color: #4dd9ff !important;
+    border-color: #4dd9ff !important;
+}
+
+/* Email CTA — всегда фиолетовый */
+.btn-cta--email {
+    color: #c97dff !important;
+    border-color: #c97dff !important;
+}
+.btn-cta--email:hover {
+    background-color: rgba(201, 125, 255, 0.1) !important;
+    color: #c97dff !important;
+    border-color: #c97dff !important;
+}
 
 /* Призыв к действию (Анимация подсветки) */
 .btn-cta { position: relative; }
@@ -566,15 +608,8 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     100% { box-shadow: 0 0 0 0 rgba(var(--theme-color-rgb), 0); }
 }
 
-@media (prefers-color-scheme: dark) {
-    .btn-outline { color: var(--theme-color); border-color: var(--theme-color); }
-    
-    .btn-outline-youtube {
-        color: #ff4d4d !important;
-        border-color: #ff4d4d !important;
-    }
-    .btn-outline-youtube:hover { background-color: rgba(255, 77, 77, 0.1) !important; }
-}
+
+
 
 /* =====================================================
    ПОРТФОЛИО
@@ -1472,9 +1507,6 @@ footer {
     h1 { color: #fff; }
     h2 { color: #bbb; }
 
-    .back-btn { color: #555; }
-    .back-btn:hover { color: #ccc; }
-
     .portfolio h3 { color: #e0e0e0; }
 
     .project-card, .modal-content {
@@ -1484,9 +1516,6 @@ footer {
 
     .project-card h4 { color: #e0e0e0; }
     .project-card p  { color: #aaa; }
-
-    .btn-outline { color: #e0e0e0; border-color: #e0e0e0; }
-    .btn-outline:hover { background-color: #e0e0e0; color: #121212; }
 
     .close-btn { color: #bbb; }
     .close-btn:hover { color: #fff; }
