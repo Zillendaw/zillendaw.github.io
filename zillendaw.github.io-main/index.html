@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-name" content="Главная">
+    <title>Zillendaw</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- =============================================
+         СТАРТОВЫЙ ЭКРАН
+         ============================================= -->
+    <div id="entry-screen" class="entry-screen">
+
+        <!-- ФАЗА 1: Профиль (анимируется автоматически) -->
+        <div class="intro" id="intro">
+
+            <div class="intro__avatar anim-item" style="--d:0.1s">
+                <img src="logo.png" alt="Zillendaw">
+                <div class="intro__avatar-ring"></div>
+            </div>
+
+            <h1 class="intro__name anim-item" style="--d:0.4s">Zillendaw</h1>
+
+            <p class="intro__bio anim-item" style="--d:0.65s">
+                Программист и видеомонтажёр.<br>Люблю создавать — будь то код или кадр.
+            </p>
+
+            <div class="intro__actions anim-item" style="--d:0.85s">
+                <!-- 1 Сверху: GitHub, Youtube, Telegram, Почта -->
+                <div class="actions-row">
+                    <a href="https://github.com/Zillendaw" target="_blank" class="contact-pill contact-pill--gh">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="contact-pill contact-pill--yt">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://t.me/Zillendaw" target="_blank" class="contact-pill contact-pill--tg">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="mailto:mossy009@mail.ru" class="contact-pill contact-pill--email">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+                <!-- 2 Снизу: Образование -->
+                <div class="actions-row">
+                    <button class="contact-pill contact-pill--edu btn-education-trigger">
+                        <i class="fas fa-graduation-cap"></i> Образование
+                    </button>
+                </div>
+            </div>
+
+            <div class="intro__scroll-hint anim-item" style="--d:1.1s">
+                <span>Выбери направление</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+
+        <!-- ФАЗА 2: Карточки выбора (появляются после профиля) -->
+        <div class="split-row" id="split-row">
+
+            <div class="split-card split-card--dev" id="half-dev" data-section="dev" data-href="programming.html" role="link" tabindex="0" aria-label="Перейти в раздел Разработка">
+                <div class="split-card__glow"></div>
+                <div class="split-card__inner">
+                    <div class="split-card__icons">
+                        <i class="fas fa-code"></i>
+                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h2 class="split-card__title">Разработка</h2>
+                    <ul class="split-card__tags">
+                        <li>Разработчик ПО</li>
+                        <li>Web-разработчик</li>
+                        <li>Разработчик игр</li>
+                    </ul>
+                    <span class="split-card__cta">Войти <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+            <div class="split-card split-card--video" id="half-video" data-section="video" data-href="video.html" role="link" tabindex="0" aria-label="Перейти в раздел Видеомонтаж">
+                <div class="split-card__glow"></div>
+                <div class="split-card__inner">
+                    <div class="split-card__icons">
+                        <i class="fas fa-film"></i>
+                        <i class="fas fa-magic"></i>
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h2 class="split-card__title">Видеомонтаж</h2>
+                    <ul class="split-card__tags">
+                        <li>Post-Production</li>
+                        <li>Motion Design</li>
+                        <li>Видеомонтаж</li>
+                    </ul>
+                    <span class="split-card__cta">Войти <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Фриланс-профили на стартовом экране -->
+        <div class="entry-freelance anim-item" style="--d:1.4s">
+            <span class="entry-freelance__label">Фриланс</span>
+            <div class="entry-freelance__links">
+                <a href="https://profi.ru/profile/HvanAM" target="_blank" class="footer-fl-pill footer-fl-pill--profi" title="Profi.ru">
+                    <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.8"/>
+                        <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">P</text>
+                    </svg>
+                    <span>Profi.ru</span>
+                </a>
+                <a href="https://www.fl.ru/users/mossy009/portfolio/" target="_blank" class="footer-fl-pill footer-fl-pill--fl" title="FL.ru">
+                    <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+                        <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">FL</text>
+                    </svg>
+                    <span>FL.ru</span>
+                </a>
+                <a href="https://kwork.ru/user/mossy009" target="_blank" class="footer-fl-pill footer-fl-pill--kwork" title="Kwork.ru">
+                    <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">KW</text>
+                    </svg>
+                    <span>Kwork</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Модальное окно образования -->
+    <div id="eduModal" class="modal">
+        <div class="modal-content edu-modal-content">
+            <span class="close-btn" id="edu-close-btn">&times;</span>
+            <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
+            <div class="edu-cards-container">
+
+                <div class="edu-card edu-card--spo">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-school"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Информационные системы и программирование</h3>
+                        <h5><i class="fas fa-certificate"></i> СПО · 2020 – 2025</h5>
+                        <p>Специальность: Информационные системы и программирование</p>
+                    </div>
+                </div>
+
+                <div class="edu-card edu-card--bachelor">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Программная инженерия</h3>
+                        <h5><i class="fas fa-graduation-cap"></i> Бакалавриат · 2025 – настоящее время</h5>
+                        <p>Направление: Программная инженерия</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ═══════════════════════════════════════════════════════
+       Переход с карточек на отдельные страницы разделов
+       ═══════════════════════════════════════════════════════ */
+    (function () {
+        const ENTRY_EXIT_DELAY_MS = 100;
+        const NAV_DELAY_MS        = 520;
+        const entryScreen = document.getElementById('entry-screen');
+
+        function goTo(card) {
+            const href = card.dataset.href;
+            if (!href) return;
+            card.classList.add('split-card--chosen');
+            setTimeout(() => entryScreen.classList.add('entry-screen--exit'), ENTRY_EXIT_DELAY_MS);
+            setTimeout(() => { window.location.href = href; }, NAV_DELAY_MS);
+        }
+
+        document.querySelectorAll('.split-card[data-href]').forEach(card => {
+            card.addEventListener('click', () => goTo(card));
+            card.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(card); }
+            });
+        });
+    })();
+
+    /* ═══════════════════════════════════════════════════════
+       Модальное окно «Образование»
+       ═══════════════════════════════════════════════════════ */
+    (function () {
+        const eduModal = document.getElementById('eduModal');
+
+        function openEduModal() {
+            document.querySelectorAll('.edu-card__shine').forEach(el => {
+                el.style.animation = 'none';
+                void el.offsetHeight;
+                el.style.animation = '';
+            });
+            eduModal.style.display = 'flex';
+        }
+        function closeEduModal() { eduModal.style.display = 'none'; }
+
+        document.querySelectorAll('.btn-education-trigger').forEach(btn => {
+            btn.addEventListener('click', openEduModal);
+        });
+        document.getElementById('edu-close-btn').addEventListener('click', closeEduModal);
+        window.addEventListener('click', e => { if (e.target === eduModal) closeEduModal(); });
+    })();
+
+    /* ═══════════════════════════════════════════════════════
+       Анимированная схема связей стека технологий (на карточках)
+       ═══════════════════════════════════════════════════════ */
+    (function () {
+        const NS = 'http://www.w3.org/2000/svg';
+
+        const CHARTS = {
+            dev: {
+                vb: '0 0 220 340',
+                hub: [3, 170],
+                color: '#4dd9ff',
+                glow: 'rgba(77,217,255,0.55)',
+                nodes: [
+                    { p: [85,  72],  t: ['C++'],             rx: 23, ry: 14 },
+                    { p: [170, 34],  t: ['Qt'],               rx: 22, ry: 14 },
+                    { p: [165, 112], t: ['Unreal','Engine'],  rx: 34, ry: 20 },
+                    { p: [80,  220], t: ['HTML & CSS'],       rx: 38, ry: 14 },
+                    { p: [170, 190], t: ['MySQL'],            rx: 30, ry: 14 },
+                    { p: [168, 268], t: ['JavaScript'],       rx: 40, ry: 14 },
+                    { p: [85,  308], t: ['Python'],           rx: 28, ry: 14 },
+                ],
+                edges: [
+                    [null, 0], [0, 1], [0, 2], [null, 3],
+                    [3, 4], [3, 5], [4, 5], [null, 6],
+                ],
+            },
+            video: {
+                vb: '0 0 222 224',
+                hub: [3, 112],
+                color: '#c97dff',
+                glow: 'rgba(201,125,255,0.55)',
+                nodes: [
+                    { p: [118, 37],  t: ['Sony Vegas Pro'],       rx: 46, ry: 14 },
+                    { p: [118, 116], t: ['Adobe','Premiere Pro'], rx: 43, ry: 20 },
+                    { p: [118, 192], t: ['CapCut'],               rx: 28, ry: 14 },
+                ],
+                edges: [[null, 0], [null, 1], [null, 2]],
+            },
+        };
+
+        function svgEl(tag) { return document.createElementNS(NS, tag); }
+
+        function setLineCoords(el, from, to) {
+            el.setAttribute('x1', from[0]); el.setAttribute('y1', from[1]);
+            el.setAttribute('x2', to[0]);   el.setAttribute('y2', to[1]);
+        }
+
+        function buildChart(type) {
+            const cfg = CHARTS[type];
+            const glowFilterId = 'chart-glow-' + type;
+
+            const svg = svgEl('svg');
+            svg.setAttribute('viewBox', cfg.vb);
+            svg.setAttribute('class', 'the-chart');
+            svg.setAttribute('aria-hidden', 'true');
+
+            const defs = svgEl('defs');
+            const filt = svgEl('filter');
+            filt.setAttribute('id', glowFilterId);
+            filt.setAttribute('x', '-60%'); filt.setAttribute('y', '-60%');
+            filt.setAttribute('width', '220%'); filt.setAttribute('height', '220%');
+            const blur = svgEl('feGaussianBlur');
+            blur.setAttribute('in', 'SourceGraphic');
+            blur.setAttribute('stdDeviation', '2.5');
+            filt.appendChild(blur);
+            defs.appendChild(filt);
+            svg.appendChild(defs);
+
+            cfg.edges.forEach(([fi, ti], idx) => {
+                const from = fi === null ? cfg.hub : cfg.nodes[fi].p;
+                const to   = cfg.nodes[ti].p;
+
+                const glowLine = svgEl('line');
+                setLineCoords(glowLine, from, to);
+                glowLine.setAttribute('stroke', cfg.glow);
+                glowLine.setAttribute('stroke-width', '5');
+                glowLine.setAttribute('filter', `url(#${glowFilterId})`);
+                glowLine.classList.add('chart-edge', 'chart-edge--glow');
+                glowLine.style.setProperty('--di', idx);
+                svg.appendChild(glowLine);
+
+                const line = svgEl('line');
+                setLineCoords(line, from, to);
+                line.setAttribute('stroke', cfg.color);
+                line.setAttribute('stroke-width', '1.5');
+                line.classList.add('chart-edge');
+                line.style.setProperty('--di', idx);
+                svg.appendChild(line);
+            });
+
+            const hubG = svgEl('g');
+            hubG.classList.add('chart-hub');
+            const hubGlow = svgEl('circle');
+            hubGlow.setAttribute('cx', cfg.hub[0]); hubGlow.setAttribute('cy', cfg.hub[1]);
+            hubGlow.setAttribute('r', '9');
+            hubGlow.setAttribute('fill', cfg.glow);
+            hubGlow.setAttribute('filter', `url(#${glowFilterId})`);
+            hubG.appendChild(hubGlow);
+            const hubDot = svgEl('circle');
+            hubDot.setAttribute('cx', cfg.hub[0]); hubDot.setAttribute('cy', cfg.hub[1]);
+            hubDot.setAttribute('r', '5');
+            hubDot.setAttribute('fill', cfg.color);
+            hubG.appendChild(hubDot);
+            svg.appendChild(hubG);
+
+            cfg.nodes.forEach((nd, idx) => {
+                const g = svgEl('g');
+                g.classList.add('chart-node');
+                g.style.setProperty('--ni', idx);
+
+                const glowEllipse = svgEl('ellipse');
+                glowEllipse.setAttribute('cx', nd.p[0]); glowEllipse.setAttribute('cy', nd.p[1]);
+                glowEllipse.setAttribute('rx', nd.rx + 5); glowEllipse.setAttribute('ry', nd.ry + 5);
+                glowEllipse.setAttribute('fill', 'none');
+                glowEllipse.setAttribute('stroke', cfg.glow);
+                glowEllipse.setAttribute('stroke-width', '3');
+                glowEllipse.setAttribute('filter', `url(#${glowFilterId})`);
+                g.appendChild(glowEllipse);
+
+                const ellipse = svgEl('ellipse');
+                ellipse.setAttribute('cx', nd.p[0]); ellipse.setAttribute('cy', nd.p[1]);
+                ellipse.setAttribute('rx', nd.rx);   ellipse.setAttribute('ry', nd.ry);
+                ellipse.setAttribute('fill', 'rgba(4,12,28,0.92)');
+                ellipse.setAttribute('stroke', cfg.color);
+                ellipse.setAttribute('stroke-width', '1.5');
+                g.appendChild(ellipse);
+
+                const txt = svgEl('text');
+                txt.setAttribute('text-anchor', 'middle');
+                txt.setAttribute('fill', cfg.color);
+                txt.setAttribute('font-family', 'Manrope, sans-serif');
+                txt.setAttribute('font-size', '8.5');
+                txt.setAttribute('font-weight', '700');
+                txt.setAttribute('letter-spacing', '0.25');
+
+                if (nd.t.length === 1) {
+                    txt.setAttribute('x', nd.p[0]);
+                    txt.setAttribute('y', nd.p[1]);
+                    txt.setAttribute('dominant-baseline', 'middle');
+                    txt.textContent = nd.t[0];
+                } else {
+                    nd.t.forEach((line, li) => {
+                        const tspan = svgEl('tspan');
+                        tspan.setAttribute('x', nd.p[0]);
+                        tspan.setAttribute(li === 0 ? 'y' : 'dy', li === 0 ? nd.p[1] - 4 : 11);
+                        tspan.textContent = line;
+                        txt.appendChild(tspan);
+                    });
+                }
+                g.appendChild(txt);
+                svg.appendChild(g);
+            });
+
+            return svg;
+        }
+
+        document.querySelectorAll('.split-card').forEach(card => {
+            const type = card.classList.contains('split-card--dev') ? 'dev' : 'video';
+            const wrap = document.createElement('div');
+            wrap.className = 'chart-wrap';
+            wrap.appendChild(buildChart(type));
+            card.appendChild(wrap);
+        });
+    })();
+    </script>
+    <script src="tracker.js?v=3" defer></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-name" content="Видеомонтаж">
+    <title>Видеомонтаж — Александр Хван</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-mode="video">
+
+    <!-- =============================================
+         РАЗДЕЛ: ВИДЕОМОНТАЖ
+         ============================================= -->
+    <div id="main-site" class="main-site main-site--enter">
+        <div class="container">
+
+            <header>
+                <button class="back-btn" id="back-btn">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </button>
+                <div class="profile-img">
+                    <img src="logo.png" alt="Фото Zillendaw">
+                </div>
+                <h1>Zillendaw</h1>
+                <div class="nickname">@Zillendaw</div>
+                <h2 id="site-subtitle">Видеомонтажёр · Post-Production</h2>
+                <p class="bio">Программист и видеомонтажёр. Люблю создавать — будь то код или кадр.</p>
+
+                <div class="links-wrapper">
+                    <!-- 1 Сверху: GitHub, Youtube, Telegram, Почта -->
+                    <div class="links-row">
+                        <a href="https://github.com/Zillendaw" target="_blank" class="btn btn-outline">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-outline btn-outline-youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://t.me/Zillendaw" target="_blank" class="btn btn-outline btn-cta btn-cta--tg">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
+                            <i class="fas fa-envelope"></i> Почта
+                        </a>
+                    </div>
+                    <!-- 2 Снизу: Образование -->
+                    <div class="links-row">
+                        <button class="btn btn-outline btn-education-trigger">
+                            <i class="fas fa-graduation-cap"></i> Образование
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="portfolio">
+
+                    <div id="video-projects" class="projects-content">
+
+                        <!-- ── Таб-переключатель ── -->
+                        <div class="video-tabs" role="tablist">
+                            <button class="video-tab video-tab--active" data-tab="showreels" role="tab" aria-selected="true">
+                                <i class="fas fa-play-circle"></i> Шоурилы
+                                <span class="video-tab__count">2</span>
+                            </button>
+                            <button class="video-tab" data-tab="cases" role="tab" aria-selected="false">
+                                <i class="fas fa-briefcase"></i> Кейсы
+                                <span class="video-tab__count">5</span>
+                            </button>
+                        </div>
+
+                        <!-- ── Шоурилы ── -->
+                        <div id="tab-showreels" class="video-tab-panel video-cases-grid" role="tabpanel">
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/UZRvcrw7vlo"
+                                        title="Commerce Showreel"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-briefcase"></i> Commerce Showreel</h4>
+                                    <p>Демонстрация навыков в коммерческом видеомонтаже, создании рекламных и промо-роликов.</p>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
+                                </div>
+                            </div>
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/JEY2gAs5e-E"
+                                        title="YouTube Showreel"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fab fa-youtube"></i> YouTube Showreel</h4>
+                                    <p>Нарезка лучших моментов, динамичный монтаж, работа с эффектами для YouTube-проектов.</p>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- ── Кейсы ── -->
+                        <div id="tab-cases" class="video-tab-panel video-cases-grid video-tab-panel--hidden" role="tabpanel">
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239017&hash=cb1fb28f0e667870"
+                                        title="Отзыв Николая, компания «Тепломонтаж»"
+                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Отзыв заказчика компании "Тепломонтаж" - Николай из г. Артём</h4>
+                                    <p>Классический видеоотзыв для повышения лояльности к строительной компании.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239018&hash=5bd7206ee8f912c3"
+                                        title="Обзор монтажа бокса «Погреб ПП 3 Лонг»"
+                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
+                                    <p>Демонстрационный ролик этапов установки сложного инженерного оборудования, с описанием и демонстрации монтажных работ.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239020&hash=2a2894bb011b58aa"
+                                        title="Отзыв Сергея Ким, компания «Тепломонтаж»"
+                                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                        allowfullscreen
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
+                                    <p>Интерьерный видеоотзыв, подчеркивающий результат работы строительной компании по тёплым полам.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/sF_MnTFnGuY"
+                                        title="Открытие точки корейской компании «Atomy» в ТЦ «Маяк» в г. Владивосток"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
+                                    <p>Короткое видео для (Reels) с открытия новой точки косметической компании "Atomy". Динамичный монтаж под ритм музыки, 
+                                        чтобы передать атмосферу праздника и привлечь трафик в магазин.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="video-case-card">
+                                <div class="video-embed">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/5eTRQUaZ4JY"
+                                        title="Дом «Афрейм»"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Демонстрация Дом "Афрейм"</h4>
+                                    <p>Видеообзор трендового дома в стиле A-frame для строительной компании. 
+                                        Использован плавный монтаж, выгодно подчеркивающий архитектуру и уют интерьера, 
+                                        а также описание для коротких видео.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+
+            <footer>
+                <div class="footer-freelance">
+                    <span class="footer-freelance__label">Фриланс</span>
+                    <div class="footer-freelance__links">
+                        <a href="https://profi.ru/profile/HvanAM" target="_blank" class="footer-fl-pill footer-fl-pill--profi" title="Profi.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.8"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">P</text>
+                            </svg>
+                            <span>Profi.ru</span>
+                        </a>
+                        <a href="https://www.fl.ru/users/mossy009/portfolio/" target="_blank" class="footer-fl-pill footer-fl-pill--fl" title="FL.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">FL</text>
+                            </svg>
+                            <span>FL.ru</span>
+                        </a>
+                        <a href="https://kwork.ru/user/mossy009" target="_blank" class="footer-fl-pill footer-fl-pill--kwork" title="Kwork.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">KW</text>
+                            </svg>
+                            <span>Kwork</span>
+                        </a>
+                    </div>
+                </div>
+                <p>&copy; 2026 Александр Хван. Создано с помощью GitHub Pages.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Модальное окно образования -->
+    <div id="eduModal" class="modal">
+        <div class="modal-content edu-modal-content">
+            <span class="close-btn" id="edu-close-btn">&times;</span>
+            <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
+            <div class="edu-cards-container">
+
+                <div class="edu-card edu-card--spo">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-school"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Информационные системы и программирование</h3>
+                        <h5><i class="fas fa-certificate"></i> СПО · 2020 – 2025</h5>
+                        <p>Специальность: Информационные системы и программирование</p>
+                    </div>
+                </div>
+
+                <div class="edu-card edu-card--bachelor">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Программная инженерия</h3>
+                        <h5><i class="fas fa-graduation-cap"></i> Бакалавриат · 2025 – настоящее время</h5>
+                        <p>Направление: Программная инженерия</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно видео -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content video-modal-content">
+            <span class="video-close-btn" id="video-close-btn">&times;</span>
+            <div class="video-container">
+                <iframe id="videoPlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ── Кнопка «На главную» ── */
+    document.getElementById('back-btn').addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
+
+    /* ── Модальное окно «Образование» ── */
+    (function () {
+        const eduModal = document.getElementById('eduModal');
+
+        function openEduModal() {
+            document.querySelectorAll('.edu-card__shine').forEach(el => {
+                el.style.animation = 'none';
+                void el.offsetHeight;
+                el.style.animation = '';
+            });
+            eduModal.style.display = 'flex';
+        }
+        function closeEduModal() { eduModal.style.display = 'none'; }
+
+        document.querySelectorAll('.btn-education-trigger').forEach(btn => {
+            btn.addEventListener('click', openEduModal);
+        });
+        document.getElementById('edu-close-btn').addEventListener('click', closeEduModal);
+        window.addEventListener('click', e => { if (e.target === eduModal) closeEduModal(); });
+    })();
+
+    /* ── Модальное окно видео ── */
+    (function () {
+        const videoModal  = document.getElementById('videoModal');
+        const videoPlayer = document.getElementById('videoPlayer');
+
+        function closeVideoModal() {
+            videoModal.style.display = 'none';
+            videoPlayer.src = '';
+        }
+
+        document.getElementById('video-close-btn').addEventListener('click', closeVideoModal);
+        window.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+    })();
+
+    /* ── Таб-переключатель Шоурилы / Кейсы ── */
+    (function () {
+        document.querySelectorAll('.video-tab').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const target = btn.dataset.tab;
+                document.querySelectorAll('.video-tab').forEach(function (b) {
+                    b.classList.toggle('video-tab--active', b === btn);
+                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+                });
+                document.querySelectorAll('.video-tab-panel').forEach(function (panel) {
+                    const isTarget = panel.id === 'tab-' + target;
+                    panel.classList.toggle('video-tab-panel--hidden', !isTarget);
+                });
+            });
+        });
+    })();
+    </script>
+    <script src="tracker.js?v=3" defer></script>
+</body>
+</html>

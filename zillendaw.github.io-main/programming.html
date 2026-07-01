@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-name" content="Программирование">
+    <title>Программирование — Александр Хван</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body data-mode="dev">
+
+    <!-- =============================================
+         РАЗДЕЛ: ПРОГРАММИРОВАНИЕ
+         ============================================= -->
+    <div id="main-site" class="main-site main-site--enter">
+        <div class="container">
+
+            <header>
+                <button class="back-btn" id="back-btn">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </button>
+                <div class="profile-img">
+                    <img src="logo.png" alt="Фото Zillendaw">
+                </div>
+                <h1>Zillendaw</h1>
+                <div class="nickname">@Zillendaw</div>
+                <h2 id="site-subtitle">Программист · Web-разработчик</h2>
+                <p class="bio">Программист и видеомонтажёр. Люблю создавать — будь то код или кадр.</p>
+
+                <div class="links-wrapper">
+                    <!-- 1 Сверху: GitHub, Youtube, Telegram, Почта -->
+                    <div class="links-row">
+                        <a href="https://github.com/Zillendaw" target="_blank" class="btn btn-outline">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-outline btn-outline-youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://t.me/Zillendaw" target="_blank" class="btn btn-outline btn-cta btn-cta--tg">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
+                            <i class="fas fa-envelope"></i> Почта
+                        </a>
+                    </div>
+                    <!-- 2 Снизу: Образование -->
+                    <div class="links-row">
+                        <button class="btn btn-outline btn-education-trigger">
+                            <i class="fas fa-graduation-cap"></i> Образование
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <section class="portfolio">
+
+                    <div id="coding-projects" class="projects-content">
+                        <h3 id="portfolio-title">Мои проекты</h3>
+
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <h4>Система автоматизации «Академия Киокусинкай»</h4>
+                                <p>Десктопное приложение для автоматизации работы спортивной организации (учет тренеров, учеников и составление расписания). Проект разработан в рамках производственной практики в 2023 году.</p>
+                                <div class="project-card__stack">
+                                    <span>Qt</span>
+                                    <span>C++</span>
+                                    <span>MySQL</span>
+                                </div>
+                                <a class="project-card__link" href="https://github.com/Zillendaw/kyokushinkai-industrial-practice-2023-qt" target="_blank">
+                                    <span class="project-card__link-text">Посмотреть код</span>
+                                    <span class="project-card__link-hover">Открыть GitHub</span>
+                                    <i class="fab fa-github project-card__link-icon"></i>
+                                </a>
+                            </div>
+                            <div class="project-card">
+                                <h4>Учебный фронтенд "Securo Serv"</h4>
+                                <p>Статический многостраничный сайт-визитка для вымышленного частного охранного предприятия. Разработан в 2022 году.</p>
+                                <div class="project-card__stack">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <a class="project-card__link" href="https://github.com/Zillendaw/Web-Site-Securo-Serv" target="_blank">
+                                    <span class="project-card__link-text">Посмотреть код</span>
+                                    <span class="project-card__link-hover">Открыть GitHub</span>
+                                    <i class="fab fa-github project-card__link-icon"></i>
+                                </a>
+                            </div>
+                            <div class="project-card">
+                                <h4>Веб-сайт для строительной компании</h4>
+                                <p>Full-stack веб-приложение с «Экспертной системой» для автоматического подбора оборудования и системой сбора лидов через Telegram API.</p>
+                                <div class="project-card__stack">
+                                    <span>JavaScript</span>
+                                    <span>React</span>
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>MySQL</span>
+                                </div>
+                                <a class="project-card__link" href="https://github.com/Zillendaw/engineering-company-portal" target="_blank">
+                                    <span class="project-card__link-text">Посмотреть код</span>
+                                    <span class="project-card__link-hover">Открыть GitHub</span>
+                                    <i class="fab fa-github project-card__link-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </main>
+
+            <footer>
+                <div class="footer-freelance">
+                    <span class="footer-freelance__label">Фриланс</span>
+                    <div class="footer-freelance__links">
+                        <a href="https://profi.ru/profile/HvanAM" target="_blank" class="footer-fl-pill footer-fl-pill--profi" title="Profi.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.8"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">P</text>
+                            </svg>
+                            <span>Profi.ru</span>
+                        </a>
+                        <a href="https://www.fl.ru/users/mossy009/portfolio/" target="_blank" class="footer-fl-pill footer-fl-pill--fl" title="FL.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">FL</text>
+                            </svg>
+                            <span>FL.ru</span>
+                        </a>
+                        <a href="https://kwork.ru/user/mossy009" target="_blank" class="footer-fl-pill footer-fl-pill--kwork" title="Kwork.ru">
+                            <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                <text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">KW</text>
+                            </svg>
+                            <span>Kwork</span>
+                        </a>
+                    </div>
+                </div>
+                <p>&copy; 2026 Александр Хван. Создано с помощью GitHub Pages.</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Модальное окно образования -->
+    <div id="eduModal" class="modal">
+        <div class="modal-content edu-modal-content">
+            <span class="close-btn" id="edu-close-btn">&times;</span>
+            <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
+            <div class="edu-cards-container">
+
+                <div class="edu-card edu-card--spo">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-school"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Информационные системы и программирование</h3>
+                        <h5><i class="fas fa-certificate"></i> СПО · 2020 – 2025</h5>
+                        <p>Специальность: Информационные системы и программирование</p>
+                    </div>
+                </div>
+
+                <div class="edu-card edu-card--bachelor">
+                    <div class="edu-card__shine"></div>
+                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="edu-info">
+                        <span class="edu-institution">Владивостокский Государственный Университет</span>
+                        <h3>Программная инженерия</h3>
+                        <h5><i class="fas fa-graduation-cap"></i> Бакалавриат · 2025 – настоящее время</h5>
+                        <p>Направление: Программная инженерия</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /* ── Кнопка «На главную» ── */
+    document.getElementById('back-btn').addEventListener('click', function () {
+        window.location.href = 'index.html';
+    });
+
+    /* ── Модальное окно «Образование» ── */
+    (function () {
+        const eduModal = document.getElementById('eduModal');
+
+        function openEduModal() {
+            document.querySelectorAll('.edu-card__shine').forEach(el => {
+                el.style.animation = 'none';
+                void el.offsetHeight;
+                el.style.animation = '';
+            });
+            eduModal.style.display = 'flex';
+        }
+        function closeEduModal() { eduModal.style.display = 'none'; }
+
+        document.querySelectorAll('.btn-education-trigger').forEach(btn => {
+            btn.addEventListener('click', openEduModal);
+        });
+        document.getElementById('edu-close-btn').addEventListener('click', closeEduModal);
+        window.addEventListener('click', e => { if (e.target === eduModal) closeEduModal(); });
+    })();
+    </script>
+    <script src="tracker.js?v=3" defer></script>
+</body>
+</html>
