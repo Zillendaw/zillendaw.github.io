@@ -874,6 +874,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 28px;
+    align-items: start; /* карточки не растягиваются по высоте соседних (вертикальных) */
 }
 
 .video-case-card {
@@ -1494,8 +1495,52 @@ footer {
     border: 1px solid rgba(255, 204, 0, 0.28);
 }
 
+/* ── Контейнер для нескольких бейджей на одной карточке ── */
+.video-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ── Тематические бейджи кейсов ── */
+.video-source-badge--instagram {
+    background: rgba(225, 48, 108, 0.08);
+    color: #c1275a;
+    border: 1px solid rgba(225, 48, 108, 0.25);
+}
+
+.video-source-badge--tiktok {
+    background: rgba(0, 0, 0, 0.06);
+    color: #222;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.video-source-badge--telegram {
+    background: rgba(34, 158, 217, 0.08);
+    color: #1786bd;
+    border: 1px solid rgba(34, 158, 217, 0.28);
+}
+
+.video-source-badge--review {
+    background: rgba(46, 184, 92, 0.08);
+    color: #1f8a48;
+    border: 1px solid rgba(46, 184, 92, 0.28);
+}
+
+.video-source-badge--dynamic {
+    background: rgba(255, 122, 0, 0.08);
+    color: #c46000;
+    border: 1px solid rgba(255, 122, 0, 0.28);
+}
+
 @media (prefers-color-scheme: dark) {
     .video-source-badge--yadisk { color: #ffd633; background: rgba(255, 204, 0, 0.1); }
+
+    .video-source-badge--instagram { color: #ff6b9d; background: rgba(225, 48, 108, 0.12); }
+    .video-source-badge--tiktok    { color: #eee; background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25); }
+    .video-source-badge--telegram  { color: #4db8e8; background: rgba(34, 158, 217, 0.12); }
+    .video-source-badge--review    { color: #4dd985; background: rgba(46, 184, 92, 0.12); }
+    .video-source-badge--dynamic   { color: #ffab5e; background: rgba(255, 122, 0, 0.12); }
 }
 
 /* =====================================================
@@ -1506,9 +1551,63 @@ footer {
 /* Вертикальный embed для Shorts (соотношение 9:16) */
 .video-embed--vertical { padding-bottom: 177.78%; }
 
-@media (min-width: 601px) {
-    /* на десктопе ограничиваем высоту вертикального видео */
-    .video-embed--vertical { padding-bottom: 140%; }
+/* ── Заголовки групп внутри вкладки «Кейсы» ── */
+.video-group-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 24px;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #111;
+}
+
+.video-group-title i { margin: 0; color: #c97dff; font-size: 1.15rem; }
+
+.video-group-title__hint {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a5fc0;
+    background: rgba(201, 125, 255, 0.12);
+    border: 1px solid rgba(201, 125, 255, 0.3);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.video-group-title--gap { margin-top: 52px; }
+
+@media (prefers-color-scheme: dark) {
+    .video-group-title { color: #e0e0e0; }
+    .video-group-title__hint { color: #d0a8ff; background: rgba(201, 125, 255, 0.1); }
+}
+
+/* Сетка коротких (вертикальных) видео: три узкие колонки по центру */
+.video-cases-grid--shorts {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 340px));
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .video-cases-grid--shorts { grid-template-columns: 1fr; }
+    .video-group-title { font-size: 1.15rem; }
+    .video-group-title--gap { margin-top: 40px; }
+}
+
+/* Карточка с вертикальным (коротким) видео:
+   уже обычной и центрируется в своей ячейке сетки,
+   чтобы не раздувать высоту ряда */
+.video-case-card--vertical {
+    width: 100%;
+    max-width: 340px;
+    justify-self: center;
+}
+
+@media (max-width: 600px) {
+    .video-case-card--vertical { max-width: 320px; margin: 0 auto; }
 }
 
 .video-case-card--golden {
