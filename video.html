@@ -67,7 +67,7 @@
                             </button>
                             <button class="video-tab" data-tab="cases" role="tab" aria-selected="false">
                                 <i class="fas fa-briefcase"></i> Кейсы
-                                <span class="video-tab__count">5</span>
+                                <span class="video-tab__count">6</span>
                             </button>
                         </div>
 
@@ -114,6 +114,31 @@
 
                         <!-- ── Кейсы ── -->
                         <div id="tab-cases" class="video-tab-panel video-cases-grid video-tab-panel--hidden" role="tabpanel">
+
+                            <div class="video-case-card video-case-card--golden" data-golden-until="2026-08-31">
+                                <div class="golden-ribbon">
+                                    <span class="golden-ribbon__phi">φ</span> НОВОЕ
+                                </div>
+                                <div class="video-embed video-embed--vertical">
+                                    <iframe
+                                        src="https://www.youtube.com/embed/eKRm6tNx4fk"
+                                        title="Вертикальный Short-ролик"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        loading="lazy">
+                                    </iframe>
+                                </div>
+                                <div class="video-case-info">
+                                    <h4><i class="fas fa-film"></i> Монтаж экспертного Reels для  косметологии </h4>
+                                    <p>Короткий вертикальный ролик (Shorts/Reels) с динамичным монтажом: 
+                                        плотный тайминг, акцентные переходы и работа с цветом — формат, заточенный 
+                                        под удержание внимания в первые секунды.</p>
+                                    <span class="video-source-badge video-source-badge--yadisk">
+                                        <i class="fas fa-cloud"></i> Личное портфолио
+                                    </span>
+                                </div>
+                            </div>
 
                             <div class="video-case-card">
                                 <div class="video-embed">
@@ -335,6 +360,21 @@
 
         document.getElementById('video-close-btn').addEventListener('click', closeVideoModal);
         window.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+    })();
+
+    /* ── «Золотое сечение»: автоснятие метки ──
+       Метка видна ДО даты в data-golden-until (не включая её).
+       С 31.08.2026 лента и золотое оформление убираются сами,
+       сама карточка кейса остаётся. ── */
+    (function () {
+        document.querySelectorAll('.video-case-card--golden[data-golden-until]').forEach(function (card) {
+            const until = new Date(card.dataset.goldenUntil + 'T00:00:00');
+            if (isNaN(until) || new Date() >= until) {
+                card.classList.remove('video-case-card--golden');
+                const ribbon = card.querySelector('.golden-ribbon');
+                if (ribbon) ribbon.remove();
+            }
+        });
     })();
 
     /* ── Таб-переключатель Шоурилы / Кейсы ── */

@@ -1499,6 +1499,101 @@ footer {
 }
 
 /* =====================================================
+   КАРТОЧКА «ЗОЛОТОЕ СЕЧЕНИЕ»
+   (метка автоматически снимается скриптом 31.08.2026)
+   ===================================================== */
+
+/* Вертикальный embed для Shorts (соотношение 9:16) */
+.video-embed--vertical { padding-bottom: 177.78%; }
+
+@media (min-width: 601px) {
+    /* на десктопе ограничиваем высоту вертикального видео */
+    .video-embed--vertical { padding-bottom: 140%; }
+}
+
+.video-case-card--golden {
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    box-shadow:
+        0 0 0 1px rgba(212, 175, 55, 0.25),
+        0 6px 26px rgba(212, 175, 55, 0.22),
+        0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.video-case-card--golden:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 0 0 1px rgba(212, 175, 55, 0.4),
+        0 14px 40px rgba(212, 175, 55, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Лента-метка */
+.golden-ribbon {
+    position: absolute;
+    top: 14px;
+    left: -8px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px 6px 12px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #4a3600;
+    background: linear-gradient(120deg, #f6d98a 0%, #e8b923 45%, #f9e7ad 70%, #d4a017 100%);
+    background-size: 200% 100%;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 3px 12px rgba(180, 140, 20, 0.45);
+    animation: golden-shimmer 3.2s linear infinite;
+}
+
+/* «хвостик» ленты слева */
+.golden-ribbon::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    border: 4px solid transparent;
+    border-top-color: #a67c00;
+    border-right-color: #a67c00;
+}
+
+.golden-ribbon__phi {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+@keyframes golden-shimmer {
+    0%   { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-case-card--golden {
+        border-color: rgba(230, 190, 80, 0.45);
+        box-shadow:
+            0 0 0 1px rgba(230, 190, 80, 0.2),
+            0 6px 28px rgba(212, 175, 55, 0.18),
+            0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    .video-case-card--golden:hover {
+        box-shadow:
+            0 0 0 1px rgba(230, 190, 80, 0.35),
+            0 14px 44px rgba(212, 175, 55, 0.28),
+            0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (max-width: 600px) {
+    .golden-ribbon { top: 10px; font-size: 0.66rem; padding: 5px 12px 5px 10px; }
+}
+
+/* =====================================================
    ТЁМНАЯ ТЕМА (основной сайт)
    ===================================================== */
 @media (prefers-color-scheme: dark) {
