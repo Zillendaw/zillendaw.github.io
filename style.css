@@ -2116,3 +2116,42 @@ footer {
     .gh-contrib__dot { animation: none; }
     .gh-contrib__pulse { animation: none; opacity: 1; }
 }
+
+/* ── Репозитории внутри подсказки ── */
+.gh-tip__repos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 7px;
+    padding-top: 7px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gh-tip__repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+.gh-tip__repo i {
+    font-size: 0.66rem;
+    color: rgba(var(--theme-color-rgb), 0.9);
+    width: 11px;
+    text-align: center;
+}
+
+.gh-tip__repo--private {
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #ffc861;
+}
+.gh-tip__repo--private i { color: #ffc861; }
+
+.gh-tip__more {
+    font-size: 0.66rem;
+    color: rgba(255, 255, 255, 0.35);
+    padding-left: 17px;
+}

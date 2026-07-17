@@ -38,6 +38,9 @@
 
     const fmtDay = d => d.getDate() + ' ' + MONTHS[d.getMonth()];
 
+    const escapeHtml = s => String(s).replace(/[&<>"']/g, c =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     function daysAgoText(d) {
         const today = new Date(); today.setHours(0, 0, 0, 0);
         const diff = Math.round((today - d) / 86400000);
@@ -84,6 +87,61 @@
         throw lastErr || new Error('нет данных');
     }
 
+    /* ── Репозитории: публичные события GitHub ────────────
+       GitHub отдаёт названия репозиториев только для
+       публичной активности и только примерно за 90 дней.
+       Всё, что осталось «сверху» (или недели вовсе без
+       публичных событий) — это приватные репозитории:
+       их названия GitHub не раскрывает никогда.
+       ──────────────────────────────────────────────── */
+    const EVENTS_DAYS = 90;                  // глубина, которую покрывает API
+    const EVENT_TYPES = {
+        PushEvent: e => e.payload?.size || 1,
+        PullRequestEvent: e => (e.payload?.action === 'opened' ? 1 : 0),
+        IssuesEvent:      e => (e.payload?.action === 'opened' ? 1 : 0),
+        PullRequestReviewEvent: () => 1,
+        CreateEvent: e => (e.payload?.ref_type === 'repository' ? 1 : 0)
+    };
+
+    async function loadEvents() {
+        const events = [];
+        for (let page = 1; page <= 3; page++) {
+            const res = await fetch(
+                `https://api.github.com/users/${USER}/events/public?per_page=100&page=${page}`,
+                { headers: { Accept: 'application/vnd.github+json' } }
+            );
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const chunk = await res.json();
+            if (!Array.isArray(chunk) || !chunk.length) break;
+            events.push(...chunk);
+            if (chunk.length < 100) break;
+        }
+        return events;
+    }
+
+    /* Недельный ключ → Map(репозиторий → количество) */
+    function repoIndex(events) {
+        const index = new Map();
+        events.forEach(e => {
+            const scoreFn = EVENT_TYPES[e.type];
+            if (!scoreFn) return;
+            const score = scoreFn(e);
+            if (!score) return;
+
+            const date = new Date(e.created_at);
+            if (isNaN(date)) return;
+            const key = mondayOf(date).toISOString().slice(0, 10);
+
+            const full = e.repo?.name || '';
+            if (!full) return;
+
+            if (!index.has(key)) index.set(key, new Map());
+            const repos = index.get(key);
+            repos.set(full, (repos.get(full) || 0) + score);
+        });
+        return index;
+    }
+
     /* ── Недели ──────────────────────────────────────── */
     function buildWeeks(days) {
         const map = new Map();                       // ISO-дата понедельника → сумма
@@ -103,9 +161,39 @@
             const from = new Date(start); from.setDate(start.getDate() + i * 7);
             const to   = new Date(from);  to.setDate(from.getDate() + 6);
             const key  = from.toISOString().slice(0, 10);
-            weeks.push({ from, to, count: map.get(key) || 0 });
+            weeks.push({ key, from, to, count: map.get(key) || 0 });
         }
         return weeks;
+    }
+
+    /* Раскладываем неделю на публичные репозитории + приватные */
+    function attachRepos(weeks, index) {
+        if (!index) return;                              // события не загрузились
+        const edge = new Date();
+        edge.setDate(edge.getDate() - EVENTS_DAYS);      // граница покрытия API
+
+        weeks.forEach(w => {
+            if (!w.count) return;
+            if (w.to < edge) return;                     // старше 90 дней — данных нет
+
+            w.covered = true;
+            const repos = index.get(w.key);
+            const list = repos
+                ? [...repos.entries()]
+                    .sort((a, b) => b[1] - a[1])
+                    .map(([full, count]) => ({
+                        name: full.startsWith(USER + '/') ? full.slice(USER.length + 1) : full,
+                        url: 'https://github.com/' + full,
+                        count
+                    }))
+                : [];
+
+            const known = list.reduce((s, r) => s + r.count, 0);
+            w.repos = list;
+            // Ничего публичного нет, либо часть коммитов «не сходится»
+            // (запас в 1 — на мелкие расхождения счётчиков GitHub)
+            w.private = list.length ? (w.count - known >= 2) : true;
+        });
     }
 
     function levelOf(count, max) {
@@ -126,9 +214,32 @@
         const range = week.from.getMonth() === week.to.getMonth()
             ? `${week.from.getDate()}–${fmtDay(week.to)}`
             : `${fmtDay(week.from)} – ${fmtDay(week.to)}`;
-        tip.innerHTML = week.count
+        let html = week.count
             ? `<b>${week.count} ${contribWord(week.count)}</b><span>${range}</span>`
             : `<b>Без активности</b><span>${range}</span>`;
+
+        if (week.count) {
+            const rows = [];
+            (week.repos || []).slice(0, 3).forEach(r => {
+                rows.push(
+                    `<span class="gh-tip__repo">
+                        <i class="fas fa-book-bookmark"></i>${escapeHtml(r.name)}
+                     </span>`
+                );
+            });
+            const rest = (week.repos || []).length - 3;
+            if (rest > 0) rows.push(`<span class="gh-tip__more">+ ещё ${rest}</span>`);
+            if (week.private) {
+                rows.push(
+                    `<span class="gh-tip__repo gh-tip__repo--private">
+                        <i class="fas fa-lock"></i>PRIVATE REPOSITORY
+                     </span>`
+                );
+            }
+            if (rows.length) html += `<div class="gh-tip__repos">${rows.join('')}</div>`;
+        }
+
+        tip.innerHTML = html;
         tip.classList.add('gh-tip--visible');
 
         const r = dot.getBoundingClientRect();
@@ -204,10 +315,16 @@
     }
 
     /* ── Старт ───────────────────────────────────────── */
-    loadContributions()
-        .then(days => {
+    Promise.all([
+        loadContributions(),
+        // события — необязательные: лимит API или ошибка не должны ломать ленту
+        loadEvents().catch(() => null)
+    ])
+        .then(([days, events]) => {
             root.classList.remove('gh-contrib--loading');
-            render(buildWeeks(days));
+            const weeks = buildWeeks(days);
+            attachRepos(weeks, events ? repoIndex(events) : null);
+            render(weeks);
             renderLast(days);
         })
         .catch(() => {
