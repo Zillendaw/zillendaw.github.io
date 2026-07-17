@@ -62,13 +62,18 @@
     }
 
     /* ── Загрузка данных ─────────────────────────────── */
+    // Свой Worker — первоисточник: видит приватные контрибуции
+    // и не имеет лимитов. Зеркала оставлены как подстраховка
+    // (приватные они не видят, но лучше, чем пустая лента).
+    const WORKER_URL = 'https://my-web-site.sasha88543.workers.dev';
+
     const SOURCES = [
         {
-            url: u => `https://github-contributions-api.jogruber.de/v4/${u}?y=last`,
+            url: u => `${WORKER_URL}/contrib?user=${u}`,
             parse: json => (json.contributions || []).map(c => ({ date: c.date, count: c.count }))
         },
         {
-            url: u => `https://github-contributions.vercel.app/api/v1/${u}`,
+            url: u => `https://github-contributions-api.jogruber.de/v4/${u}?y=last`,
             parse: json => (json.contributions || []).map(c => ({ date: c.date, count: c.count }))
         }
     ];
@@ -80,7 +85,9 @@
                 const res = await fetch(src.url(USER), { headers: { Accept: 'application/json' } });
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const days = src.parse(await res.json());
-                if (days && days.length) return days;
+                // Источник может ответить 200, но с пустышкой
+                // (так сломался один из зеркал — все count = 0).
+                if (days && days.length && days.some(d => d.count > 0)) return days;
                 throw new Error('пустой ответ');
             } catch (e) { lastErr = e; }
         }
