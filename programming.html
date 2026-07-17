@@ -29,6 +29,25 @@
                 <h2 id="site-subtitle">Программист · Web-разработчик</h2>
                 <p class="bio">Программист и видеомонтажёр. Люблю создавать — будь то код или кадр.</p>
 
+                <!-- ── Активность на GitHub: 1 точка = 1 неделя ── -->
+                <div id="gh-contrib" class="gh-contrib gh-contrib--loading" data-user="Zillendaw">
+                    <div class="gh-contrib__head">
+                        <span class="gh-contrib__title"><i class="fab fa-github"></i> Активность на GitHub</span>
+                        <span class="gh-contrib__last">Загрузка…</span>
+                    </div>
+                    <div class="gh-contrib__scroll">
+                        <div class="gh-contrib__track"></div>
+                    </div>
+                    <div class="gh-contrib__legend">
+                        <span>За последний год · 1 точка = 1 неделя</span>
+                        <span class="gh-contrib__scale">
+                            Меньше
+                            <i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i>
+                            Больше
+                        </span>
+                    </div>
+                </div>
+
                 <div class="links-wrapper">
                     <!-- 1 Сверху: GitHub, Youtube, Telegram, Почта -->
                     <div class="links-row">
@@ -203,6 +222,7 @@
         window.addEventListener('click', e => { if (e.target === eduModal) closeEduModal(); });
     })();
     </script>
+    <script src="gh-contrib.js?v=1" defer></script>
     <script src="tracker.js?v=3" defer></script>
 </body>
 </html>

@@ -1889,3 +1889,230 @@ footer {
     .yt-toast--visible { transform: none; }
     .yt-toast__progress { animation: none; }
 }
+/* =====================================================
+   АКТИВНОСТЬ НА GITHUB (лента точек: 1 точка = 1 неделя)
+   ===================================================== */
+.gh-contrib {
+    max-width: 600px;
+    margin: 0 auto 28px;
+    padding: 14px 16px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(150, 150, 165, 0.18);
+    text-align: left;
+}
+
+.gh-contrib__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.gh-contrib__title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(150, 150, 165, 0.95);
+}
+.gh-contrib__title i { margin-right: 7px; }
+
+.gh-contrib__last {
+    font-size: 0.78rem;
+    color: rgba(150, 150, 165, 0.75);
+}
+.gh-contrib__last b { color: var(--theme-color); font-weight: 700; }
+.gh-contrib__last-sub { color: rgba(150, 150, 165, 0.5); }
+
+.gh-contrib__pulse {
+    font-size: 0.42rem;
+    margin-right: 6px;
+    vertical-align: middle;
+    color: var(--theme-color);
+    animation: ghPulse 2.4s ease-in-out infinite;
+}
+@keyframes ghPulse {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1; }
+}
+
+/* ── Лента ── */
+.gh-contrib__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(150,150,165,0.3) transparent;
+}
+.gh-contrib__scroll::-webkit-scrollbar { height: 4px; }
+.gh-contrib__scroll::-webkit-scrollbar-thumb {
+    background: rgba(150, 150, 165, 0.25);
+    border-radius: 4px;
+}
+
+.gh-contrib__track {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    min-height: 40px;
+    width: max-content;
+    min-width: 100%;
+}
+
+/* Группа = месяц */
+.gh-contrib__month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+}
+.gh-contrib__month + .gh-contrib__month::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 1px;
+    height: 12px;
+    width: 1px;
+    background: rgba(150, 150, 165, 0.18);
+}
+
+.gh-contrib__dots { display: flex; gap: 5px; }
+
+.gh-contrib__month-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(150, 150, 165, 0.5);
+    white-space: nowrap;
+}
+
+/* ── Точка недели ── */
+.gh-contrib__dot {
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(150, 150, 165, 0.16);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    animation: ghDotIn 0.4s ease backwards;
+    animation-delay: calc(var(--i, 0) * 12ms);
+}
+.gh-contrib__dot[data-level="1"] { background: rgba(var(--theme-color-rgb), 0.3); }
+.gh-contrib__dot[data-level="2"] { background: rgba(var(--theme-color-rgb), 0.5); }
+.gh-contrib__dot[data-level="3"] { background: rgba(var(--theme-color-rgb), 0.75); }
+.gh-contrib__dot[data-level="4"] {
+    background: rgba(var(--theme-color-rgb), 1);
+    box-shadow: 0 0 8px rgba(var(--theme-color-rgb), 0.45);
+}
+
+.gh-contrib__dot:hover,
+.gh-contrib__dot:focus-visible {
+    transform: scale(1.45);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--theme-color-rgb), 0.18);
+}
+
+@keyframes ghDotIn {
+    from { opacity: 0; transform: scale(0.4); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Легенда ── */
+.gh-contrib__legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.68rem;
+    color: rgba(150, 150, 165, 0.45);
+}
+.gh-contrib__scale { display: inline-flex; align-items: center; gap: 4px; }
+.gh-contrib__scale i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    background: rgba(150, 150, 165, 0.16);
+}
+.gh-contrib__scale i[data-level="1"] { background: rgba(var(--theme-color-rgb), 0.3); }
+.gh-contrib__scale i[data-level="2"] { background: rgba(var(--theme-color-rgb), 0.5); }
+.gh-contrib__scale i[data-level="3"] { background: rgba(var(--theme-color-rgb), 0.75); }
+.gh-contrib__scale i[data-level="4"] { background: rgba(var(--theme-color-rgb), 1); }
+.gh-contrib__scale i:first-of-type { margin-left: 4px; }
+.gh-contrib__scale i:last-of-type  { margin-right: 4px; }
+
+/* ── Загрузка / ошибка ── */
+.gh-contrib--loading .gh-contrib__track {
+    border-radius: 8px;
+    background: linear-gradient(90deg,
+        rgba(150,150,165,0.06) 25%,
+        rgba(150,150,165,0.14) 37%,
+        rgba(150,150,165,0.06) 63%);
+    background-size: 400% 100%;
+    animation: ghSkeleton 1.4s ease infinite;
+}
+@keyframes ghSkeleton {
+    0%   { background-position: 100% 50%; }
+    100% { background-position: 0 50%; }
+}
+
+.gh-contrib__fallback {
+    font-size: 0.78rem;
+    color: rgba(150, 150, 165, 0.7);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(150, 150, 165, 0.4);
+}
+.gh-contrib__fallback:hover { color: var(--theme-color); }
+
+/* ── Подсказка при наведении ── */
+.gh-tip {
+    position: fixed;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 11px;
+    border-radius: 10px;
+    background: rgba(22, 22, 30, 0.97);
+    border: 1px solid rgba(var(--theme-color-rgb, 150, 150, 165), 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    white-space: nowrap;
+}
+.gh-tip--visible { opacity: 1; transform: translateY(0); }
+.gh-tip--below   { transform: translateY(-4px); }
+.gh-tip--below.gh-tip--visible { transform: translateY(0); }
+.gh-tip b    { font-size: 0.78rem; color: #fff; font-weight: 700; }
+.gh-tip span { font-size: 0.7rem; color: rgba(255, 255, 255, 0.45); }
+
+@media (prefers-color-scheme: light) {
+    .gh-contrib__title { color: #555; }
+    .gh-contrib__last  { color: #777; }
+    .gh-contrib { background: rgba(0, 0, 0, 0.02); }
+}
+
+@media (max-width: 600px) {
+    .gh-contrib { margin-bottom: 24px; padding: 12px; }
+    .gh-contrib__head { justify-content: center; text-align: center; }
+    .gh-contrib__dot { width: 11px; height: 11px; }
+    .gh-contrib__track { gap: 10px; }
+    .gh-contrib__legend { justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gh-contrib__dot { animation: none; }
+    .gh-contrib__pulse { animation: none; opacity: 1; }
+}
