@@ -18,16 +18,14 @@
         <div class="container">
 
             <header>
-                <button class="back-btn" id="back-btn">
-                    <i class="fas fa-arrow-left"></i> На главную
-                </button>
-                <div class="profile-img">
-                    <img src="logo.png" alt="Фото Zillendaw">
+                <div class="page-head">
+                    <button class="back-btn" id="back-btn">
+                        <i class="fas fa-arrow-left"></i> На главную
+                    </button>
+                    <div class="profile-img profile-img--compact">
+                        <img src="logo.png" alt="Фото Zillendaw">
+                    </div>
                 </div>
-                <h1>Zillendaw</h1>
-                <div class="nickname">@Zillendaw</div>
-                <h2 id="site-subtitle">Программист · Web-разработчик</h2>
-                <p class="bio">Программист и видеомонтажёр. Люблю создавать — будь то код или кадр.</p>
 
                 <!-- ── Активность на GitHub: 1 точка = 1 неделя ── -->
                 <div id="gh-contrib" class="gh-contrib gh-contrib--loading" data-user="Zillendaw">
@@ -45,30 +43,6 @@
                             <i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i>
                             Больше
                         </span>
-                    </div>
-                </div>
-
-                <div class="links-wrapper">
-                    <!-- 1 Сверху: GitHub, Youtube, Telegram, Почта -->
-                    <div class="links-row">
-                        <a href="https://github.com/Zillendaw" target="_blank" class="btn btn-outline">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-outline btn-outline-youtube">
-                            <i class="fab fa-youtube"></i> YouTube
-                        </a>
-                        <a href="https://t.me/Zillendaw" target="_blank" class="btn btn-outline btn-cta btn-cta--tg">
-                            <i class="fab fa-telegram"></i> Telegram
-                        </a>
-                        <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
-                            <i class="fas fa-envelope"></i> Почта
-                        </a>
-                    </div>
-                    <!-- 2 Снизу: Образование -->
-                    <div class="links-row">
-                        <button class="btn btn-outline btn-education-trigger">
-                            <i class="fas fa-graduation-cap"></i> Образование
-                        </button>
                     </div>
                 </div>
             </header>
@@ -131,6 +105,29 @@
             </main>
 
             <footer>
+                <!-- ── Контакты (перенесены из шапки) ── -->
+                <div class="footer-links">
+                    <div class="links-row">
+                        <a href="https://github.com/Zillendaw" target="_blank" class="btn btn-outline">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-outline btn-outline-youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                        <a href="https://t.me/Zillendaw" target="_blank" class="btn btn-outline btn-cta btn-cta--tg">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
+                            <i class="fas fa-envelope"></i> Почта
+                        </a>
+                    </div>
+                    <div class="links-row">
+                        <button class="btn btn-outline btn-education-trigger">
+                            <i class="fas fa-graduation-cap"></i> Образование
+                        </button>
+                    </div>
+                </div>
+
                 <div class="footer-freelance">
                     <span class="footer-freelance__label">Фриланс</span>
                     <div class="footer-freelance__links">

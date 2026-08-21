@@ -2155,3 +2155,320 @@ footer {
     color: rgba(255, 255, 255, 0.35);
     padding-left: 17px;
 }
+
+/* =====================================================
+   ШАПКА РАЗДЕЛА: «На главную» + аватар
+   (имя, ник, подзаголовок и bio убраны)
+   ===================================================== */
+.page-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+.page-head .back-btn { margin-bottom: 0; }
+
+/* Компактный аватар рядом с кнопкой */
+.profile-img--compact {
+    width: 54px;
+    height: 54px;
+    margin: 0;
+    flex-shrink: 0;
+    border: 2px solid rgba(var(--theme-color-rgb), 0.35);
+    box-shadow: 0 4px 14px rgba(var(--theme-color-rgb), 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.profile-img--compact:hover {
+    transform: translateY(-2px) scale(1.04);
+    border-color: rgba(var(--theme-color-rgb), 0.7);
+    box-shadow: 0 6px 20px rgba(var(--theme-color-rgb), 0.3);
+}
+
+/* В мобильной версии — аватар в правом углу */
+@media (max-width: 600px) {
+    .page-head {
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+    .profile-img--compact { width: 44px; height: 44px; }
+    .page-head .back-btn { padding: 8px 16px; font-size: 0.82rem; }
+}
+
+/* =====================================================
+   КОНТАКТЫ В ПОДВАЛЕ (перенесены из шапки)
+   ===================================================== */
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.footer-links .btn {
+    padding: 9px 20px;
+    font-size: 0.92rem;
+}
+
+@media (max-width: 600px) {
+    .footer-links { gap: 10px; margin-bottom: 24px; }
+    .footer-links .btn { padding: 8px 16px; font-size: 0.86rem; }
+}
+
+/* =====================================================
+   ФОН РАЗДЕЛА «ВИДЕОМОНТАЖ» — медленная лента превью
+   ===================================================== */
+
+/* Фон переезжает на <body>, чтобы фиксированный слой
+   не зависел от transform-анимации .main-site */
+body[data-mode="video"] { background-color: #f4f4f9; }
+body[data-mode="video"] .main-site { background-color: transparent; }
+
+@media (prefers-color-scheme: dark) {
+    body[data-mode="video"] { background-color: #121212; }
+}
+
+.video-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    padding: 0 20px;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    /* мягко гасим края, чтобы фон не спорил с контентом */
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 20%, transparent 82%);
+            mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, #000 20%, transparent 82%);
+}
+
+.video-bg--ready { opacity: 0.07; }
+
+@media (prefers-color-scheme: dark) {
+    .video-bg--ready { opacity: 0.11; }
+}
+
+.video-bg__col {
+    flex: 1 1 0;
+    min-width: 0;
+    animation-name: vbgScrollUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+.video-bg__col--down { animation-name: vbgScrollDown; }
+
+/* margin вместо gap — иначе сдвиг на -50% не будет бесшовным */
+.video-bg__thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border-radius: 12px;
+    filter: grayscale(0.4) blur(1px) contrast(1.05);
+}
+
+@keyframes vbgScrollUp {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(0, -50%, 0); }
+}
+
+@keyframes vbgScrollDown {
+    from { transform: translate3d(0, -50%, 0); }
+    to   { transform: translate3d(0, 0, 0); }
+}
+
+/* Контент всегда поверх фона */
+body[data-mode="video"] .main-site {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    .video-bg { gap: 14px; padding: 0 14px; }
+    .video-bg__thumb { margin-bottom: 14px; }
+    .video-bg__col:nth-child(n + 4) { display: none; }
+}
+
+@media (max-width: 600px) {
+    .video-bg__col:nth-child(n + 3) { display: none; }
+    .video-bg--ready { opacity: 0.06; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .video-bg { display: none; }
+}
+
+
+/* =====================================================
+   ВКЛАДКА «КЕЙСЫ» — две половины, карточки рядами по 3–6
+   -----------------------------------------------------
+   Обёртка .video-cases-wide на широких экранах выходит
+   за пределы 800px контейнера, иначе в ряд помещается
+   всего две карточки. Трансформация живёт на обёртке,
+   а не на .video-tab-panel — у панели своя анимация
+   появления с fill-mode: both, она бы перебила сдвиг.
+   ===================================================== */
+@media (min-width: 1040px) {
+    .video-cases-wide {
+        width: min(1560px, calc(100vw - 48px));
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* ── Две половины бок о бок ── */
+.video-cases-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: start;
+}
+
+/* Тонкий разделитель между половинами */
+.video-cases-col { min-width: 0; }
+
+.video-cases-col + .video-cases-col {
+    border-left: 1px solid rgba(150, 150, 165, 0.22);
+    padding-left: 36px;
+}
+
+/* Заголовок возглавляет свою половину, а не «догоняет» через отступ */
+.video-cases-split .video-group-title { margin: 0 0 20px; font-size: 1.15rem; }
+.video-cases-split .video-group-title--gap { margin-top: 0; }
+
+/* Короткие (вертикальные) видео — 3–6 в ряд.
+   Верхняя граница у колонки обязательна: без неё auto-fit
+   растянул бы три карточки 9:16 на всю ширину и они стали
+   бы огромными по высоте. */
+.video-cases-wide .video-cases-grid--shorts {
+    grid-template-columns: repeat(auto-fit, minmax(165px, 210px));
+    justify-content: center;
+    gap: 18px;
+}
+
+.video-cases-wide .video-case-card--vertical {
+    max-width: none;
+    margin: 0;
+}
+
+/* Обычные (16:9) видео — 3–6 в ряд */
+.video-cases-wide .video-cases-grid {
+    grid-template-columns: repeat(auto-fit, minmax(185px, 290px));
+    justify-content: center;
+    gap: 18px;
+}
+
+/* В плотном ряду текста меньше — ужимаем внутренности карточки */
+.video-cases-wide .video-case-info { padding: 16px 16px 18px; }
+.video-cases-wide .video-case-info h4 { font-size: 0.95rem; align-items: flex-start; }
+.video-cases-wide .video-case-info p  { font-size: 0.85rem; margin-bottom: 12px; }
+
+.video-cases-wide .video-group-title--gap { margin-top: 48px; }
+
+/* Планшеты — половины уже, в ряду 2–3 карточки */
+@media (max-width: 1039px) {
+    .video-cases-split { gap: 24px; }
+    .video-cases-col + .video-cases-col { padding-left: 24px; }
+
+    .video-cases-wide .video-cases-grid--shorts,
+    .video-cases-wide .video-cases-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        justify-content: stretch;
+        gap: 14px;
+    }
+
+    .video-cases-split .video-group-title { font-size: 1.02rem; }
+    .video-cases-split .video-group-title__hint { font-size: 0.62rem; }
+}
+
+/* Телефоны — две половины не влезают рядом, ставим их друг под друга,
+   а разделитель из вертикального становится горизонтальным */
+@media (max-width: 700px) {
+    .video-cases-split { grid-template-columns: 1fr; gap: 0; }
+
+    .video-cases-col + .video-cases-col {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(150, 150, 165, 0.22);
+        margin-top: 32px;
+        padding-top: 32px;
+    }
+
+    .video-cases-split .video-group-title { font-size: 1.12rem; }
+}
+
+@media (max-width: 600px) {
+    .video-cases-wide .video-cases-grid--shorts,
+    .video-cases-wide .video-cases-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    .video-cases-wide .video-case-info { padding: 12px 12px 14px; }
+    .video-cases-wide .video-case-info h4 { font-size: 0.84rem; gap: 6px; }
+    .video-cases-wide .video-case-info p  { font-size: 0.76rem; line-height: 1.5; }
+    .video-cases-wide .video-source-badge { font-size: 0.62rem; padding: 2px 8px; }
+    .video-cases-wide .video-group-title--gap { margin-top: 34px; }
+}
+
+/* Совсем узкие — одна колонка */
+@media (max-width: 400px) {
+    .video-cases-wide .video-cases-grid--shorts,
+    .video-cases-wide .video-cases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .video-cases-col + .video-cases-col { border-color: rgba(201, 125, 255, 0.18); }
+}
+
+
+/* =====================================================
+   КАРТОЧКА С НЕДОСТУПНЫМ ВИДЕО
+   Ставится из vk-check.js / yt-check.js, когда плеер
+   не подал признаков жизни (гео-ограничение, блокировка)
+   ===================================================== */
+.video-case-card--unavailable { border-color: rgba(230, 150, 60, 0.45); }
+
+.media-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin: 12px 0 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 0.76rem !important;
+    line-height: 1.45;
+    color: #a06a10 !important;
+    background: rgba(230, 150, 60, 0.1);
+    border: 1px solid rgba(230, 150, 60, 0.25);
+}
+
+.media-note i { margin: 0; flex-shrink: 0; margin-top: 2px; }
+
+.media-note a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .media-note {
+        color: #f0b45a !important;
+        background: rgba(230, 150, 60, 0.12);
+        border-color: rgba(230, 150, 60, 0.3);
+    }
+}

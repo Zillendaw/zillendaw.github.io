@@ -52,10 +52,13 @@
 
     function showToast(kind, videoUrl) {
         if (toastShown) return;
+        // Не показываем два уведомления сразу (YouTube + VK)
+        if (window.__mediaToastShown) return;
         if (!TEST_MODE) {
             try { if (sessionStorage.getItem(DISMISS_KEY)) return; } catch {}
         }
         toastShown = true;
+        window.__mediaToastShown = true;
 
         const info = TEXTS[kind] || TEXTS.block;
         const link = videoUrl || CHANNEL_URL;
