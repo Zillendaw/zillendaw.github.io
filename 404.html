@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница не найдена</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="page-name" content="404">
+    <meta name="robots" content="noindex">
+    <title>Страница не найдена — Zillendaw</title>
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="icon" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container" style="text-align: center; margin-top: 100px;">
-        <h1 style="font-size: 5rem; color: #007bff;">404</h1>
-        <h2>Ой! Эта ссылка пока в разработке.</h2>
-        <p class="bio" style="margin-bottom: 30px;">
-            Информация появится позже. Возвращайтесь скорей!
-        </p>
-        <a href="index.html" class="btn">Вернуться на главную</a>
-    </div>
+    <main class="container error-page">
+        <p class="error-page__code">404</p>
+        <h1 class="error-page__title">Ой! Эта ссылка пока в разработке.</h1>
+        <p class="error-page__text">Информация появится позже. Возвращайтесь скорей!</p>
+        <a href="index.html" class="btn btn-outline">Вернуться на главную</a>
+    </main>
+
+    <script src="js/tracker.js" defer></script>
 </body>
 </html>

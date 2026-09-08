@@ -198,7 +198,8 @@
             const known = list.reduce((s, r) => s + r.count, 0);
             w.repos = list;
             // Ничего публичного нет, либо часть коммитов «не сходится»
-            // (запас в 1 — на мелкие расхождения счётчиков GitHub)
+            // (расхождение в 1 списываем на разницу счётчиков GitHub,
+            //  от 2 и больше — считаем, что были приватные репозитории)
             w.private = list.length ? (w.count - known >= 2) : true;
         });
     }
@@ -261,6 +262,15 @@
     }
     const hideTip = () => tip.classList.remove('gh-tip--visible');
     window.addEventListener('scroll', hideTip, true);
+
+    // На тач-устройствах подсказка открывается по нажатию,
+    // поэтому нужен способ её закрыть: тап мимо ленты или Esc.
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.gh-contrib__dot')) hideTip();
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') hideTip();
+    });
 
     /* ── Отрисовка ───────────────────────────────────── */
     function render(weeks) {

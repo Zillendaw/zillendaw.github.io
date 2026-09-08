@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="page-name" content="Видеомонтаж">
-    <title>Видеомонтаж — Александр Хван</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Видеомонтаж — Александр Хван (Zillendaw)</title>
+    <meta name="description" content="Портфолио видеомонтажёра Александра Хвана: шоурилы, коммерческие ролики, Reels и Shorts, видеоотзывы.">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <!-- TODO: замените адрес на свой, если сайт живёт по другому URL -->
+    <link rel="canonical" href="https://zillendaw.github.io/video.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Видеомонтаж — Александр Хван">
+    <meta property="og:description" content="Шоурилы, коммерческие ролики, короткие видео и видеоотзывы.">
+    <meta property="og:image" content="https://zillendaw.github.io/logo.png">
+    <meta property="og:url" content="https://zillendaw.github.io/video.html">
+
+    <link rel="icon" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -19,11 +38,11 @@
 
             <header>
                 <div class="page-head">
-                    <button class="back-btn" id="back-btn">
-                        <i class="fas fa-arrow-left"></i> На главную
-                    </button>
+                    <a class="back-btn" href="index.html">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> На главную
+                    </a>
                     <div class="profile-img profile-img--compact">
-                        <img src="logo.png" alt="Фото Zillendaw">
+                        <img src="logo.png" alt="Фото Zillendaw" width="54" height="54">
                     </div>
                 </div>
             </header>
@@ -33,22 +52,22 @@
 
                     <div id="video-projects" class="projects-content">
 
-                        <h3 id="portfolio-title">Портфолио</h3>
+                        <h3 id="portfolio-title">Мои проекты</h3>
 
                         <!-- ── Таб-переключатель ── -->
                         <div class="video-tabs" role="tablist">
-                            <button class="video-tab video-tab--active" data-tab="showreels" role="tab" aria-selected="true">
-                                <i class="fas fa-play-circle"></i> Шоурилы
+                            <button type="button" class="video-tab" data-tab="showreels" role="tab" aria-selected="false" tabindex="-1">
+                                <i class="fas fa-play-circle" aria-hidden="true"></i> Шоурилы
                                 <span class="video-tab__count">2</span>
                             </button>
-                            <button class="video-tab" data-tab="cases" role="tab" aria-selected="false">
-                                <i class="fas fa-briefcase"></i> Кейсы
-                                <span class="video-tab__count">6</span>
+                            <button type="button" class="video-tab video-tab--active" data-tab="cases" role="tab" aria-selected="true">
+                                <i class="fas fa-briefcase" aria-hidden="true"></i> Портфолио
+                                <span class="video-tab__count">10</span>
                             </button>
                         </div>
 
                         <!-- ── Шоурилы ── -->
-                        <div id="tab-showreels" class="video-tab-panel video-cases-grid" role="tabpanel">
+                        <div id="tab-showreels" class="video-tab-panel video-cases-grid video-tab-panel--hidden" role="tabpanel">
 
                             <div class="video-case-card">
                                 <div class="video-embed">
@@ -62,9 +81,9 @@
                                     </iframe>
                                 </div>
                                 <div class="video-case-info">
-                                    <h4><i class="fas fa-briefcase"></i> Commerce Showreel</h4>
+                                    <h4><i class="fas fa-briefcase" aria-hidden="true"></i> Commerce Showreel</h4>
                                     <p>Демонстрация навыков в коммерческом видеомонтаже, создании рекламных и промо-роликов.</p>
-                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</span>
                                 </div>
                             </div>
 
@@ -80,16 +99,16 @@
                                     </iframe>
                                 </div>
                                 <div class="video-case-info">
-                                    <h4><i class="fab fa-youtube"></i> YouTube Showreel</h4>
+                                    <h4><i class="fab fa-youtube" aria-hidden="true"></i> YouTube Showreel</h4>
                                     <p>Нарезка лучших моментов, динамичный монтаж, работа с эффектами для YouTube-проектов.</p>
-                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube"></i> YouTube</span>
+                                    <span class="video-source-badge video-source-badge--yt"><i class="fab fa-youtube" aria-hidden="true"></i> YouTube</span>
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- ── Кейсы ── -->
-                        <div id="tab-cases" class="video-tab-panel video-tab-panel--hidden" role="tabpanel">
+                        <!-- ── Портфолио ── -->
+                        <div id="tab-cases" class="video-tab-panel" role="tabpanel">
 
                             <div class="video-cases-wide video-cases-split">
 
@@ -97,7 +116,7 @@
                                 <div class="video-cases-col">
                                     <!-- ═══ Короткие видео (TikTok / Shorts / Reels) ═══ -->
                                     <h3 class="video-group-title">
-                                        <i class="fas fa-mobile-screen-button"></i> Короткие видео
+                                        <i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Короткие видео
                                         <span class="video-group-title__hint">TikTok · Shorts · Reels</span>
                                     </h3>
 
@@ -119,12 +138,12 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Монтаж экспертного Reels для  косметологии</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Монтаж экспертного Reels для  косметологии</h4>
                                                 <p>Короткий вертикальный ролик (Shorts/Reels) с динамичным монтажом: 
                                                     плотный тайминг, акцентные переходы и работа с цветом — формат, заточенный 
                                                     под удержание внимания в первые секунды.</p>
                                                 <span class="video-source-badge video-source-badge--instagram">
-                                                    <i class="fab fa-instagram"></i> Instagram (Reels)
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
                                                 </span>
                                             </div>
                                         </div>
@@ -141,15 +160,15 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
                                                 <p>Короткое видео для (Reels) с открытия новой точки косметической компании "Atomy". Динамичный монтаж под ритм музыки, 
                                                     чтобы передать атмосферу праздника и привлечь трафик в магазин.</p>
                                                 <div class="video-badges">
                                                     <span class="video-source-badge video-source-badge--instagram">
-                                                        <i class="fab fa-instagram"></i> Instagram (Reels)
+                                                        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
                                                     </span>
                                                     <span class="video-source-badge video-source-badge--tiktok">
-                                                        <i class="fab fa-tiktok"></i> TikTok
+                                                        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
                                                     </span>
                                                 </div>
                                             </div>
@@ -167,12 +186,12 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Демонстрация Дом "Афрейм"</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Демонстрация Дом "Афрейм"</h4>
                                                 <p>Видеообзор трендового дома в стиле A-frame для строительной компании. 
                                                     Использован плавный монтаж, выгодно подчеркивающий архитектуру и уют интерьера, 
                                                     а также описание для коротких видео.</p>
                                                 <span class="video-source-badge video-source-badge--telegram">
-                                                    <i class="fab fa-telegram"></i> Telegram сторис
+                                                    <i class="fab fa-telegram" aria-hidden="true"></i> Telegram сторис
                                                 </span>
                                             </div>
                                         </div>
@@ -184,7 +203,7 @@
                                 <div class="video-cases-col">
                                     <!-- ═══ Обычные видео ═══ -->
                                     <h3 class="video-group-title">
-                                        <i class="fas fa-clapperboard"></i> Обычные видео
+                                        <i class="fas fa-clapperboard" aria-hidden="true"></i> Обычные видео
                                     </h3>
 
                                     <div class="video-cases-grid">
@@ -200,10 +219,10 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Отзыв заказчика компании "Тепломонтаж" - Николай из г. Артём</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв заказчика компании "Тепломонтаж" - Николай из г. Артём</h4>
                                                 <p>Классический видеоотзыв для повышения лояльности к строительной компании.</p>
                                                 <span class="video-source-badge video-source-badge--review">
-                                                    <i class="fas fa-comment-dots"></i> Видеоотзыв
+                                                    <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
                                                 </span>
                                             </div>
                                         </div>
@@ -219,10 +238,10 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
                                                 <p>Интерьерный видеоотзыв, подчеркивающий результат работы строительной компании по тёплым полам.</p>
                                                 <span class="video-source-badge video-source-badge--review">
-                                                    <i class="fas fa-comment-dots"></i> Видеоотзыв
+                                                    <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
                                                 </span>
                                             </div>
                                         </div>
@@ -238,10 +257,10 @@
                                                 </iframe>
                                             </div>
                                             <div class="video-case-info">
-                                                <h4><i class="fas fa-film"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
+                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
                                                 <p>Демонстрационный ролик этапов установки сложного инженерного оборудования, с описанием и демонстрации монтажных работ.</p>
                                                 <span class="video-source-badge video-source-badge--dynamic">
-                                                    <i class="fas fa-bolt"></i> Динамичный видеомонтаж
+                                                    <i class="fas fa-bolt" aria-hidden="true"></i> Динамичный видеомонтаж
                                                 </span>
                                             </div>
                                         </div>
@@ -267,7 +286,7 @@
                             <div class="video-cases-wide video-client">
 
                                 <h3 class="video-group-title">
-                                    <i class="fas fa-hand-holding-heart"></i> Face Clinic
+                                    <i class="fas fa-hand-holding-heart" aria-hidden="true"></i> Face Clinic
                                     <span class="video-group-title__hint">Клиника косметологии</span>
                                 </h3>
 
@@ -291,10 +310,10 @@
                                             </iframe>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film"></i> Ролик для клиники Face Clinic</h4>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Ролик для клиники Face Clinic</h4>
                                             <p>Видеоподкаст экспертного видео про долголетие</p>
                                             <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk"></i> VK Видео
+                                                <i class="fab fa-vk" aria-hidden="true"></i> VK Видео
                                             </span>
                                         </div>
                                     </div>
@@ -303,14 +322,14 @@
                                     <a class="video-case-card video-case-card--link"
                                        href="https://vk.ru/wall-212561575_734" target="_blank" rel="noopener">
                                         <div class="video-case-cover">
-                                            <i class="fab fa-vk"></i>
+                                            <i class="fab fa-vk" aria-hidden="true"></i>
                                             <span class="video-case-cover__label">Смотреть публикацию</span>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film"></i> Публикация для Face Clinic</h4>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
                                             <p>Ролик в ленте сообщества клиники.</p>
                                             <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk"></i> VK · пост
+                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
                                             </span>
                                         </div>
                                     </a>
@@ -319,14 +338,14 @@
                                     <a class="video-case-card video-case-card--link"
                                        href="https://vk.ru/wall-212561575_731" target="_blank" rel="noopener">
                                         <div class="video-case-cover">
-                                            <i class="fab fa-vk"></i>
+                                            <i class="fab fa-vk" aria-hidden="true"></i>
                                             <span class="video-case-cover__label">Смотреть публикацию</span>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film"></i> Публикация для Face Clinic</h4>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
                                             <p>Ролик в ленте сообщества клиники.</p>
                                             <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk"></i> VK · пост
+                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
                                             </span>
                                         </div>
                                     </a>
@@ -335,14 +354,14 @@
                                     <a class="video-case-card video-case-card--link"
                                        href="https://vk.ru/wall-212561575_727" target="_blank" rel="noopener">
                                         <div class="video-case-cover">
-                                            <i class="fab fa-vk"></i>
+                                            <i class="fab fa-vk" aria-hidden="true"></i>
                                             <span class="video-case-cover__label">Смотреть публикацию</span>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film"></i> Публикация для Face Clinic</h4>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
                                             <p>Ролик в ленте сообщества клиники.</p>
                                             <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk"></i> VK · пост
+                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
                                             </span>
                                         </div>
                                     </a>
@@ -362,22 +381,22 @@
                 <!-- ── Контакты (перенесены из шапки) ── -->
                 <div class="footer-links">
                     <div class="links-row">
-                        <a href="https://github.com/Zillendaw" target="_blank" class="btn btn-outline">
-                            <i class="fab fa-github"></i> GitHub
+                        <a href="https://github.com/Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            <i class="fab fa-github" aria-hidden="true"></i> GitHub
                         </a>
-                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" class="btn btn-outline btn-outline-youtube">
-                            <i class="fab fa-youtube"></i> YouTube
+                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-outline-youtube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
                         </a>
-                        <a href="https://t.me/Zillendaw" target="_blank" class="btn btn-outline btn-cta btn-cta--tg">
-                            <i class="fab fa-telegram"></i> Telegram
+                        <a href="https://t.me/Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-cta btn-cta--tg">
+                            <i class="fab fa-telegram" aria-hidden="true"></i> Telegram
                         </a>
                         <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
-                            <i class="fas fa-envelope"></i> Почта
+                            <i class="fas fa-envelope" aria-hidden="true"></i> Почта
                         </a>
                     </div>
                     <div class="links-row">
-                        <button class="btn btn-outline btn-education-trigger">
-                            <i class="fas fa-graduation-cap"></i> Образование
+                        <button type="button" class="btn btn-outline btn-education-trigger">
+                            <i class="fas fa-graduation-cap" aria-hidden="true"></i> Образование
                         </button>
                     </div>
                 </div>
@@ -385,21 +404,21 @@
                 <div class="footer-freelance">
                     <span class="footer-freelance__label">Фриланс</span>
                     <div class="footer-freelance__links">
-                        <a href="https://profi.ru/profile/HvanAM" target="_blank" class="footer-fl-pill footer-fl-pill--profi" title="Profi.ru">
+                        <a href="https://profi.ru/profile/HvanAM" target="_blank" rel="noopener noreferrer" class="footer-fl-pill footer-fl-pill--profi" title="Profi.ru">
                             <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.8"/>
                                 <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">P</text>
                             </svg>
                             <span>Profi.ru</span>
                         </a>
-                        <a href="https://www.fl.ru/users/mossy009/portfolio/" target="_blank" class="footer-fl-pill footer-fl-pill--fl" title="FL.ru">
+                        <a href="https://www.fl.ru/users/mossy009/portfolio/" target="_blank" rel="noopener noreferrer" class="footer-fl-pill footer-fl-pill--fl" title="FL.ru">
                             <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.8"/>
                                 <text x="12" y="16" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">FL</text>
                             </svg>
                             <span>FL.ru</span>
                         </a>
-                        <a href="https://kwork.ru/user/mossy009" target="_blank" class="footer-fl-pill footer-fl-pill--kwork" title="Kwork.ru">
+                        <a href="https://kwork.ru/user/mossy009" target="_blank" rel="noopener noreferrer" class="footer-fl-pill footer-fl-pill--kwork" title="Kwork.ru">
                             <svg class="footer-fl-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M12 2L21 7V17L12 22L3 17V7L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
                                 <text x="12" y="16" text-anchor="middle" font-size="8.5" font-weight="800" fill="currentColor" font-family="Manrope,sans-serif">KW</text>
@@ -413,125 +432,11 @@
         </div>
     </div>
 
-    <!-- Модальное окно образования -->
-    <div id="eduModal" class="modal">
-        <div class="modal-content edu-modal-content">
-            <span class="close-btn" id="edu-close-btn">&times;</span>
-            <h3 class="edu-modal-title"><i class="fas fa-graduation-cap"></i> Моё образование</h3>
-            <div class="edu-cards-container">
-
-                <div class="edu-card edu-card--spo">
-                    <div class="edu-card__shine"></div>
-                    <div class="edu-icon"><i class="fas fa-school"></i></div>
-                    <div class="edu-info">
-                        <span class="edu-institution">Владивостокский Государственный Университет</span>
-                        <h3>Информационные системы и программирование</h3>
-                        <h5><i class="fas fa-certificate"></i> СПО · 2020 – 2025</h5>
-                        <p>Специальность: Информационные системы и программирование</p>
-                    </div>
-                </div>
-
-                <div class="edu-card edu-card--bachelor">
-                    <div class="edu-card__shine"></div>
-                    <div class="edu-icon"><i class="fas fa-user-graduate"></i></div>
-                    <div class="edu-info">
-                        <span class="edu-institution">Владивостокский Государственный Университет</span>
-                        <h3>Программная инженерия</h3>
-                        <h5><i class="fas fa-graduation-cap"></i> Бакалавриат · 2025 – настоящее время</h5>
-                        <p>Направление: Программная инженерия</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно видео -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content video-modal-content">
-            <span class="video-close-btn" id="video-close-btn">&times;</span>
-            <div class="video-container">
-                <iframe id="videoPlayer" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    /* ── Кнопка «На главную» ── */
-    document.getElementById('back-btn').addEventListener('click', function () {
-        window.location.href = 'index.html';
-    });
-
-    /* ── Модальное окно «Образование» ── */
-    (function () {
-        const eduModal = document.getElementById('eduModal');
-
-        function openEduModal() {
-            document.querySelectorAll('.edu-card__shine').forEach(el => {
-                el.style.animation = 'none';
-                void el.offsetHeight;
-                el.style.animation = '';
-            });
-            eduModal.style.display = 'flex';
-        }
-        function closeEduModal() { eduModal.style.display = 'none'; }
-
-        document.querySelectorAll('.btn-education-trigger').forEach(btn => {
-            btn.addEventListener('click', openEduModal);
-        });
-        document.getElementById('edu-close-btn').addEventListener('click', closeEduModal);
-        window.addEventListener('click', e => { if (e.target === eduModal) closeEduModal(); });
-    })();
-
-    /* ── Модальное окно видео ── */
-    (function () {
-        const videoModal  = document.getElementById('videoModal');
-        const videoPlayer = document.getElementById('videoPlayer');
-
-        function closeVideoModal() {
-            videoModal.style.display = 'none';
-            videoPlayer.src = '';
-        }
-
-        document.getElementById('video-close-btn').addEventListener('click', closeVideoModal);
-        window.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
-    })();
-
-    /* ── «Золотое сечение»: автоснятие метки ──
-       Метка видна ДО даты в data-golden-until (не включая её).
-       С 31.08.2026 лента и золотое оформление убираются сами,
-       сама карточка кейса остаётся. ── */
-    (function () {
-        document.querySelectorAll('.video-case-card--golden[data-golden-until]').forEach(function (card) {
-            const until = new Date(card.dataset.goldenUntil + 'T00:00:00');
-            if (isNaN(until) || new Date() >= until) {
-                card.classList.remove('video-case-card--golden');
-                const ribbon = card.querySelector('.golden-ribbon');
-                if (ribbon) ribbon.remove();
-            }
-        });
-    })();
-
-    /* ── Таб-переключатель Шоурилы / Кейсы ── */
-    (function () {
-        document.querySelectorAll('.video-tab').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const target = btn.dataset.tab;
-                document.querySelectorAll('.video-tab').forEach(function (b) {
-                    b.classList.toggle('video-tab--active', b === btn);
-                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-                });
-                document.querySelectorAll('.video-tab-panel').forEach(function (panel) {
-                    const isTarget = panel.id === 'tab-' + target;
-                    panel.classList.toggle('video-tab-panel--hidden', !isTarget);
-                });
-            });
-        });
-    })();
-    </script>
-    <script src="video-bg.js?v=1" defer></script>
-    <script src="yt-check.js?v=2" defer></script>
-    <script src="vk-check.js?v=1" defer></script>
-    <script src="tracker.js?v=3" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/media-toast.js" defer></script>
+    <script src="js/video-bg.js" defer></script>
+    <script src="js/yt-check.js" defer></script>
+    <script src="js/vk-check.js" defer></script>
+    <script src="js/tracker.js" defer></script>
 </body>
 </html>
