@@ -109,20 +109,29 @@
     /* ── Наблюдение за плеерами ── */
     function watchPlayers() {
         var anyReady = false;
-        var attempts = 0;
+        var visibleSince = null;
+        var started = Date.now();
+        var POLL   = 2500;
+        var GIVEUP = 120000;
 
         /* Плееры внутри закрытой папки или скрытой вкладки не
-           инициализируются — это не блокировка. Поэтому судим
-           только по видимым кадрам, а пока таких нет — просто
-           ждём дальше (вдруг посетитель откроет папку позже). */
-        function anyVisible() {
-            return frames.some(function (f) { return f.offsetParent !== null; });
-        }
-
+           инициализируются — это не блокировка. Ждём, пока хотя бы
+           один кадр окажется на экране, и даём ему READY_TIMEOUT
+           на то, чтобы подать признаки жизни. */
         function verdict() {
             if (anyReady) return;
-            if (anyVisible()) { notify('block'); return; }
-            if (++attempts < 10) setTimeout(verdict, READY_TIMEOUT);
+            var now = Date.now();
+
+            if (visibleSince === null && frames.some(function (f) { return f.offsetParent !== null; })) {
+                visibleSince = now;
+            }
+
+            if (visibleSince !== null && now - visibleSince >= READY_TIMEOUT) {
+                notify('block');
+                return;
+            }
+
+            if (now - started < GIVEUP) setTimeout(verdict, POLL);
         }
 
         var readyTimer = setTimeout(verdict, READY_TIMEOUT);

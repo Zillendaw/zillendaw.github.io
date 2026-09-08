@@ -134,14 +134,52 @@
         }
     });
 
-    /* ── Вердикт ── */
-    setTimeout(function () {
-        var broken = frames.filter(function (f) {
+    /* ── Вердикт ──
+       Плееры внутри закрытой папки или скрытой вкладки не
+       загружаются и молчат — это не гео-ограничение. Поэтому
+       по каждому кадру судим отдельно и только после того,
+       как он пробыл на экране READY_TIMEOUT: столько нужно
+       живому плееру, чтобы подать голос. */
+    var POLL   = 2500;   // как часто пересматриваем ситуацию
+    var GIVEUP = 120000; // через столько перестаём следить
+    var shownAt = [];    // [frame, момент появления на экране]
+    var started = Date.now();
+
+    function shownSince(frame) {
+        for (var i = 0; i < shownAt.length; i++) {
+            if (shownAt[i][0] === frame) return shownAt[i][1];
+        }
+        return null;
+    }
+
+    function verdict() {
+        var now = Date.now();
+
+        frames.forEach(function (frame) {
+            if (frame.offsetParent !== null && shownSince(frame) === null) {
+                shownAt.push([frame, now]);
+            }
+        });
+
+        var ripe = frames.filter(function (frame) {
+            var since = shownSince(frame);
+            return since !== null && now - since >= READY_TIMEOUT;
+        });
+
+        var broken = ripe.filter(function (f) {
             return alive.indexOf(f) === -1 || errored.indexOf(f) !== -1;
         });
-        if (!broken.length) return;
 
-        broken.forEach(markCard);
-        notify(watchUrl(broken[0]));
-    }, READY_TIMEOUT);
+        if (broken.length) {
+            broken.forEach(markCard);
+            notify(watchUrl(broken[0]));
+        }
+
+        /* Ещё не все кадры показывали — продолжаем наблюдать */
+        if (ripe.length < frames.length && now - started < GIVEUP) {
+            setTimeout(verdict, POLL);
+        }
+    }
+
+    setTimeout(verdict, READY_TIMEOUT);
 })();
