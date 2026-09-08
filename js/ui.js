@@ -13,7 +13,8 @@
      3. Сборка окна «Образование» из данных.
      4. Вкладки раздела «Видеомонтаж» (со счётчиками,
         которые считаются сами, и навигацией стрелками).
-     5. Снятие метки «золотое сечение» по дате.
+     5. Папки типов роликов во вкладке «Портфолио».
+     6. Снятие метки «золотое сечение» по дате.
    ===================================================== */
 (function () {
     'use strict';
@@ -245,7 +246,57 @@
     }
 
     /* =================================================
-       5. «ЗОЛОТОЕ СЕЧЕНИЕ»: МЕТКА СНИМАЕТСЯ САМА
+       5. ПАПКИ ТИПОВ РОЛИКОВ
+       -------------------------------------------------
+       Кнопка .folder-card управляет блоком .folder-panel,
+       id которого указан в aria-controls. Открыта всегда
+       не больше одной папки — повторное нажатие закрывает.
+       Приоткрывание при наведении делает CSS, здесь только
+       состояние.
+       ================================================= */
+    function initFolders() {
+        var cards = Array.prototype.slice.call(
+            document.querySelectorAll('.folder-card[aria-controls]')
+        );
+        if (!cards.length) return;
+
+        function panelOf(card) {
+            return document.getElementById(card.getAttribute('aria-controls'));
+        }
+
+        function setState(card, open) {
+            var panel = panelOf(card);
+            card.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (!panel) return;
+            panel.hidden = !open;
+            if (open) {
+                /* перезапуск анимации появления при каждом открытии */
+                panel.style.animation = 'none';
+                void panel.offsetHeight;
+                panel.style.animation = '';
+            }
+        }
+
+        cards.forEach(function (card) {
+            var panel = panelOf(card);
+            if (!panel) return;
+
+            /* Счётчик роликов считается по разметке */
+            var counter = card.querySelector('.folder-card__count');
+            if (counter) {
+                counter.textContent = panel.querySelectorAll('.video-case-card').length;
+            }
+
+            card.addEventListener('click', function () {
+                var willOpen = card.getAttribute('aria-expanded') !== 'true';
+                cards.forEach(function (other) { setState(other, false); });
+                if (willOpen) setState(card, true);
+            });
+        });
+    }
+
+    /* =================================================
+       6. «ЗОЛОТОЕ СЕЧЕНИЕ»: МЕТКА СНИМАЕТСЯ САМА
        Видна до даты в data-golden-until (не включая её).
        ================================================= */
     function initGoldenRibbons() {
@@ -264,5 +315,6 @@
        ================================================= */
     initEducation();
     initVideoTabs();
+    initFolders();
     initGoldenRibbons();
 })();

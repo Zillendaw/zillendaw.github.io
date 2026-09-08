@@ -7,7 +7,7 @@
    04. Карточки выбора раздела
    05. Основной сайт, шапка, контейнер
    06. Портфолио (проекты)
-   07. Видеомонтаж: вкладки, кейсы, шоурилы
+   07. Видеомонтаж: вкладки, портфолио, шоурилы
    08. Фриланс-ссылки
    09. Модальные окна
    10. Схема стека технологий
@@ -17,7 +17,7 @@
    14. Активность на GitHub
    15. Шапка раздела, подвал
    16. Фон раздела «Видеомонтаж»
-   17. Вкладка «Кейсы»: раскладка в две половины
+   17. Папки типов роликов
    ===================================================== */
 
 /* =====================================================
@@ -892,7 +892,7 @@ h2 { font-size: 1.1rem; color: #666; font-weight: 500; margin-bottom: 20px; }
 }
 
 /* =====================================================
-   ВИДЕОМОНТАЖ — кейсы и шоурилы
+   ВИДЕОМОНТАЖ — портфолио и шоурилы
    ===================================================== */
 .video-cases-grid {
     display: grid;
@@ -1437,7 +1437,7 @@ footer {
 /* Вертикальный embed для Shorts (соотношение 9:16) */
 .video-embed--vertical { padding-bottom: 177.78%; }
 
-/* ── Заголовки групп внутри вкладки «Кейсы» ── */
+/* ── Заголовки групп внутри вкладки «Портфолио» ── */
 .video-group-title {
     display: flex;
     align-items: center;
@@ -2197,126 +2197,214 @@ body[data-mode="video"] .main-site {
 
 
 /* =====================================================
-   ВКЛАДКА «КЕЙСЫ» — две половины, карточки рядами по 3–6
+   17. ПАПКИ ТИПОВ РОЛИКОВ
    -----------------------------------------------------
-   Обёртка .video-cases-wide на широких экранах выходит
-   за пределы 800px контейнера, иначе в ряд помещается
-   всего две карточки. Трансформация живёт на обёртке,
-   а не на .video-tab-panel — у панели своя анимация
-   появления с fill-mode: both, она бы перебила сдвиг.
+   Каждый тип видео — жёлтая папка. Наведение приоткрывает
+   переднюю створку, нажатие раскрывает её сильнее и
+   показывает ролики по два в ряд.
+
+   Створка — обычный блок с transform-origin у нижнего
+   края; наклон делает rotateX, объём даёт perspective
+   на родителе .folder. Никаких картинок.
    ===================================================== */
-@media (min-width: 1040px) {
-    .video-cases-wide {
-        width: min(1560px, calc(100vw - 48px));
-        margin-left: 50%;
-        transform: translateX(-50%);
-    }
+.folders__lead {
+    text-align: center;
+    font-size: 0.88rem;
+    color: #777;
+    margin: -6px 0 22px;
 }
 
-/* ── Две половины бок о бок ── */
-.video-cases-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    align-items: start;
-}
-
-/* Тонкий разделитель между половинами */
-.video-cases-col { min-width: 0; }
-
-.video-cases-col + .video-cases-col {
-    border-left: 1px solid rgba(150, 150, 165, 0.22);
-    padding-left: 36px;
-}
-
-/* Заголовок возглавляет свою половину, а не «догоняет» через отступ */
-.video-cases-split .video-group-title { margin: 0 0 20px; font-size: 1.15rem; }
-.video-cases-split .video-group-title--gap { margin-top: 0; }
-
-/* Короткие (вертикальные) видео — 3–6 в ряд.
-   Верхняя граница у колонки обязательна: без неё auto-fit
-   растянул бы три карточки 9:16 на всю ширину и они стали
-   бы огромными по высоте. */
-.video-cases-wide .video-cases-grid--shorts {
-    grid-template-columns: repeat(auto-fit, minmax(165px, 210px));
+.folders {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 18px;
+    margin-bottom: 34px;
 }
 
-.video-cases-wide .video-case-card--vertical {
-    max-width: none;
-    margin: 0;
+.folder-card {
+    position: relative;
+    width: 200px;
+    padding: 14px 12px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: 0;
+    border-radius: 18px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.25s ease, background 0.25s ease;
 }
 
-/* Обычные (16:9) видео — 3–6 в ряд */
-.video-cases-wide .video-cases-grid {
-    grid-template-columns: repeat(auto-fit, minmax(185px, 290px));
+.folder-card:hover { transform: translateY(-4px); background: rgba(138, 48, 204, 0.07); }
+
+.folder-card[aria-expanded="true"] {
+    background: rgba(138, 48, 204, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(138, 48, 204, 0.28);
+}
+
+.folder-card:focus-visible {
+    outline: 2px solid #8a30cc;
+    outline-offset: 3px;
+}
+
+/* ── Сама папка ── */
+.folder {
+    position: relative;
+    width: 130px;
+    height: 102px;
+    margin-bottom: 14px;
+    perspective: 640px;
+}
+
+.folder__tab {
+    position: absolute;
+    left: 0; top: 0;
+    width: 46%; height: 22%;
+    background: #f7b309;
+    border-radius: 7px 0 0 0;
+    /* скошенный правый край язычка, как у настоящей папки */
+    clip-path: polygon(0 0, 72% 0, 100% 100%, 0 100%);
+}
+
+.folder__back {
+    position: absolute;
+    left: 0; right: 0; top: 15%; bottom: 0;
+    background: linear-gradient(180deg, #f9bd11 0%, #e9a106 100%);
+    border-radius: 4px 9px 11px 11px;
+    box-shadow: 0 10px 20px rgba(150, 100, 0, 0.28);
+}
+
+/* ── Листы внутри ── */
+.folder__paper {
+    position: absolute;
+    background: #fff;
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.14);
+    transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.folder__paper--far  { left: 13%; right: 13%; top: 17%; height: 60%; background: #eaeef6; }
+.folder__paper--near { left: 8%;  right: 8%;  top: 21%; height: 58%; }
+
+/* ── Передняя створка ── */
+.folder__front {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 76%;
+    background: linear-gradient(168deg, #ffe9ab 0%, #ffd45f 45%, #fbc02d 100%);
+    border: 1px solid rgba(205, 145, 0, 0.45);
+    border-radius: 9px 9px 11px 11px;
+    transform-origin: bottom center;
+    transform: rotateX(0deg);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.3s ease;
+}
+
+/* Наведение — папка приоткрывается */
+.folder-card:hover .folder__front,
+.folder-card:focus-visible .folder__front { transform: rotateX(-24deg); }
+
+.folder-card:hover .folder__paper--near,
+.folder-card:focus-visible .folder__paper--near { transform: translateY(-6px); }
+
+.folder-card:hover .folder__paper--far,
+.folder-card:focus-visible .folder__paper--far { transform: translateY(-11px); }
+
+/* Нажатие — папка открыта */
+.folder-card[aria-expanded="true"] .folder__front {
+    transform: rotateX(-52deg);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7),
+                0 12px 20px -8px rgba(0, 0, 0, 0.4);
+}
+
+.folder-card[aria-expanded="true"] .folder__paper--near { transform: translateY(-13px); }
+.folder-card[aria-expanded="true"] .folder__paper--far  { transform: translateY(-20px); }
+
+/* ── Подписи ── */
+.folder-card__name {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 18px;
+    gap: 7px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.3;
 }
 
-/* В плотном ряду текста меньше — ужимаем внутренности карточки */
-.video-cases-wide .video-case-info { padding: 16px 16px 18px; }
-.video-cases-wide .video-case-info h4 { font-size: 0.95rem; align-items: flex-start; }
-.video-cases-wide .video-case-info p  { font-size: 0.85rem; margin-bottom: 12px; }
+.folder-card__name i { color: #8a30cc; font-size: 0.9rem; }
 
-.video-cases-wide .video-group-title--gap { margin-top: 48px; }
-
-/* Планшеты — половины уже, в ряду 2–3 карточки */
-@media (max-width: 1039px) {
-    .video-cases-split { gap: 24px; }
-    .video-cases-col + .video-cases-col { padding-left: 24px; }
-
-    .video-cases-wide .video-cases-grid--shorts,
-    .video-cases-wide .video-cases-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        justify-content: stretch;
-        gap: 14px;
-    }
-
-    .video-cases-split .video-group-title { font-size: 1.02rem; }
-    .video-cases-split .video-group-title__hint { font-size: 0.62rem; }
+.folder-card__hint {
+    margin-top: 6px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: #8a30cc;
+    background: rgba(138, 48, 204, 0.1);
+    padding: 2px 9px;
+    border-radius: 20px;
 }
 
-/* Телефоны — две половины не влезают рядом, ставим их друг под друга,
-   а разделитель из вертикального становится горизонтальным */
-@media (max-width: 700px) {
-    .video-cases-split { grid-template-columns: 1fr; gap: 0; }
-
-    .video-cases-col + .video-cases-col {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid rgba(150, 150, 165, 0.22);
-        margin-top: 32px;
-        padding-top: 32px;
-    }
-
-    .video-cases-split .video-group-title { font-size: 1.12rem; }
+.folder-card__count {
+    position: absolute;
+    top: 8px; right: 10px;
+    min-width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #fff;
+    background: #8a30cc;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(138, 48, 204, 0.4);
 }
 
-@media (max-width: 600px) {
-    .video-cases-wide .video-cases-grid--shorts,
-    .video-cases-wide .video-cases-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-    .video-cases-wide .video-case-info { padding: 12px 12px 14px; }
-    .video-cases-wide .video-case-info h4 { font-size: 0.84rem; gap: 6px; }
-    .video-cases-wide .video-case-info p  { font-size: 0.76rem; line-height: 1.5; }
-    .video-cases-wide .video-source-badge { font-size: 0.62rem; padding: 2px 8px; }
-    .video-cases-wide .video-group-title--gap { margin-top: 34px; }
-}
+/* ── Раскрытый список роликов ── */
+.folder-panel { animation: fadeInSlideUp 0.35s ease-out both; }
+.folder-panel[hidden] { display: none; }
 
-/* Совсем узкие — одна колонка */
-@media (max-width: 400px) {
-    .video-cases-wide .video-cases-grid--shorts,
-    .video-cases-wide .video-cases-grid {
-        grid-template-columns: 1fr;
-    }
+/* Два ролика в ряд */
+.video-cases-grid--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
 }
 
 @media (prefers-color-scheme: dark) {
-    .video-cases-col + .video-cases-col { border-color: rgba(201, 125, 255, 0.18); }
+    .folders__lead       { color: #8b8b9a; }
+    .folder-card:hover   { background: rgba(201, 125, 255, 0.08); }
+    .folder-card[aria-expanded="true"] {
+        background: rgba(201, 125, 255, 0.12);
+        box-shadow: inset 0 0 0 1px rgba(201, 125, 255, 0.3);
+    }
+    .folder-card__name   { color: #e8e8f0; }
+    .folder-card__name i { color: #c97dff; }
+    .folder-card__hint   { color: #d0a8ff; background: rgba(201, 125, 255, 0.12); }
+    .folder-card__count  { background: #9b50ff; box-shadow: 0 2px 10px rgba(155, 80, 255, 0.45); }
+    .folder-card:focus-visible { outline-color: #c97dff; }
+}
+
+@media (max-width: 700px) {
+    .folder-card { width: 156px; padding: 12px 8px 14px; }
+    .folder      { width: 104px; height: 82px; }
+    .folder-card__name { font-size: 0.86rem; }
+}
+
+@media (max-width: 640px) {
+    .video-cases-grid--pair { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .folder-card,
+    .folder__front,
+    .folder__paper { transition: none; }
+    .folder-panel  { animation: none; }
 }
 
 

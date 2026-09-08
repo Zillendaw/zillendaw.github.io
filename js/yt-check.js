@@ -109,11 +109,23 @@
     /* ── Наблюдение за плеерами ── */
     function watchPlayers() {
         var anyReady = false;
+        var attempts = 0;
 
-        var readyTimer = setTimeout(function () {
-            // API есть, но ни один плеер не ожил — домен режется
-            if (!anyReady) notify('block');
-        }, READY_TIMEOUT);
+        /* Плееры внутри закрытой папки или скрытой вкладки не
+           инициализируются — это не блокировка. Поэтому судим
+           только по видимым кадрам, а пока таких нет — просто
+           ждём дальше (вдруг посетитель откроет папку позже). */
+        function anyVisible() {
+            return frames.some(function (f) { return f.offsetParent !== null; });
+        }
+
+        function verdict() {
+            if (anyReady) return;
+            if (anyVisible()) { notify('block'); return; }
+            if (++attempts < 10) setTimeout(verdict, READY_TIMEOUT);
+        }
+
+        var readyTimer = setTimeout(verdict, READY_TIMEOUT);
 
         frames.forEach(function (frame) {
             var stallTimer = null;

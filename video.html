@@ -52,7 +52,7 @@
 
                     <div id="video-projects" class="projects-content">
 
-                        <h3 id="portfolio-title">Мои проекты</h3>
+                        <h3 id="portfolio-title">Портфолио</h3>
 
                         <!-- ── Таб-переключатель ── -->
                         <div class="video-tabs" role="tablist">
@@ -107,184 +107,202 @@
 
                         </div>
 
-                        <!-- ── Портфолио ── -->
+                        <!-- ── Портфолио: типы роликов ──
+                             Каждая папка — отдельный тип. Наведение
+                             приоткрывает её, нажатие раскрывает список
+                             роликов по два в ряд. Логика — в js/ui.js.
+                             Чтобы добавить тип: кнопка .folder-card
+                             + блок .folder-panel с таким же id. ── -->
                         <div id="tab-cases" class="video-tab-panel" role="tabpanel">
 
-                            <div class="video-cases-wide video-cases-split">
+                            <p class="folders__lead">Выберите тип роликов</p>
 
-                                <!-- ── Левая половина ── -->
-                                <div class="video-cases-col">
-                                    <!-- ═══ Короткие видео (TikTok / Shorts / Reels) ═══ -->
-                                    <h3 class="video-group-title">
-                                        <i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Короткие видео
-                                        <span class="video-group-title__hint">TikTok · Shorts · Reels</span>
-                                    </h3>
+                            <div class="folders">
+                                <button type="button" class="folder-card" aria-expanded="false" aria-controls="folder-shorts">
+                                    <span class="folder" aria-hidden="true">
+                                        <span class="folder__tab"></span>
+                                        <span class="folder__back"></span>
+                                        <span class="folder__paper folder__paper--far"></span>
+                                        <span class="folder__paper folder__paper--near"></span>
+                                        <span class="folder__front"></span>
+                                    </span>
+                                    <span class="folder-card__name"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Короткие видео</span>
+                                    <span class="folder-card__hint">TikTok · Shorts · Reels</span>
+                                    <span class="folder-card__count"></span>
+                                </button>
+                                <button type="button" class="folder-card" aria-expanded="false" aria-controls="folder-regular">
+                                    <span class="folder" aria-hidden="true">
+                                        <span class="folder__tab"></span>
+                                        <span class="folder__back"></span>
+                                        <span class="folder__paper folder__paper--far"></span>
+                                        <span class="folder__paper folder__paper--near"></span>
+                                        <span class="folder__front"></span>
+                                    </span>
+                                    <span class="folder-card__name"><i class="fas fa-clapperboard" aria-hidden="true"></i> Обычные видео</span>
+                                    <span class="folder-card__count"></span>
+                                </button>
+                                <button type="button" class="folder-card" aria-expanded="false" aria-controls="folder-client">
+                                    <span class="folder" aria-hidden="true">
+                                        <span class="folder__tab"></span>
+                                        <span class="folder__back"></span>
+                                        <span class="folder__paper folder__paper--far"></span>
+                                        <span class="folder__paper folder__paper--near"></span>
+                                        <span class="folder__front"></span>
+                                    </span>
+                                    <span class="folder-card__name"><i class="fas fa-hand-holding-heart" aria-hidden="true"></i> Face Clinic</span>
+                                    <span class="folder-card__hint">Клиника косметологии</span>
+                                    <span class="folder-card__count"></span>
+                                </button>
+                            </div>
 
-                                    <div class="video-cases-grid video-cases-grid--shorts">
+                            <div class="folder-panel" id="folder-shorts" role="region" hidden>
+                                <h3 class="video-group-title">
+                                    <i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Короткие видео
+                                    <span class="video-group-title__hint">TikTok · Shorts · Reels</span>
+                                </h3>
 
+                                <div class="video-cases-grid video-cases-grid--pair">
+                                    <div class="video-case-card video-case-card--vertical video-case-card--golden" data-golden-until="2026-08-31">
+                                        <div class="golden-ribbon">
+                                            <span class="golden-ribbon__phi">φ</span> НОВОЕ
+                                        </div>
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://www.youtube.com/embed/eKRm6tNx4fk"
+                                                title="Вертикальный Short-ролик"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                                referrerpolicy="strict-origin-when-cross-origin"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Монтаж экспертного Reels для  косметологии</h4>
+                                            <p>Короткий вертикальный ролик (Shorts/Reels) с динамичным монтажом:
+                                                плотный тайминг, акцентные переходы и работа с цветом — формат, заточенный
+                                                под удержание внимания в первые секунды.</p>
+                                            <span class="video-source-badge video-source-badge--instagram">
+                                                <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                            </span>
+                                        </div>
+                                    </div>
 
-                                        <div class="video-case-card video-case-card--vertical video-case-card--golden" data-golden-until="2026-08-31">
-                                            <div class="golden-ribbon">
-                                                <span class="golden-ribbon__phi">φ</span> НОВОЕ
-                                            </div>
-                                            <div class="video-embed video-embed--vertical">
-                                                <iframe
-                                                    src="https://www.youtube.com/embed/eKRm6tNx4fk"
-                                                    title="Вертикальный Short-ролик"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    allowfullscreen
-                                                    referrerpolicy="strict-origin-when-cross-origin"
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Монтаж экспертного Reels для  косметологии</h4>
-                                                <p>Короткий вертикальный ролик (Shorts/Reels) с динамичным монтажом: 
-                                                    плотный тайминг, акцентные переходы и работа с цветом — формат, заточенный 
-                                                    под удержание внимания в первые секунды.</p>
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://www.youtube.com/embed/sF_MnTFnGuY"
+                                                title="Открытие точки корейской компании «Atomy» в ТЦ «Маяк» в г. Владивосток"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                                referrerpolicy="strict-origin-when-cross-origin"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
+                                            <p>Короткое видео для (Reels) с открытия новой точки косметической компании "Atomy". Динамичный монтаж под ритм музыки,
+                                                чтобы передать атмосферу праздника и привлечь трафик в магазин.</p>
+                                            <div class="video-badges">
                                                 <span class="video-source-badge video-source-badge--instagram">
                                                     <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
                                                 </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="video-case-card video-case-card--vertical">
-                                            <div class="video-embed video-embed--vertical">
-                                                <iframe
-                                                    src="https://www.youtube.com/embed/sF_MnTFnGuY"
-                                                    title="Открытие точки корейской компании «Atomy» в ТЦ «Маяк» в г. Владивосток"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    allowfullscreen
-                                                    referrerpolicy="strict-origin-when-cross-origin"
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Открытие точки корейской компании "Atomy" в торговом центре "Маяк" в г. Владивосток</h4>
-                                                <p>Короткое видео для (Reels) с открытия новой точки косметической компании "Atomy". Динамичный монтаж под ритм музыки, 
-                                                    чтобы передать атмосферу праздника и привлечь трафик в магазин.</p>
-                                                <div class="video-badges">
-                                                    <span class="video-source-badge video-source-badge--instagram">
-                                                        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
-                                                    </span>
-                                                    <span class="video-source-badge video-source-badge--tiktok">
-                                                        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="video-case-card video-case-card--vertical">
-                                            <div class="video-embed video-embed--vertical">
-                                                <iframe
-                                                    src="https://www.youtube.com/embed/5eTRQUaZ4JY"
-                                                    title="Дом «Афрейм»"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    allowfullscreen
-                                                    referrerpolicy="strict-origin-when-cross-origin"
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Демонстрация Дом "Афрейм"</h4>
-                                                <p>Видеообзор трендового дома в стиле A-frame для строительной компании. 
-                                                    Использован плавный монтаж, выгодно подчеркивающий архитектуру и уют интерьера, 
-                                                    а также описание для коротких видео.</p>
-                                                <span class="video-source-badge video-source-badge--telegram">
-                                                    <i class="fab fa-telegram" aria-hidden="true"></i> Telegram сторис
+                                                <span class="video-source-badge video-source-badge--tiktok">
+                                                    <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
                                                 </span>
                                             </div>
                                         </div>
+                                    </div>
 
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://www.youtube.com/embed/5eTRQUaZ4JY"
+                                                title="Дом «Афрейм»"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen
+                                                referrerpolicy="strict-origin-when-cross-origin"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Демонстрация Дом "Афрейм"</h4>
+                                            <p>Видеообзор трендового дома в стиле A-frame для строительной компании.
+                                                Использован плавный монтаж, выгодно подчеркивающий архитектуру и уют интерьера,
+                                                а также описание для коротких видео.</p>
+                                            <span class="video-source-badge video-source-badge--telegram">
+                                                <i class="fab fa-telegram" aria-hidden="true"></i> Telegram сторис
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <!-- ── Правая половина ── -->
-                                <div class="video-cases-col">
-                                    <!-- ═══ Обычные видео ═══ -->
-                                    <h3 class="video-group-title">
-                                        <i class="fas fa-clapperboard" aria-hidden="true"></i> Обычные видео
-                                    </h3>
-
-                                    <div class="video-cases-grid">
-
-                                        <div class="video-case-card">
-                                            <div class="video-embed">
-                                                <iframe
-                                                    src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239017&hash=cb1fb28f0e667870"
-                                                    title="Отзыв Николая, компания «Тепломонтаж»"
-                                                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                                                    allowfullscreen
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв заказчика компании "Тепломонтаж" - Николай из г. Артём</h4>
-                                                <p>Классический видеоотзыв для повышения лояльности к строительной компании.</p>
-                                                <span class="video-source-badge video-source-badge--review">
-                                                    <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="video-case-card">
-                                            <div class="video-embed">
-                                                <iframe
-                                                    src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239020&hash=2a2894bb011b58aa"
-                                                    title="Отзыв Сергея Ким, компания «Тепломонтаж»"
-                                                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                                                    allowfullscreen
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
-                                                <p>Интерьерный видеоотзыв, подчеркивающий результат работы строительной компании по тёплым полам.</p>
-                                                <span class="video-source-badge video-source-badge--review">
-                                                    <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="video-case-card">
-                                            <div class="video-embed">
-                                                <iframe
-                                                    src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239018&hash=5bd7206ee8f912c3"
-                                                    title="Обзор монтажа бокса «Погреб ПП 3 Лонг»"
-                                                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-                                                    allowfullscreen
-                                                    loading="lazy">
-                                                </iframe>
-                                            </div>
-                                            <div class="video-case-info">
-                                                <h4><i class="fas fa-film" aria-hidden="true"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
-                                                <p>Демонстрационный ролик этапов установки сложного инженерного оборудования, с описанием и демонстрации монтажных работ.</p>
-                                                <span class="video-source-badge video-source-badge--dynamic">
-                                                    <i class="fas fa-bolt" aria-hidden="true"></i> Динамичный видеомонтаж
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
                             </div>
 
-                            <!-- ═══════════════════════════════════════════
-                                 КЛИЕНТ: FACE CLINIC
-                                 ───────────────────────────────────────────
-                                 TODO Александру:
-                                 1. У карточки с видео нужен параметр hash.
-                                    Берётся так: открыть ролик в VK → «···» →
-                                    «Экспортировать» → скопировать код iframe
-                                    и подставить сюда весь его src целиком.
-                                    Без hash VK отдаст «Видео недоступно».
-                                 2. Заголовки и описания ниже — рабочие
-                                    заглушки. Замените на реальные: что за
-                                    ролик, какая задача, что делали.
-                                 ═══════════════════════════════════════════ -->
-                            <div class="video-cases-wide video-client">
+                            <div class="folder-panel" id="folder-regular" role="region" hidden>
+                                <h3 class="video-group-title">
+                                    <i class="fas fa-clapperboard" aria-hidden="true"></i> Обычные видео
+                                </h3>
 
+                                <div class="video-cases-grid video-cases-grid--pair">
+                                    <div class="video-case-card">
+                                        <div class="video-embed">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239017&hash=cb1fb28f0e667870"
+                                                title="Отзыв Николая, компания «Тепломонтаж»"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв заказчика компании "Тепломонтаж" - Николай из г. Артём</h4>
+                                            <p>Классический видеоотзыв для повышения лояльности к строительной компании.</p>
+                                            <span class="video-source-badge video-source-badge--review">
+                                                <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="video-case-card">
+                                        <div class="video-embed">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239020&hash=2a2894bb011b58aa"
+                                                title="Отзыв Сергея Ким, компания «Тепломонтаж»"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Отзыв клиента компании "Тепломонтаж" - Сергея Ким из посёлка Де-Фриз (г. Владивосток)</h4>
+                                            <p>Интерьерный видеоотзыв, подчеркивающий результат работы строительной компании по тёплым полам.</p>
+                                            <span class="video-source-badge video-source-badge--review">
+                                                <i class="fas fa-comment-dots" aria-hidden="true"></i> Видеоотзыв
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="video-case-card">
+                                        <div class="video-embed">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-238859733&id=456239018&hash=5bd7206ee8f912c3"
+                                                title="Обзор монтажа бокса «Погреб ПП 3 Лонг»"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Обзор монтажа бокса "Погреб ПП 3 Лонг" для компании Engineering Space</h4>
+                                            <p>Демонстрационный ролик этапов установки сложного инженерного оборудования, с описанием и демонстрации монтажных работ.</p>
+                                            <span class="video-source-badge video-source-badge--dynamic">
+                                                <i class="fas fa-bolt" aria-hidden="true"></i> Динамичный видеомонтаж
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="folder-panel" id="folder-client" role="region" hidden>
                                 <h3 class="video-group-title">
                                     <i class="fas fa-hand-holding-heart" aria-hidden="true"></i> Face Clinic
                                     <span class="video-group-title__hint">Клиника косметологии</span>
@@ -292,12 +310,11 @@
 
                                 <p class="video-client__lead">
                                     Регулярный монтаж контента для клиники интеллектуальной косметологии
-                                    <a href="https://vk.ru/faceclinicgroup" target="_blank" rel="noopener">Face Clinic</a> —
+                                    <a href="https://vk.ru/faceclinicgroup" target="_blank" rel="noopener noreferrer">Face Clinic</a> —
                                     экспертные ролики, съёмка процедур и короткие форматы для соцсетей.
                                 </p>
 
-                                <div class="video-cases-grid">
-
+                                <div class="video-cases-grid video-cases-grid--pair">
                                     <!-- 1. Видео из VK -->
                                     <div class="video-case-card">
                                         <div class="video-embed">
@@ -365,11 +382,8 @@
                                             </span>
                                         </div>
                                     </a>
-
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>
