@@ -15,6 +15,8 @@
         которые считаются сами, и навигацией стрелками).
      5. Папки типов роликов во вкладке «Портфолио».
      6. Снятие метки «золотое сечение» по дате.
+     7. Окно «Видео с разных площадок» на странице
+        видеомонтажа: VK, YouTube и предупреждение про VPN.
    ===================================================== */
 (function () {
     'use strict';
@@ -311,10 +313,95 @@
     }
 
     /* =================================================
+       7. ОКНО «ВИДЕО С РАЗНЫХ ПЛОЩАДОК»
+       -------------------------------------------------
+       Открывается само при входе на страницу видеомонтажа
+       и только один раз за сессию: часть роликов лежит в
+       VK, часть на YouTube, а VK не показывает видео с
+       зарубежных IP — про это честнее предупредить сразу,
+       чем ловить сломанный плеер уведомлением потом.
+       ================================================= */
+    var NOTICE_KEY   = 'platforms_notice_seen';
+    var NOTICE_DELAY = 700;   // мс: даём странице проявиться
+
+    function initPlatformNotice() {
+        if (document.body.dataset.mode !== 'video') return;
+
+        try {
+            if (sessionStorage.getItem(NOTICE_KEY)) return;
+        } catch (e) {}
+
+        var modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.id = 'platformsModal';
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-label', 'Видео с разных площадок');
+        modal.setAttribute('aria-hidden', 'true');
+
+        var content = document.createElement('div');
+        content.className = 'modal-content notice-modal';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'close-btn';
+        closeBtn.setAttribute('aria-label', 'Закрыть');
+        closeBtn.innerHTML = '&times;';
+
+        var badge = document.createElement('div');
+        badge.className = 'notice-modal__icon';
+        badge.innerHTML = '<i class="fas fa-circle-info" aria-hidden="true"></i>';
+
+        var title = document.createElement('h3');
+        title.className = 'notice-modal__title';
+        title.textContent = 'Видео с разных площадок';
+
+        var text = document.createElement('p');
+        text.className = 'notice-modal__text';
+        text.textContent = 'Часть роликов опубликована в VK Видео, часть — на YouTube. ' +
+                           'Все плееры встроены прямо в страницу.';
+
+        var platforms = document.createElement('div');
+        platforms.className = 'notice-modal__platforms';
+        platforms.innerHTML =
+            '<span class="video-source-badge video-source-badge--vk">' +
+            '<i class="fab fa-vk" aria-hidden="true"></i> VK Видео</span>' +
+            '<span class="video-source-badge video-source-badge--yt">' +
+            '<i class="fab fa-youtube" aria-hidden="true"></i> YouTube</span>';
+
+        var warn = document.createElement('p');
+        warn.className = 'notice-modal__warn';
+        warn.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i>';
+        warn.appendChild(document.createElement('span')).textContent =
+            'Если включён VPN, видео из VK может не загрузиться: просмотр ограничен ' +
+            'для зарубежных IP-адресов. Отключите VPN — и ролики заработают.';
+
+        var okBtn = document.createElement('button');
+        okBtn.type = 'button';
+        okBtn.className = 'notice-modal__ok';
+        okBtn.textContent = 'Понятно';
+
+        /* Крестик последним в разметке — тогда фокус при открытии
+           встаёт на «Понятно», а не на кнопку закрытия.
+           Визуально он всё равно в углу: position: absolute. */
+        content.append(badge, title, text, platforms, warn, okBtn, closeBtn);
+        modal.appendChild(content);
+        document.body.appendChild(modal);
+
+        var api = createModal(modal);
+        closeBtn.addEventListener('click', api.close);
+        okBtn.addEventListener('click', api.close);
+
+        try { sessionStorage.setItem(NOTICE_KEY, '1'); } catch (e) {}
+        setTimeout(api.open, NOTICE_DELAY);
+    }
+
+    /* =================================================
        СТАРТ
        ================================================= */
     initEducation();
     initVideoTabs();
     initFolders();
     initGoldenRibbons();
+    initPlatformNotice();
 })();

@@ -1729,156 +1729,173 @@ footer {
     .edu-info p { color: rgba(255,255,255,0.35); }
 }
 /* =====================================================
-   ТОСТ О ПРОБЛЕМАХ С ВИДЕО (YouTube и VK)
-   Всплывает в правом нижнем углу
+   ОКНО «ВИДЕО С РАЗНЫХ ПЛОЩАДОК»
+   Открывается один раз за сессию при входе на страницу
+   видеомонтажа (собирается в js/ui.js)
    ===================================================== */
-.media-toast {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 9999;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    width: min(370px, calc(100vw - 40px));
-    padding: 16px 16px 14px;
-    border-radius: 14px;
-    background: rgba(22, 22, 30, 0.96);
-    border: 1px solid rgba(255, 122, 0, 0.35);
-    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transform: translateY(24px);
-    opacity: 0;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+.notice-modal {
+    max-width: 430px;
+    padding: 34px 30px 28px;
+    text-align: center;
+    background: linear-gradient(145deg, #f8f9fc 0%, #ffffff 60%, #f4f6fb 100%);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.04);
 }
 
-.media-toast--visible { transform: translateY(0); opacity: 1; }
-
-.media-toast--leaving {
-    transform: translateY(16px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.media-toast__icon {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
+/* Иконка в кружке над заголовком */
+.notice-modal__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    background: rgba(255, 122, 0, 0.14);
-    color: #ffab5e;
-    font-size: 0.95rem;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    font-size: 1.3rem;
+    color: #8a30cc;
+    background: rgba(138, 48, 204, 0.1);
+    border: 1px solid rgba(138, 48, 204, 0.22);
+    border-radius: 50%;
 }
 
-.media-toast__body { flex: 1; min-width: 0; }
+.notice-modal__icon i { margin: 0; }
 
-.media-toast__title {
-    font-size: 0.92rem;
+.notice-modal__title {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
     font-weight: 800;
-    color: #f2f2f5;
-    margin: 0 0 4px;
-    padding-right: 18px;
+    letter-spacing: -0.01em;
+    color: #111;
 }
 
-.media-toast__text {
-    font-size: 0.82rem;
-    line-height: 1.5;
-    color: #a8a8b8;
-    margin: 0;
+.notice-modal__text {
+    margin: 0 0 18px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #5a5a68;
 }
 
-.media-toast__actions {
+.notice-modal__platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* Предупреждение про VPN — отдельной плашкой */
+.notice-modal__warn {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 22px;
+    padding: 13px 15px;
+    text-align: left;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #8a5514;
+    background: rgba(255, 176, 60, 0.13);
+    border: 1px solid rgba(255, 176, 60, 0.35);
+    border-radius: 12px;
+}
+
+.notice-modal__warn i {
+    flex-shrink: 0;
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+    color: #e08a2b;
+}
+
+.notice-modal__ok {
+    width: 100%;
+    max-width: 220px;
+    padding: 12px 26px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #8a30cc 0%, #b45cff 100%);
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(138, 48, 204, 0.3);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.notice-modal__ok:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.07);
+    box-shadow: 0 10px 24px rgba(138, 48, 204, 0.38);
+}
+
+.notice-modal__ok:focus-visible {
+    outline: 2px solid #8a30cc;
+    outline-offset: 3px;
+}
+
+/* Крестик — ровный кружок в углу */
+.notice-modal .close-btn {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 11px;
-}
-
-.media-toast__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 13px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #fff;
-    background: #ff0000;
-    border: none;
-    border-radius: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.media-toast__btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(255, 0, 0, 0.3);
-}
-
-.media-toast__btn i { margin: 0; font-size: 0.74rem; }
-
-.media-toast__ghost {
-    background: none;
-    border: none;
-    padding: 4px 2px;
-    font-size: 0.76rem;
-    color: #7a7a8c;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.media-toast__ghost:hover { color: #c9c9d4; }
-
-.media-toast__close {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    background: none;
-    border: none;
-    color: #7a7a8c;
-    font-size: 1.25rem;
-    line-height: 1;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.media-toast__close:hover { color: #f2f2f5; }
-
-/* Полоска автозакрытия */
-.media-toast__progress {
-    position: absolute;
-    left: 14px;
+    justify-content: center;
+    top: 12px;
     right: 14px;
-    bottom: 7px;
-    height: 2px;
-    border-radius: 2px;
-    background: rgba(255, 171, 94, 0.4);
-    transform-origin: left center;
-    animation: ytToastProgress linear forwards;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    font-size: 24px;
+    color: rgba(0,0,0,0.35);
+    border-radius: 50%;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@keyframes ytToastProgress {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+.notice-modal .close-btn:hover {
+    color: #111;
+    background: rgba(0,0,0,0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+    .notice-modal {
+        background: linear-gradient(145deg, #0d1117 0%, #111827 60%, #0d1117 100%);
+        border-color: rgba(255,255,255,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .notice-modal__icon {
+        color: #c97dff;
+        background: rgba(201, 125, 255, 0.12);
+        border-color: rgba(201, 125, 255, 0.25);
+    }
+
+    .notice-modal__title { color: #ffffff; }
+    .notice-modal__text  { color: #9a9aa8; }
+
+    .notice-modal__warn {
+        color: #f0c088;
+        background: rgba(255, 176, 60, 0.1);
+        border-color: rgba(255, 176, 60, 0.28);
+    }
+
+    .notice-modal__ok {
+        background: linear-gradient(135deg, #8a30cc 0%, #c97dff 100%);
+        box-shadow: 0 6px 20px rgba(155, 80, 255, 0.35);
+    }
+
+    .notice-modal .close-btn { color: rgba(255,255,255,0.4); }
+    .notice-modal .close-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
 }
 
 @media (max-width: 600px) {
-    .media-toast {
-        right: 12px;
-        left: 12px;
-        bottom: 12px;
-        width: auto;
-    }
+    .notice-modal { padding: 28px 20px 24px; }
+    .notice-modal__icon  { width: 48px; height: 48px; font-size: 1.15rem; }
+    .notice-modal__title { font-size: 1.05rem; }
+    .notice-modal__text  { font-size: 0.88rem; }
+    .notice-modal__warn  { font-size: 0.82rem; }
+    .notice-modal__ok    { max-width: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .media-toast { transition: opacity 0.2s ease; transform: none; }
-    .media-toast--visible { transform: none; }
-    .media-toast__progress { animation: none; }
+    .notice-modal { animation: none; }
+    .notice-modal__ok:hover { transform: none; }
 }
 /* =====================================================
    АКТИВНОСТЬ НА GITHUB (лента точек: 1 точка = 1 неделя)

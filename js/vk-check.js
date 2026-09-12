@@ -17,15 +17,19 @@
       тишина → видео недоступно в этом регионе.
    4. Дополнительно ловим явные события со словом error.
 
+   Всплывающих уведомлений здесь больше нет: про VPN
+   предупреждает окно при входе на страницу (js/ui.js).
+   Этот скрипт только помечает те карточки, которые
+   действительно не ожили, и даёт ссылку на ролик в VK.
+
    Тестовые режимы (в адресной строке):
-      ?vktest=block — показать уведомление принудительно
+      ?vktest=block — пометить все карточки принудительно
       ?vktest=ok    — считать, что всё работает
    ===================================================== */
 (function () {
     'use strict';
 
     var READY_TIMEOUT = 9000;   // сколько ждём признаков жизни плеера
-    var DISMISS_KEY   = 'vk_toast_dismissed';
     var VK_HOST_RE    = /(^|\.)(vk\.com|vkvideo\.ru|vk\.ru|userapi\.com)$/i;
 
     var TEST_MODE = new URLSearchParams(location.search).get('vktest');
@@ -44,22 +48,6 @@
             if (oid && id) return 'https://vkvideo.ru/video' + oid + '_' + id;
         } catch (e) {}
         return 'https://vkvideo.ru/';
-    }
-
-    function notify(videoUrl) {
-        if (!window.MediaToast) return;
-        window.MediaToast.show({
-            title:      'VK Видео не проигрывается',
-            text:       'Похоже, вы заходите с зарубежного IP-адреса — VK ограничивает ' +
-                        'просмотр видео за пределами России. Попробуйте отключить VPN.',
-            dismissKey: DISMISS_KEY,
-            force:      !!TEST_MODE,
-            action: {
-                url:   videoUrl || 'https://vkvideo.ru/',
-                label: 'Открыть в VK Видео',
-                icon:  'fab fa-vk'
-            }
-        });
     }
 
     /* ── Пометка конкретной карточки ── */
@@ -90,7 +78,6 @@
     /* ── Тестовый режим ── */
     if (TEST_MODE === 'block') {
         frames.forEach(markCard);
-        notify(watchUrl(frames[0]));
         return;
     }
 
@@ -166,14 +153,9 @@
             return since !== null && now - since >= READY_TIMEOUT;
         });
 
-        var broken = ripe.filter(function (f) {
+        ripe.filter(function (f) {
             return alive.indexOf(f) === -1 || errored.indexOf(f) !== -1;
-        });
-
-        if (broken.length) {
-            broken.forEach(markCard);
-            notify(watchUrl(broken[0]));
-        }
+        }).forEach(markCard);
 
         /* Ещё не все кадры показывали — продолжаем наблюдать */
         if (ripe.length < frames.length && now - started < GIVEUP) {
