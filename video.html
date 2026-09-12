@@ -62,7 +62,7 @@
                             </button>
                             <button type="button" class="video-tab video-tab--active" data-tab="cases" role="tab" aria-selected="true">
                                 <i class="fas fa-briefcase" aria-hidden="true"></i> Портфолио
-                                <span class="video-tab__count">11</span>
+                                <span class="video-tab__count">15</span>
                             </button>
                         </div>
 
@@ -338,74 +338,200 @@
                                     экспертные ролики, съёмка процедур и короткие форматы для соцсетей.
                                 </p>
 
+                                <!-- ── 1. Подкаст: идёт первым, во всю ширину ── -->
                                 <div class="video-cases-grid video-cases-grid--pair">
-                                    <!-- 1. Видео из VK -->
                                     <div class="video-case-card">
                                         <div class="video-embed">
                                             <iframe
-                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239355&amp;hd=2"
-                                                title="Ролик для клиники Face Clinic"
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239318&amp;hd=2"
+                                                title="Видеоподкаст для клиники Face Clinic"
                                                 allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
                                                 allowfullscreen
                                                 loading="lazy">
                                             </iframe>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Ролик для клиники Face Clinic</h4>
-                                            <p>Видеоподкаст экспертного видео про долголетие</p>
+                                            <h4><i class="fas fa-microphone-lines" aria-hidden="true"></i> Видеоподкаст о долголетии</h4>
+                                            <p>Экспертный выпуск для клиники: монтаж разговорного формата, работа со звуком и титрами.</p>
                                             <span class="video-source-badge video-source-badge--vk">
                                                 <i class="fab fa-vk" aria-hidden="true"></i> VK Видео
                                             </span>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- 2. Публикация во ВКонтакте -->
-                                    <a class="video-case-card video-case-card--link"
-                                       href="https://vk.ru/wall-212561575_734" target="_blank" rel="noopener">
-                                        <div class="video-case-cover">
-                                            <i class="fab fa-vk" aria-hidden="true"></i>
-                                            <span class="video-case-cover__label">Смотреть публикацию</span>
+                                <!-- ── 2. Короткие видео ──
+                                     Клип во ВКонтакте — обычное видео сообщества, поэтому
+                                     встраивается тем же video_ext.php, что и подкаст.
+                                     Чтобы добавить ролик: скопируйте карточку и замените
+                                     id в ссылке плеера и номер поста. ── -->
+                                <h3 class="video-group-title video-group-title--gap">
+                                    <i class="fas fa-mobile-screen-button" aria-hidden="true"></i> Короткие видео
+                                    <span class="video-group-title__hint">VK · вертикальный формат</span>
+                                </h3>
+
+                                <div class="video-cases-grid video-cases-grid--shorts">
+                                    <!-- клип 456239360 · пост 744 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239360&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
-                                            <p>Ролик в ленте сообщества клиники.</p>
-                                            <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
-                                            </span>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_744" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
                                         </div>
-                                    </a>
+                                    </div>
 
-                                    <!-- 3. Публикация во ВКонтакте -->
-                                    <a class="video-case-card video-case-card--link"
-                                       href="https://vk.ru/wall-212561575_731" target="_blank" rel="noopener">
-                                        <div class="video-case-cover">
-                                            <i class="fab fa-vk" aria-hidden="true"></i>
-                                            <span class="video-case-cover__label">Смотреть публикацию</span>
+                                    <!-- клип 456239359 · пост 743 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239359&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
-                                            <p>Ролик в ленте сообщества клиники.</p>
-                                            <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
-                                            </span>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_743" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
                                         </div>
-                                    </a>
+                                    </div>
 
-                                    <!-- 4. Публикация во ВКонтакте -->
-                                    <a class="video-case-card video-case-card--link"
-                                       href="https://vk.ru/wall-212561575_727" target="_blank" rel="noopener">
-                                        <div class="video-case-cover">
-                                            <i class="fab fa-vk" aria-hidden="true"></i>
-                                            <span class="video-case-cover__label">Смотреть публикацию</span>
+                                    <!-- клип 456239358 · пост 742 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239358&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
                                         </div>
                                         <div class="video-case-info">
-                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Публикация для Face Clinic</h4>
-                                            <p>Ролик в ленте сообщества клиники.</p>
-                                            <span class="video-source-badge video-source-badge--vk">
-                                                <i class="fab fa-vk" aria-hidden="true"></i> VK · пост
-                                            </span>
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_742" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
                                         </div>
-                                    </a>
+                                    </div>
+
+                                    <!-- клип 456239353 · пост 734 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239353&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_734" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- клип 456239326 · пост 731 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239326&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_731" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- клип 456239324 · пост 727 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical">
+                                            <iframe
+                                                src="https://vkvideo.ru/video_ext.php?oid=-212561575&amp;id=456239324&amp;hd=2"
+                                                title="Короткий ролик для Face Clinic"
+                                                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Короткий ролик для Face Clinic</h4>
+                                            <p>Вертикальный ролик для ленты и клипов сообщества клиники.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--vk">
+                                                    <i class="fab fa-vk" aria-hidden="true"></i> VK · клип
+                                                </span>
+                                                <a class="video-post-link"
+                                                   href="https://vk.ru/wall-212561575_727" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
