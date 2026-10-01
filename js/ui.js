@@ -358,7 +358,7 @@
 
         var text = document.createElement('p');
         text.className = 'notice-modal__text';
-        text.textContent = 'Часть роликов опубликована в VK Видео, часть — на YouTube. ' +
+        text.textContent = 'Часть роликов опубликована в VK Видео, часть — на YouTube, часть - в Instagram. ' +
                            'Все плееры встроены прямо в страницу.';
 
         var platforms = document.createElement('div');
@@ -367,13 +367,15 @@
             '<span class="video-source-badge video-source-badge--vk">' +
             '<i class="fab fa-vk" aria-hidden="true"></i> VK Видео</span>' +
             '<span class="video-source-badge video-source-badge--yt">' +
-            '<i class="fab fa-youtube" aria-hidden="true"></i> YouTube</span>';
+            '<i class="fab fa-youtube" aria-hidden="true"></i> YouTube</span>' +
+            '<span class="video-source-badge video-source-badge--instagram">' +
+            '<i class="fab fa-instagram" aria-hidden="true"></i> Instagram</span>';
 
         var warn = document.createElement('p');
         warn.className = 'notice-modal__warn';
         warn.innerHTML = '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i>';
         warn.appendChild(document.createElement('span')).textContent =
-            'Если включён VPN, видео из VK может не загрузиться: просмотр ограничен ' +
+            'Если включён VPN, видео из VK и Instagram может не загрузиться: просмотр ограничен ' +
             'для зарубежных IP-адресов. Отключите VPN — и ролики заработают.';
 
         var okBtn = document.createElement('button');
