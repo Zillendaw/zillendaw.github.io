@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-name" content="Бриф на видеомонтаж">
+    <title>Бриф на видеомонтаж — Александр Хван (Zillendaw)</title>
+    <meta name="description" content="Бриф на разработку и монтаж видео: Reels, Shorts, подкасты, промо-ролики. Александр Хван (Zillendaw).">
+    <meta name="theme-color" content="#0a0a0f">
+
+    <link rel="canonical" href="https://zillendaw.github.io/brief-video.html">
+    <link rel="icon" href="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+    /* Специфичные стили для формы брифа */
+    .brief-container {
+        max-width: 780px;
+        margin: 0 auto;
+        padding-bottom: 60px;
+    }
+
+    .brief-header {
+        text-align: center;
+        margin-bottom: 36px;
+    }
+
+    .brief-header h1 {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-weight: 800;
+        color: var(--text-color, #1a1a24);
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+    }
+
+    .brief-header p {
+        color: var(--text-muted, #5a5a70);
+        font-size: 0.98rem;
+        max-width: 620px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .brief-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .brief-section {
+        background: rgba(201, 125, 255, 0.04);
+        border: 1px solid rgba(138, 48, 204, 0.2);
+        border-radius: 18px;
+        padding: 28px 24px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(8px);
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .brief-section:focus-within {
+        border-color: rgba(138, 48, 204, 0.5);
+        box-shadow: 0 6px 24px rgba(138, 48, 204, 0.12);
+    }
+
+    .brief-section__title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--text-color, #111118);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(138, 48, 204, 0.15);
+    }
+
+    .brief-section__title i {
+        color: #8a30cc;
+        font-size: 1.15rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group--full {
+        grid-column: 1 / -1;
+    }
+
+    .form-label {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--text-color, #222230);
+        letter-spacing: 0.01em;
+    }
+
+    .form-label small {
+        font-weight: 400;
+        color: #777788;
+        margin-left: 4px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1.5px solid rgba(138, 48, 204, 0.25);
+        border-radius: 10px;
+        padding: 12px 14px;
+        color: #111118;
+        font-size: 0.92rem;
+        transition: all 0.25s ease;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: #888899;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+        outline: none;
+        border-color: #8a30cc;
+        box-shadow: 0 0 0 3px rgba(138, 48, 204, 0.2);
+        background: #ffffff;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 90px;
+        line-height: 1.5;
+    }
+
+    /* Выбор опций (Checkboxes / Radios) */
+    .options-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 10px;
+        margin-top: 6px;
+    }
+
+    .custom-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        border: 1.5px solid rgba(138, 48, 204, 0.18);
+        border-radius: 10px;
+        padding: 10px 14px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #333344;
+    }
+
+    .custom-option:hover {
+        background: rgba(201, 125, 255, 0.12);
+        border-color: rgba(138, 48, 204, 0.4);
+        color: #111118;
+    }
+
+    .custom-option input {
+        accent-color: #8a30cc;
+        width: 17px;
+        height: 17px;
+        cursor: pointer;
+    }
+
+    .custom-option:has(input:checked) {
+        background: rgba(138, 48, 204, 0.15);
+        border-color: #8a30cc;
+        color: #610e9c;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(138, 48, 204, 0.15);
+    }
+
+    /* Кнопки действий */
+    .brief-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        margin-top: 14px;
+    }
+
+    .btn-submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 380px;
+        padding: 14px 24px;
+        font-size: 1rem;
+        font-weight: 800;
+        color: #ffffff;
+        background: linear-gradient(135deg, #8a30cc 0%, #b45cff 100%);
+        border: 0;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(138, 48, 204, 0.35);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(138, 48, 204, 0.48);
+    }
+
+    .btn-copy {
+        background: transparent;
+        border: 1.5px solid rgba(138, 48, 204, 0.3);
+        color: #444455;
+        font-weight: 600;
+        border-radius: 30px;
+        padding: 10px 22px;
+        font-size: 0.88rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+        border-color: #8a30cc;
+        color: #8a30cc;
+        background: rgba(201, 125, 255, 0.1);
+    }
+
+    .brief-note {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #666677;
+        margin-top: 4px;
+    }
+</style>
+</head>
+<body data-mode="video">
+
+    <div id="main-site" class="main-site main-site--enter">
+        <div class="container brief-container">
+
+            <header>
+                <div class="page-head">
+                    <a class="back-btn" href="video.html">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> К портфолио
+                    </a>
+                    <div class="profile-img profile-img--compact">
+                        <img src="logo.png" alt="Фото Zillendaw" width="54" height="54">
+                    </div>
+                </div>
+
+                <div class="brief-header">
+                    <h1>Бриф на видеомонтаж</h1>
+                    <p>Заполните форму ниже, чтобы мы сразу оценили масштаб задачи, подобрали подходящий визуальный темп и быстро рассчитали точные сроки и стоимость.</p>
+                </div>
+            </header>
+
+            <main>
+                <form class="brief-form" id="videoBriefForm">
+
+                    <!-- Раздел 1: Контакты -->
+                    <section class="brief-section">
+                        <h2 class="brief-section__title">
+                            <i class="fas fa-user-circle" aria-hidden="true"></i> 1. Контактная информация
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="clientName">Ваше имя / Компания *</label>
+                                <input class="form-input" type="text" id="clientName" required placeholder="Например: Иван (Клиника 'Face')">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="clientTg">Telegram или телефон для связи *</label>
+                                <input class="form-input" type="text" id="clientTg" required placeholder="@username или +7 999 ...">
+                            </div>
+                            <div class="form-group form-group--full">
+                                <label class="form-label" for="clientSite">Ссылка на ваш канал / блог / соцсети</label>
+                                <input class="form-input" type="url" id="clientSite" placeholder="https://instagram.com/... или https://youtube.com/...">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Раздел 2: Площадки и формат -->
+                    <section class="brief-section">
+                        <h2 class="brief-section__title">
+                            <i class="fas fa-film" aria-hidden="true"></i> 2. Площадка и формат ролика
+                        </h2>
+
+                        <div class="form-group form-group--full" style="margin-bottom: 14px;">
+                            <label class="form-label">Где будет публиковаться видео?</label>
+                            <div class="options-grid">
+                                <label class="custom-option">
+                                    <input type="checkbox" name="platform" value="Reels / Shorts / TikTok"> Reels / Shorts / TikTok
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="platform" value="YouTube (длинный)"> YouTube (длинное видео)
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="platform" value="VK Видео / Клипы"> VK Видео / Клипы
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="platform" value="Telegram / Сайт"> Telegram / Сайт
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="aspectRatio">Соотношение сторон</label>
+                                <select class="form-select" id="aspectRatio">
+                                    <option value="9:16 (Вертикальное / Смартфоны)">9:16 (Вертикальное — Shorts/Reels)</option>
+                                    <option value="16:9 (Горизонтальное / ПК)">16:9 (Горизонтальное — YouTube/VK)</option>
+                                    <option value="1:1 или 4:5 (Квадрат / Лента)">1:1 или 4:5 (Лента соцсетей)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="targetDuration">Ожидаемый хронометраж готового ролика *</label>
+                                <input class="form-input" type="text" id="targetDuration" required placeholder="Например: 25-35 сек или 12 мин">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Раздел 3: Исходные данные -->
+                    <section class="brief-section">
+                        <h2 class="brief-section__title">
+                            <i class="fas fa-folder-open" aria-hidden="true"></i> 3. Исходные материалы
+                        </h2>
+                        <div class="form-group form-group--full" style="margin-bottom: 14px;">
+                            <label class="form-label" for="driveLink">Ссылка на исходники (Яндекс.Диск / Google Drive / Облако) *</label>
+                            <input class="form-input" type="url" id="driveLink" required placeholder="https://disk.yandex.ru/... или ссылка на папку">
+                        </div>
+
+                        <div class="form-group form-group--full">
+                            <label class="form-label">Что передаётся в работу?</label>
+                            <div class="options-grid">
+                                <label class="custom-option">
+                                    <input type="checkbox" name="materials" value="Видео исходники"> Видео (камера/телефон)
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="materials" value="Звук с петлички"> Отдельный звук (петличка)
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="materials" value="Сценарий/Таймкоды"> Сценарий / таймкоды дублей
+                                </label>
+                                <label class="custom-option">
+                                    <input type="checkbox" name="materials" value="Брендбук/Логотип"> Логотип / брендбук
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Раздел 4: Стилистика и монтаж -->
+                    <section class="brief-section">
+                        <h2 class="brief-section__title">
+                            <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> 4. Стилистика и звук
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="motionStyle">Характер монтажа</label>
+                                <select class="form-select" id="motionStyle">
+                                    <option value="Динамичный Shorts/TikTok стиль (хуки, свуши, плотный тайминг)">Динамичный Shorts/TikTok стиль (хуки, свуши)</option>
+                                    <option value="Журнальный минимализм (недвижимость, премиум-бренды)">Журнальный минимализм (премиум-эстетика)</option>
+                                    <option value="Классический экспертный (подкаст / интервью)">Классический экспертный (подкаст / интервью)</option>
+                                    <option value="Атмосферный репортаж / фестиваль">Атмосферный репортаж / фестиваль</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="subtitles">Субтитры и графика</label>
+                                <select class="form-select" id="subtitles">
+                                    <option value="Трендовые динамические субтитры с подсветкой">Трендовые динамические субтитры с подсветкой</option>
+                                    <option value="Минималистичные аккуратные субтитры">Минималистичные аккуратные субтитры</option>
+                                    <option value="Без субтитров, только титры/плашки">Только текстовые плашки / логотип</option>
+                                    <option value="Субтитры не требуются">Субтитры не требуются</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group form-group--full">
+                                <label class="form-label" for="references">Ссылки на референсы (видео, стиль которых вам нравится)</label>
+                                <textarea class="form-textarea" id="references" placeholder="Укажите ссылки и напишите, что именно в них нравится (скорость, звук, цвет, субтитры)"></textarea>
+                            </div>
+
+                            <div class="form-group form-group--full">
+                                <label class="form-label" for="antireferences">Что категорически НЕ нравится (чего избегать)</label>
+                                <input class="form-input" type="text" id="antireferences" placeholder="Например: не использовать кислотные эмодзи, без звуковых мем-эффектов">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Раздел 5: Сроки и бюджет -->
+                    <section class="brief-section">
+                        <h2 class="brief-section__title">
+                            <i class="fas fa-clock" aria-hidden="true"></i> 5. Сроки и бюджет
+                        </h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="deadline">Желаемый срок сдачи *</label>
+                                <input class="form-input" type="text" id="deadline" required placeholder="Например: до 20 октября / 3 дня">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="budget">Ориентировочный бюджет</label>
+                                <input class="form-input" type="text" id="budget" placeholder="Например: 5 000 ₽ / пакет 10 роликов">
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="brief-actions">
+                        <button type="submit" class="btn-submit">
+                            <i class="fab fa-telegram-plane" aria-hidden="true"></i> Отправить бриф в Telegram
+                        </button>
+                        <button type="button" class="btn-copy" id="btnCopyText">
+                            <i class="fas fa-copy" aria-hidden="true"></i> Скопировать заполненный текст
+                        </button>
+                        <p class="brief-note">* Нажатие сформирует готовое текстовое сообщение и откроет диалог со мной в Telegram.</p>
+                    </div>
+
+                </form>
+            </main>
+
+            <footer>
+                <div class="footer-links">
+                    <div class="links-row">
+                        <a href="https://github.com/Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                        </a>
+                        <a href="https://www.youtube.com/@Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-outline-youtube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+                        </a>
+                        <a href="https://t.me/Zillendaw" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-cta btn-cta--tg">
+                            <i class="fab fa-telegram" aria-hidden="true"></i> Telegram
+                        </a>
+                        <a href="mailto:mossy009@mail.ru" class="btn btn-outline btn-cta btn-cta--email">
+                            <i class="fas fa-envelope" aria-hidden="true"></i> Почта
+                        </a>
+                    </div>
+                </div>
+                <p>&copy; 2026 Александр Хван. Создано с помощью GitHub Pages.</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        // Сборка сообщения из полей формы
+        function buildSummaryText() {
+            const getVal = id => (document.getElementById(id)?.value || '').trim();
+            const getChecked = name => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+                                            .map(el => el.value).join(', ');
+
+            return `📋 НОВЫЙ БРИФ НА МОНТАЖ ВИДЕО\n\n` +
+                   `👤 Заказчик: ${getVal('clientName')}\n` +
+                   `📱 Контакт: ${getVal('clientTg')}\n` +
+                   `🌐 Блог/канал: ${getVal('clientSite') || '—'}\n\n` +
+                   `🎬 Площадки: ${getChecked('platform') || '—'}\n` +
+                   `📐 Формат: ${getVal('aspectRatio')}\n` +
+                   `⏱ Хронометраж: ${getVal('targetDuration')}\n\n` +
+                   `📁 Исходники: ${getVal('driveLink')}\n` +
+                   `📦 Что передано: ${getChecked('materials') || '—'}\n\n` +
+                   `✨ Стиль: ${getVal('motionStyle')}\n` +
+                   `💬 Субтитры: ${getVal('subtitles')}\n` +
+                   `🔗 Референсы: ${getVal('references') || '—'}\n` +
+                   `🚫 Чего избегать: ${getVal('antireferences') || '—'}\n\n` +
+                   `⏳ Дедлайн: ${getVal('deadline')}\n` +
+                   `💰 Бюджет: ${getVal('budget') || 'По договорённости'}`;
+        }
+
+        // Отправка сразу в Telegram Александру
+        document.getElementById('videoBriefForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = encodeURIComponent(buildSummaryText());
+            window.open(`https://t.me/Zillendaw?text=${text}`, '_blank');
+        });
+
+        // Быстрое копирование в буфер обмена
+        document.getElementById('btnCopyText').addEventListener('click', function() {
+            const text = buildSummaryText();
+            navigator.clipboard.writeText(text).then(() => {
+                const prev = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Текст скопирован в буфер!';
+                setTimeout(() => { this.innerHTML = prev; }, 2500);
+            }).catch(() => {
+                alert('Не удалось скопировать текст. Выделите и скопируйте его вручную.');
+            });
+        });
+    </script>
+</body>
+</html>
