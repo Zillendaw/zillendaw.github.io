@@ -69,7 +69,7 @@
         link.rel = 'noopener noreferrer';
         link.textContent = 'Смотреть в VK';
 
-        note.append(icon, document.createTextNode(' Не открывается с зарубежного IP. '), link);
+        note.append(icon, document.createTextNode(' Плеер VK не загрузился в этом браузере. '), link);
 
         var info = card.querySelector('.video-case-info');
         (info || card).appendChild(note);
