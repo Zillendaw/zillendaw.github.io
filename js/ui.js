@@ -13,7 +13,7 @@
      3. Сборка окна «Образование» из данных.
      4. Вкладки раздела «Видеомонтаж» (со счётчиками,
         которые считаются сами, и навигацией стрелками).
-     5. Папки типов роликов во вкладке «Портфолио».
+     5. Папки типов роликов — каждая открывается в модальном окне.
      6. Снятие метки «золотое сечение» по дате.
      7. Окно «Видео с разных площадок» на странице
         видеомонтажа: VK, YouTube и предупреждение про VPN.
@@ -256,31 +256,37 @@
        Приоткрывание при наведении делает CSS, здесь только
        состояние.
        ================================================= */
-    function initFolders() {
+        function initFolders() {
         var cards = Array.prototype.slice.call(
             document.querySelectorAll('.folder-card[aria-controls]')
         );
         if (!cards.length) return;
 
-        function panelOf(card) {
-            return document.getElementById(card.getAttribute('aria-controls'));
+        var folders = [];
+
+        function setHash(hash) {
+            try {
+                history.replaceState(null, '', hash || location.pathname + location.search);
+            } catch (e) {}
         }
 
-        function setState(card, open) {
-            var panel = panelOf(card);
-            card.setAttribute('aria-expanded', open ? 'true' : 'false');
-            if (!panel) return;
-            panel.hidden = !open;
-            if (open) {
-                /* перезапуск анимации появления при каждом открытии */
-                panel.style.animation = 'none';
-                void panel.offsetHeight;
-                panel.style.animation = '';
-            }
+        function emit(name, panel) {
+            try {
+                document.dispatchEvent(new CustomEvent(name, { detail: { panel: panel } }));
+            } catch (e) {}
+        }
+
+        /* Перезапуск src останавливает ролик — иначе звук
+           продолжит играть из закрытого окна */
+        function stopMedia(panel) {
+            panel.querySelectorAll('iframe').forEach(function (frame) {
+                var src = frame.src;
+                frame.src = src;
+            });
         }
 
         cards.forEach(function (card) {
-            var panel = panelOf(card);
+            var panel = document.getElementById(card.getAttribute('aria-controls'));
             if (!panel) return;
 
             /* Счётчик роликов считается по разметке */
@@ -289,12 +295,67 @@
                 counter.textContent = panel.querySelectorAll('.video-case-card').length;
             }
 
-            card.addEventListener('click', function () {
-                var willOpen = card.getAttribute('aria-expanded') !== 'true';
-                cards.forEach(function (other) { setState(other, false); });
-                if (willOpen) setState(card, true);
+            var heading = panel.querySelector('.video-group-title');
+            if (heading && !heading.id) heading.id = panel.id + '-title';
+
+            /* ── Окно ── */
+            var modal = document.createElement('div');
+            modal.className = 'modal folder-modal';
+            modal.setAttribute('role', 'dialog');
+            modal.setAttribute('aria-modal', 'true');
+            modal.setAttribute('aria-hidden', 'true');
+            if (heading) modal.setAttribute('aria-labelledby', heading.id);
+            else modal.setAttribute('aria-label', card.textContent.trim());
+
+            var content = document.createElement('div');
+            content.className = 'modal-content folder-modal__content';
+
+            var closeBtn = document.createElement('button');
+            closeBtn.type = 'button';
+            closeBtn.className = 'close-btn folder-modal__close';
+            closeBtn.setAttribute('aria-label', 'Закрыть');
+            closeBtn.innerHTML = '&times;';
+
+            var body = document.createElement('div');
+            body.className = 'folder-modal__body';
+
+            panel.hidden = false;
+            body.appendChild(panel);           // панель переезжает в окно
+            content.append(closeBtn, body);    // крестик первым — на нём фокус
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+
+            var api = createModal(modal, {
+                onClose: function () {
+                    card.setAttribute('aria-expanded', 'false');
+                    stopMedia(panel);
+                    setHash('');
+                    emit('folder:close', panel);
+                }
             });
+
+            function open() {
+                api.open();
+                card.setAttribute('aria-expanded', 'true');
+                body.scrollTop = 0;            // каждый раз с начала списка
+                setHash('#' + panel.id);
+                emit('folder:open', panel);
+            }
+
+            card.setAttribute('aria-haspopup', 'dialog');
+            card.addEventListener('click', open);
+            closeBtn.addEventListener('click', api.close);
+
+            folders.push({ panel: panel, open: open });
         });
+
+        /* Прямая ссылка на папку: video.html#folder-kids */
+        var id = decodeURIComponent(location.hash.slice(1));
+        if (id) {
+            folders.forEach(function (f) {
+                if (f.panel.id === id) f.open();
+            });
+        }
     }
 
     /* =================================================

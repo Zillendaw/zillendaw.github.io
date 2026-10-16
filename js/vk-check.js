@@ -122,46 +122,49 @@
     });
 
     /* ── Вердикт ──
-       Плееры внутри закрытой папки или скрытой вкладки не
-       загружаются и молчат — это не гео-ограничение. Поэтому
-       по каждому кадру судим отдельно и только после того,
-       как он пробыл на экране READY_TIMEOUT: столько нужно
-       живому плееру, чтобы подать голос. */
-    var POLL   = 2500;   // как часто пересматриваем ситуацию
-    var GIVEUP = 120000; // через столько перестаём следить
-    var shownAt = [];    // [frame, момент появления на экране]
-    var started = Date.now();
+       Плеер, которого нет на экране, не загружается и молчит —
+       это не гео-ограничение. Поэтому кадр судим только после
+       того, как его окно пробыло открытым READY_TIMEOUT.
+       Об открытии и закрытии папок сообщает js/ui.js
+       событиями folder:open / folder:close. */
+    var pending = [];   // [frame, timer]
 
-    function shownSince(frame) {
-        for (var i = 0; i < shownAt.length; i++) {
-            if (shownAt[i][0] === frame) return shownAt[i][1];
-        }
-        return null;
-    }
-
-    function verdict() {
-        var now = Date.now();
-
-        frames.forEach(function (frame) {
-            if (frame.offsetParent !== null && shownSince(frame) === null) {
-                shownAt.push([frame, now]);
+    function cancel(frame) {
+        for (var i = pending.length - 1; i >= 0; i--) {
+            if (pending[i][0] === frame) {
+                clearTimeout(pending[i][1]);
+                pending.splice(i, 1);
             }
-        });
-
-        var ripe = frames.filter(function (frame) {
-            var since = shownSince(frame);
-            return since !== null && now - since >= READY_TIMEOUT;
-        });
-
-        ripe.filter(function (f) {
-            return alive.indexOf(f) === -1 || errored.indexOf(f) !== -1;
-        }).forEach(markCard);
-
-        /* Ещё не все кадры показывали — продолжаем наблюдать */
-        if (ripe.length < frames.length && now - started < GIVEUP) {
-            setTimeout(verdict, POLL);
         }
     }
 
-    setTimeout(verdict, READY_TIMEOUT);
+    function judgeLater(frame) {
+        cancel(frame);
+        var timer = setTimeout(function () {
+            cancel(frame);
+            if (frame.offsetParent === null) return;   // окно успели закрыть
+            if (alive.indexOf(frame) === -1 || errored.indexOf(frame) !== -1) {
+                markCard(frame);
+            }
+        }, READY_TIMEOUT);
+        pending.push([frame, timer]);
+    }
+
+    function framesIn(panel) {
+        return frames.filter(function (f) { return panel && panel.contains(f); });
+    }
+
+    document.addEventListener('folder:open', function (e) {
+        framesIn(e.detail && e.detail.panel).forEach(judgeLater);
+    });
+
+    document.addEventListener('folder:close', function (e) {
+        framesIn(e.detail && e.detail.panel).forEach(cancel);
+    });
+
+    /* Уже видимые кадры: папка открыта по прямой ссылке
+       (ui.js успел открыть окно до запуска этого скрипта) */
+    frames.forEach(function (f) {
+        if (f.offsetParent !== null) judgeLater(f);
+    });
 })();

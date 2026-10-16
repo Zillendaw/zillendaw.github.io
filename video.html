@@ -114,12 +114,12 @@
 
                         </div>
 
-                        <!-- ── Портфолио: типы роликов ──
-                             Каждая папка — отдельный тип. Наведение
-                             приоткрывает её, нажатие раскрывает список
-                             роликов по два в ряд. Логика — в js/ui.js.
-                             Чтобы добавить тип: кнопка .folder-card
-                             + блок .folder-panel с таким же id. ── -->
+                            <!-- ── Портфолио: типы роликов ──
+                                Каждая папка — отдельный тип. Наведение
+                                приоткрывает её, нажатие открывает окно
+                                с роликами. Логика — в js/ui.js.
+                                Чтобы добавить тип: кнопка .folder-card
+                                + блок .folder-panel с таким же id. ── -->
                         <div id="tab-cases" class="video-tab-panel" role="tabpanel">
 
                             <p class="folders__lead">Выберите тип роликов</p>
@@ -194,6 +194,18 @@
                                 </span>
                                 <span class="folder-card__name"><span><i class="fas fa-building" aria-hidden="true" style="margin-right: 4px;"></i> Эксперт по<br>недвижимости</span></span>
                                 <span class="folder-card__hint">Insta · Reels, карусель</span>
+                                <span class="folder-card__count"></span>
+                            </button>
+                            <button type="button" class="folder-card" aria-expanded="false" aria-controls="folder-kids">
+                                <span class="folder" aria-hidden="true">
+                                    <span class="folder__tab"></span>
+                                    <span class="folder__back"></span>
+                                    <span class="folder__paper folder__paper--far"></span>
+                                    <span class="folder__paper folder__paper--near"></span>
+                                    <span class="folder__front"></span>
+                                </span>
+                                <span class="folder-card__name"><span><i class="fas fa-children" aria-hidden="true" style="margin-right: 4px;"></i> Детский и подростковый лайфстайл / Блогинг</span></span>
+                                <span class="folder-card__hint">Insta · Reels</span>
                                 <span class="folder-card__count"></span>
                             </button>
                             </div>
@@ -825,6 +837,193 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="folder-panel" id="folder-kids" role="region" hidden>
+    <h3 class="video-group-title">
+        <i class="fas fa-children" aria-hidden="true"></i> Детский и подростковый лайфстайл / Блогинг
+        <span class="video-group-title__hint">Instagram · Reels</span>
+    </h3>
+
+                                <p class="video-client__lead">
+                                    Монтаж Reels для лайфстайл-блога
+                                    <a href="https://www.instagram.com/anagaika.svtno/" target="_blank" rel="noopener noreferrer">@anagaika.svtno</a> —
+                                    короткие вертикальные ролики о жизни, увлечениях и повседневных моментах.
+                                </p>
+
+                                <!-- Чтобы добавить ролик: скопируйте карточку и замените
+                                    ID в двух местах — в src плеера и в ссылке на пост. -->
+                                <div class="video-cases-grid video-cases-grid--shorts">
+
+                                    <!-- 1 · DeJzbvVIsZ5 -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DeJzbvVIsZ5/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DeJzbvVIsZ5/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2 · DeL8sbYoK3l -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DeL8sbYoK3l/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DeL8sbYoK3l/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3 · DeOxxfjoLNp -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DeOxxfjoLNp/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DeOxxfjoLNp/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4 · DeQ7fyaoJjr -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DeQ7fyaoJjr/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DeQ7fyaoJjr/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 5 · DecjZpoxn8W -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DecjZpoxn8W/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DecjZpoxn8W/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 6 · DehH_suo_7t -->
+                                    <div class="video-case-card video-case-card--vertical">
+                                        <div class="video-embed video-embed--vertical video-embed--instagram">
+                                            <iframe
+                                                src="https://www.instagram.com/reel/DehH_suo_7t/embed/"
+                                                title="Reels для лайфстайл-блога @anagaika.svtno"
+                                                allow="encrypted-media; fullscreen; picture-in-picture"
+                                                allowfullscreen
+                                                scrolling="no"
+                                                loading="lazy">
+                                            </iframe>
+                                        </div>
+                                        <div class="video-case-info">
+                                            <h4><i class="fas fa-film" aria-hidden="true"></i> Reels для лайфстайл-блога</h4>
+                                            <p>Вертикальный ролик для блога: живой монтаж под музыку, динамичные склейки и подача в стиле автора.</p>
+                                            <div class="video-badges">
+                                                <span class="video-source-badge video-source-badge--instagram">
+                                                    <i class="fab fa-instagram" aria-hidden="true"></i> Instagram (Reels)
+                                                </span>
+                                                <a class="video-post-link"
+                                                href="https://www.instagram.com/reel/DehH_suo_7t/" target="_blank" rel="noopener noreferrer">
+                                                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                                    Оригинальный пост
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 

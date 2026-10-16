@@ -2719,3 +2719,111 @@ body[data-mode="video"] .main-site {
    padding-bottom.
    ===================================================== */
 .video-embed--instagram { padding-bottom: 205%; background: #fff; }
+
+/* =====================================================
+   19. ОКНО ПАПКИ С РОЛИКАМИ
+   Собирается в js/ui.js из блока .folder-panel.
+   Десктоп — окно по центру, телефон — шторка снизу.
+   ===================================================== */
+.folder-modal { padding: 24px; }
+
+.modal-content.folder-modal__content {
+    width: 100%;
+    max-width: 980px;
+    max-height: calc(100dvh - 48px);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #f4f4f9;
+    border: 1px solid rgba(138, 48, 204, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    animation: folderModalIn 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Прокручивается только содержимое, крестик остаётся на месте */
+.folder-modal__body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 30px 28px 34px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(138, 48, 204, 0.35) transparent;
+}
+
+/* Заголовок не заезжает под крестик */
+.folder-modal__body .video-group-title { padding: 0 44px; }
+
+.folder-modal__close {
+    z-index: 2;
+    top: 14px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 26px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.folder-modal__close:hover {
+    color: #111;
+    background: #fff;
+    transform: rotate(90deg);
+}
+
+@keyframes folderModalIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.98); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes folderSheetIn {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+    .modal-content.folder-modal__content {
+        background: #121212;
+        border-color: rgba(201, 125, 255, 0.18);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+    }
+
+    .folder-modal__body { scrollbar-color: rgba(201, 125, 255, 0.35) transparent; }
+
+    .folder-modal__close {
+        color: rgba(255, 255, 255, 0.6);
+        background: rgba(40, 40, 52, 0.85);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .folder-modal__close:hover { color: #fff; background: #2c2c3a; }
+}
+
+/* Телефон: шторка снизу на всю ширину */
+@media (max-width: 600px) {
+    .folder-modal { padding: 0; align-items: flex-end; }
+
+    .modal-content.folder-modal__content {
+        max-height: 94dvh;
+        border-radius: 20px 20px 0 0;
+        border-bottom: 0;
+        animation-name: folderSheetIn;
+    }
+
+    .folder-modal__body { padding: 26px 16px 28px; }
+    .folder-modal__body .video-group-title { padding: 0 38px; }
+    .folder-modal__close { top: 10px; right: 10px; width: 36px; height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modal-content.folder-modal__content { animation: none; }
+    .folder-modal__close:hover { transform: none; }
+}
